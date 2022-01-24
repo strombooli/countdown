@@ -33,7 +33,7 @@
 		<div class="text-center py-5" style="font-weight: 2">
 			<b class="cd-descr">距离</b>
 			<a class="cd-title"> 2022年 </a>
-			<b class="cd-descr">还有</b>
+			<b class="cd-descr" id="descr">还有</b>
 		</div>
 		<div class="text-center" id="cd-time">
 			<a class="cd-time" id="day"> 00 </a> <b class="cd-descr">天</b>
@@ -52,7 +52,7 @@
 	</div>
 	<script>
 		let eventTime = 1640966400;
-		let eventName;
+		let eventName,after;
 		document.getElementById("confirm").onclick = function () {
 			eventName = document.getElementById("event").value;
 			eventTime = new Date(document.getElementById("toDate").value + " " + document.getElementById("toTime").value).getTime()/1000;
@@ -62,7 +62,8 @@
 			}
 		}
 		function showTime() {
-			let countdownAll = eventTime - Date.now() / 1000;
+            if(eventTime < Date.now() / 1000) after=true;
+			let countdownAll = abs(eventTime - Date.now() / 1000);
 			let countdownDay = Math.floor(countdownAll / 86400);
 			let countdownHor = Math.floor(countdownAll / 3600 - countdownDay * 24);
 			let countdownMin = Math.floor(countdownAll / 60 - countdownDay * 1440 - countdownHor * 60);
@@ -71,9 +72,7 @@
 			document.getElementById("hor").innerHTML = " " + ("0" + countdownHor).substr(-2) + " ";
 			document.getElementById("min").innerHTML = " " + ("0" + countdownMin).substr(-2) + " ";
 			document.getElementById("sec").innerHTML = " " + ("0" + countdownSec).substr(-2) + " ";
-			if(countdownAll < 0){
-				countdownAll = 0;
-			}
+            if(after) document.getElementById("descr").innerHTML = "已经";
 		}
 		setInterval(function () { showTime() }, 1);
 	</script>
