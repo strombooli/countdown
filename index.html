@@ -52,7 +52,7 @@
 	</div>
 	<script>
 		let eventTime = 1640966400;
-		let eventName,after;
+		let eventName,after=false;
 		document.getElementById("confirm").onclick = function () {
 			eventName = document.getElementById("event").value;
 			eventTime = new Date(document.getElementById("toDate").value + " " + document.getElementById("toTime").value).getTime()/1000;
