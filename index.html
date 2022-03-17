@@ -62,7 +62,9 @@
 			}
 		}
 		function showTime() {
-            if(eventTime < Date.now() / 1000) after=true;
+            if(eventTime < Date.now() / 1000){
+                after=true;
+            }
 			let countdownAll = Math.abs(eventTime - Date.now() / 1000);
 			let countdownDay = Math.floor(countdownAll / 86400);
 			let countdownHor = Math.floor(countdownAll / 3600 - countdownDay * 24);
@@ -74,7 +76,7 @@
 			document.getElementById("sec").innerHTML = " " + ("0" + countdownSec).substr(-2) + " ";
             if(after) document.getElementById("descr").innerHTML = "已经";
 		}
-		setInterval(function () { showTime() }, 1);
+		setInterval(function () { showTime() }, 10);
 	</script>
 </body>
 
