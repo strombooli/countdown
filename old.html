@@ -1,0 +1,85 @@
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>countdown111</title>
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1" name="viewport">
+	<meta content="" name="keywords">
+	<meta content="" name="description">
+	<link href="https://coa.sesedu.cn/dist/css/common.min.css" rel="stylesheet">
+	<link href="https://coa.sesedu.cn/font-awesome/css/all.min.css" rel="stylesheet">
+	<style>
+		.cd-time {
+			font-size: 6.5rem;
+			color: red;
+			white-space: pre;
+		}
+
+		.cd-descr {
+			font-size: 2rem;
+		}
+
+		.cd-title {
+			font-size: 6rem;
+			color: red;
+			white-space: pre;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<div class="text-center py-5" style="font-weight: 2">
+			<b class="cd-descr">距离</b>
+			<a class="cd-title"> 2022年 </a>
+			<b class="cd-descr" id="descr">还有</b>
+		</div>
+		<div class="text-center" id="cd-time">
+			<a class="cd-time" id="day"> 00 </a> <b class="cd-descr">天</b>
+			<a class="cd-time" id="hor"> 00 </a> <b class="cd-descr">小时</b>
+			<a class="cd-time" id="min"> 00 </a> <b class="cd-descr">分钟</b>
+			<a class="cd-time" id="sec"> 00 </a> <b class="cd-descr">秒</b>
+		</div>
+	</div>
+	<div class="text-center py-5" style="margin-top: 5.7rem; display: block" id="input">
+		<b style="white-space: pre;"> 时间 </b><input type="date" id="toDate"><input type="time" id="toTime"><br>
+		<b style="white-space: pre;"> 事件 </b><input style="margin-top: 2rem; width: 14.5rem" id="event"><br>
+		<div style="margin-top: 2rem">
+			<input type="button" id="confirm" value="确定">
+			<input type="checkbox" id="hide"><a>隐藏输入框</a>
+		</div>
+	</div>
+	<script>
+		let eventTime = 1640966400;
+		let eventName,after=false;
+		document.getElementById("confirm").onclick = function () {
+			eventName = document.getElementById("event").value;
+			eventTime = new Date(document.getElementById("toDate").value + " " + document.getElementById("toTime").value).getTime()/1000;
+			document.getElementsByClassName("cd-title")[0].innerHTML = " " + eventName + " ";
+			if (document.getElementById("hide").checked === true) {
+				document.getElementById("input").style.display = "none";
+			}
+		}
+		function showTime() {
+            after=false;
+            if(eventTime < Date.now() / 1000){
+                after=true;
+            }
+			let countdownAll = Math.abs(eventTime - Date.now() / 1000);
+			let countdownDay = Math.floor(countdownAll / 86400);
+			let countdownHor = Math.floor(countdownAll / 3600 - countdownDay * 24);
+			let countdownMin = Math.floor(countdownAll / 60 - countdownDay * 1440 - countdownHor * 60);
+			let countdownSec = Math.floor(countdownAll - countdownDay * 86400 - countdownHor * 3600 - countdownMin * 60);
+			document.getElementById("day").innerHTML = " " + countdownDay + " ";
+			document.getElementById("hor").innerHTML = " " + ("0" + countdownHor).substr(-2) + " ";
+			document.getElementById("min").innerHTML = " " + ("0" + countdownMin).substr(-2) + " ";
+			document.getElementById("sec").innerHTML = " " + ("0" + countdownSec).substr(-2) + " ";
+            if(after) document.getElementById("descr").innerHTML = "已经";
+            else document.getElementById("descr").innerHTML = "还有";
+		}
+		setInterval(function () { showTime() }, 10);
+	</script>
+</body>
+
+</html>

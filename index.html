@@ -32,53 +32,48 @@
 	<div>
 		<div class="text-center py-5" style="font-weight: 2">
 			<b class="cd-descr">距离</b>
-			<a class="cd-title"> 2022年 </a>
+			<a class="cd-title" id="title"> 2022年 </a>
 			<b class="cd-descr" id="descr">还有</b>
 		</div>
 		<div class="text-center" id="cd-time">
-			<a class="cd-time" id="day"> 00 </a> <b class="cd-descr">天</b>
 			<a class="cd-time" id="hor"> 00 </a> <b class="cd-descr">小时</b>
 			<a class="cd-time" id="min"> 00 </a> <b class="cd-descr">分钟</b>
 			<a class="cd-time" id="sec"> 00 </a> <b class="cd-descr">秒</b>
 		</div>
 	</div>
-	<div class="text-center py-5" style="margin-top: 5.7rem; display: block" id="input">
-		<b style="white-space: pre;"> 时间 </b><input type="date" id="toDate"><input type="time" id="toTime"><br>
-		<b style="white-space: pre;"> 事件 </b><input style="margin-top: 2rem; width: 14.5rem" id="event"><br>
-		<div style="margin-top: 2rem">
-			<input type="button" id="confirm" value="确定">
-			<input type="checkbox" id="hide"><a>隐藏输入框</a>
-		</div>
-	</div>
 	<script>
-		let eventTime = 1640966400;
-		let eventName,after=false;
-		document.getElementById("confirm").onclick = function () {
-			eventName = document.getElementById("event").value;
-			eventTime = new Date(document.getElementById("toDate").value + " " + document.getElementById("toTime").value).getTime()/1000;
-			document.getElementsByClassName("cd-title")[0].innerHTML = " " + eventName + " ";
-			if (document.getElementById("hide").checked === true) {
-				document.getElementById("input").style.display = "none";
+		let sched = ["0800", "0840", "0850", "0930", "0940", "1020", "1045", "1125", "1230", "1310", "1320", "1400", "1410", "1450", "1510", "1550", "1600", "1650", "1651", "2400"];
+		let schedDescr = ["第一节课", "-1", "第二节课", "-1", "第三节课", "-1", "第四节课", "-1", "第五节课", "-1", "第六节课", "-1", "第七节课", "-1", "第八节课", "-1", "第九节课", "-1", "明天", "-1"];
+		
+	</script>
+	<script>
+		function nxtEventId() {
+			let nowStr = new Date().getHours().toString() + new Date().getMinutes().toString;
+			let i;
+			for (i = 0; i < sched.length; i++) {
+				if (nowStr < sched[i]) return i;
 			}
 		}
-		function showTime() {
-            after=false;
-            if(eventTime < Date.now() / 1000){
-                after=true;
-            }
-			let countdownAll = Math.abs(eventTime - Date.now() / 1000);
-			let countdownDay = Math.floor(countdownAll / 86400);
-			let countdownHor = Math.floor(countdownAll / 3600 - countdownDay * 24);
-			let countdownMin = Math.floor(countdownAll / 60 - countdownDay * 1440 - countdownHor * 60);
-			let countdownSec = Math.floor(countdownAll - countdownDay * 86400 - countdownHor * 3600 - countdownMin * 60);
-			document.getElementById("day").innerHTML = " " + countdownDay + " ";
-			document.getElementById("hor").innerHTML = " " + ("0" + countdownHor).substr(-2) + " ";
-			document.getElementById("min").innerHTML = " " + ("0" + countdownMin).substr(-2) + " ";
-			document.getElementById("sec").innerHTML = " " + ("0" + countdownSec).substr(-2) + " ";
-            if(after) document.getElementById("descr").innerHTML = "已经";
-            else document.getElementById("descr").innerHTML = "还有";
+		function str2time(n) {
+			let todayStart = new Date().getTime() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000 - new Date().getSeconds() * 1000 - new Date().getMilliseconds();
+			let thisHour = parseInt(sched[n].substring(0, 2));
+			let thisMin = parseInt(sched[n].substring(2, 4));
+			let nowTime = todayStart + thisHour * 60 * 60 * 1000 + thisMin * 60 * 1000;
+			return nowTime;
 		}
-		setInterval(function () { showTime() }, 10);
+		function showTime() {
+			let delta = str2time(nxtEventId()) - new Date().getTime();
+			if (schedDescr[nxtEventId()] == "-1") document.getElementById("title").innerText = " " + schedDescr[nxtEventId() - 1] + "下课 ";
+			else document.getElementById("title").innerText = " " + schedDescr[nxtEventId() - 1] + "上课 ";
+			delta = delta / 1000;
+			let hor = Math.floor(delta / 3600);
+			let min = Math.floor(delta / 60 - hor * 60);
+			let sec = Math.floor(delta - hor * 3600 - min * 60);
+			document.getElementById("hor").innerHTML = " " + ("0" + hor).substr(-2) + " ";
+			document.getElementById("min").innerHTML = " " + ("0" + min).substr(-2) + " ";
+			document.getElementById("sec").innerHTML = " " + ("0" + sec).substr(-2) + " ";
+		}
+		setInterval(function () { showTime() }, 1000);
 	</script>
 </body>
 
