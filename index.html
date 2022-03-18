@@ -95,15 +95,7 @@
 		let pre;
 		function showTime() {
 			let nxtId = nxtEventId();
-			if (nxtId == pre) return;
-			pre = nxtId;
 			let delta = str2time(nxtId) - new Date().getTime();
-			if (nxtId % 2 == 0) document.getElementById("nxt").innerText = "当前：" + spanDescr[Math.floor(nxtId / 2) - 1];
-			else document.getElementById("nxt").innerText = "下节：" + spanDescr[Math.floor(nxtId / 2)];
-			document.getElementById("title-pre").innerText = timeDescrPre[nxtId];
-			if (Math.floor(nxtId / 2) >= sched[new Date().getDay() - 1].length) document.getElementById("title").innerText = " 明天 ";
-			else document.getElementById("title").innerText = " " + sched[new Date().getDay() - 1][Math.floor(nxtId / 2)] + " ";
-			document.getElementById("title-sub").innerText = timeDescrSub[nxtId];
 			delta = delta / 1000;
 			let hor = Math.floor(delta / 3600);
 			let min = Math.floor(delta / 60 - hor * 60);
@@ -111,6 +103,14 @@
 			document.getElementById("hor").innerHTML = " " + add0(hor) + " ";
 			document.getElementById("min").innerHTML = " " + add0(min) + " ";
 			document.getElementById("sec").innerHTML = " " + add0(sec) + " ";
+			if (nxtId == pre) return;
+			pre = nxtId;
+			if (nxtId % 2 == 0) document.getElementById("nxt").innerText = "当前：" + spanDescr[Math.floor(nxtId / 2) - 1];
+			else document.getElementById("nxt").innerText = "下节：" + spanDescr[Math.floor(nxtId / 2)];
+			document.getElementById("title-pre").innerText = timeDescrPre[nxtId];
+			if (Math.floor(nxtId / 2) >= sched[new Date().getDay() - 1].length) document.getElementById("title").innerText = " 明天 ";
+			else document.getElementById("title").innerText = " " + sched[new Date().getDay() - 1][Math.floor(nxtId / 2)] + " ";
+			document.getElementById("title-sub").innerText = timeDescrSub[nxtId];
 		}
 		setInterval(function () { showTime() }, 1000);
 	</script>
