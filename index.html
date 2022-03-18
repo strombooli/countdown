@@ -25,6 +25,14 @@
 			color: red;
 			white-space: pre;
 		}
+
+		.cd-footer {
+			position: absolute;
+			margin: auto;
+			left: 0;
+			right: 0;
+			bottom: 2rem;
+		}
 	</style>
 </head>
 
@@ -32,7 +40,9 @@
 	<div>
 		<div class="text-center py-5" style="font-weight: 2">
 			<b class="cd-descr">距离</b>
-			<a class="cd-title" id="title"> 2022年 </a>
+			<b class="cd-descr" id="title-pre">第某节课</b>
+			<a class="cd-title" id="title"> 某节课 </a>
+			<b class="cd-descr" id="title-sub">上/下课</b>
 			<b class="cd-descr" id="descr">还有</b>
 		</div>
 		<div class="text-center" id="cd-time">
@@ -40,34 +50,46 @@
 			<a class="cd-time" id="min"> 00 </a> <b class="cd-descr">分钟</b>
 			<a class="cd-time" id="sec"> 00 </a> <b class="cd-descr">秒</b>
 		</div>
+		<div class="text-center cd-footer text-muted">
+			<a>SESCountdown v0.1</a><br>
+			<a>Made By JasonYing.</a>
+		</div>
 	</div>
 	<script>
-		let sched = ["0800", "0840", "0850", "0930", "0955", "1035", "1045", "1125", "1230", "1310", "1320", "1400", "1410", "1450", "1510", "1550", "1600", "1650", "1651", "2400"];
-		let schedDescr = ["第一节课", "-1", "第二节课", "-1", "第三节课", "-1", "第四节课", "-1", "第五节课", "-1", "第六节课", "-1", "第七节课", "-1", "第八节课", "-1", "第九节课", "-1", "明天", "-1"];
-
+		let time = ["0800", "0840", "0850", "0930", "0955", "1035", "1045", "1125", "1230", "1310", "1320", "1400", "1410", "1450", "1510", "1550", "1600", "1650", "2400"];
+		let timeDescrPre = ["第一节课", "第一节课", "第二节课", "第二节课", "第三节课", "第三节课", "第四节课", "第四节课", "第五节课", "第五节课", "第六节课", "第六节课", "第七节课", "第七节课", "第八节课", "第八节课", "第九节课", "第九节课", ""];
+		let timeDescrSub = ["上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", ""];
+		let sched = [
+			["化学", "升旗仪式", "英语", "数学", "体育", "劳技", "物理", "语文", "TI"],
+			["思想政治", "数学", "语文", "语文", "英语", "化学", "生物", "历史", "体育"],
+			["物理", "历史", "信息科技", "信息科技", "语文", "数学", "音乐美术", "英语", "体育"],
+			["英语", "数学", "物理", "语文", "地理", "化学", "特需自修", "特需自修", "特需自修"],
+			["化学", "数学", "历史", "英语", "物理", "思想政治", "班会", "无", "无"]
+		];
 	</script>
 	<script>
-		function add0(s){
+		function add0(s) {
 			return ("00" + s).substr(-2);
 		}
 		function nxtEventId() {
 			let nowStr = add0(new Date().getHours().toString()) + add0(new Date().getMinutes().toString());
 			let i;
-			for (i = 0; i < sched.length; i++) {
-				if (nowStr < sched[i]) return i;
+			for (i = 0; i < time.length; i++) {
+				if (nowStr < time[i]) return i;
 			}
 		}
 		function str2time(n) {
 			let todayStart = new Date().getTime() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000 - new Date().getSeconds() * 1000 - new Date().getMilliseconds();
-			let thisHour = parseInt(sched[n].substring(0, 2));
-			let thisMin = parseInt(sched[n].substring(2, 4));
+			let thisHour = parseInt(time[n].substring(0, 2));
+			let thisMin = parseInt(time[n].substring(2, 4));
 			let nowTime = todayStart + thisHour * 60 * 60 * 1000 + thisMin * 60 * 1000;
 			return nowTime;
 		}
 		function showTime() {
 			let delta = str2time(nxtEventId()) - new Date().getTime();
-			if (schedDescr[nxtEventId()] == "-1") document.getElementById("title").innerText = " " + schedDescr[nxtEventId() - 1] + "下课 ";
-			else document.getElementById("title").innerText = " " + schedDescr[nxtEventId()] + "上课 ";
+			document.getElementById("title-pre").innerText = timeDescrPre[nxtEventId()];
+			document.getElementById("title").innerText = " " + sched[new Date().getDay() - 1][Math.floor(nxtEventId() / 2)] + " ";
+			document.getElementById("title-sub").innerText = timeDescrSub[nxtEventId()];
 			delta = delta / 1000;
 			let hor = Math.floor(delta / 3600);
 			let min = Math.floor(delta / 60 - hor * 60);
