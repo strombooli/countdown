@@ -44,11 +44,14 @@
 	<script>
 		let sched = ["0800", "0840", "0850", "0930", "0940", "1020", "1045", "1125", "1230", "1310", "1320", "1400", "1410", "1450", "1510", "1550", "1600", "1650", "1651", "2400"];
 		let schedDescr = ["第一节课", "-1", "第二节课", "-1", "第三节课", "-1", "第四节课", "-1", "第五节课", "-1", "第六节课", "-1", "第七节课", "-1", "第八节课", "-1", "第九节课", "-1", "明天", "-1"];
-		
+
 	</script>
 	<script>
+		function add0(s){
+			return ("00" + s).substr(-2);
+		}
 		function nxtEventId() {
-			let nowStr = new Date().getHours().toString() + new Date().getMinutes().toString;
+			let nowStr = add0(new Date().getHours().toString()) + add0(new Date().getMinutes().toString());
 			let i;
 			for (i = 0; i < sched.length; i++) {
 				if (nowStr < sched[i]) return i;
@@ -69,9 +72,9 @@
 			let hor = Math.floor(delta / 3600);
 			let min = Math.floor(delta / 60 - hor * 60);
 			let sec = Math.floor(delta - hor * 3600 - min * 60);
-			document.getElementById("hor").innerHTML = " " + ("0" + hor).substr(-2) + " ";
-			document.getElementById("min").innerHTML = " " + ("0" + min).substr(-2) + " ";
-			document.getElementById("sec").innerHTML = " " + ("0" + sec).substr(-2) + " ";
+			document.getElementById("hor").innerHTML = " " + add0(hor) + " ";
+			document.getElementById("min").innerHTML = " " + add0(min) + " ";
+			document.getElementById("sec").innerHTML = " " + add0(sec) + " ";
 		}
 		setInterval(function () { showTime() }, 1000);
 	</script>
