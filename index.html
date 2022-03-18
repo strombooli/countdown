@@ -2,7 +2,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>countdown111</title>
+	<title>沉浸式网课 | SESCountdown</title>
 	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 	<meta content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1" name="viewport">
 	<meta content="" name="keywords">
@@ -21,7 +21,7 @@
 		}
 
 		.cd-title {
-			font-size: 6rem;
+			font-size: 5.5rem;
 			color: red;
 			white-space: pre;
 		}
@@ -45,6 +45,9 @@
 			<b class="cd-descr" id="title-sub">上/下课</b>
 			<b class="cd-descr" id="descr">还有</b>
 		</div>
+		<div class="text-center text-muted">
+			<a id="nxt">下节/当前：某节休息</a>
+		</div>
 		<div class="text-center" id="cd-time">
 			<a class="cd-time" id="hor"> 00 </a> <b class="cd-descr">小时</b>
 			<a class="cd-time" id="min"> 00 </a> <b class="cd-descr">分钟</b>
@@ -59,6 +62,7 @@
 		let time = ["0800", "0840", "0850", "0930", "0955", "1035", "1045", "1125", "1230", "1310", "1320", "1400", "1410", "1450", "1510", "1550", "1600", "1650", "2400"];
 		let timeDescrPre = ["第一节课", "第一节课", "第二节课", "第二节课", "第三节课", "第三节课", "第四节课", "第四节课", "第五节课", "第五节课", "第六节课", "第六节课", "第七节课", "第七节课", "第八节课", "第八节课", "第九节课", "第九节课", ""];
 		let timeDescrSub = ["上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", ""];
+		let timeMusic = ["on", "off", "on", "off", "on", "off", "on", "off", "on", "off", "on", "off", "on", "off", "on", "off", "on", "off", "-1"];
 		let sched = [
 			["化学", "升旗仪式", "英语", "数学", "体育", "劳技", "物理", "语文", "TI"],
 			["思想政治", "数学", "语文", "语文", "英语", "化学", "生物", "历史", "体育"],
@@ -66,6 +70,9 @@
 			["英语", "数学", "物理", "语文", "地理", "化学", "特需自修", "特需自修", "特需自修"],
 			["化学", "数学", "历史", "英语", "物理", "思想政治", "班会", "无", "无"]
 		];
+		let spanDescr = ["课间", "大课间", "课间", "午休", "课间", "课间", "大课间", "课间", "放学"];
+		let event = ["0931", "0950", "1205", "1505", "1700"];
+		let eventMusic = ["chucao", "eye", "-1", "eye", "neversaygoodbye"];
 	</script>
 	<script>
 		function add0(s) {
@@ -85,11 +92,18 @@
 			let nowTime = todayStart + thisHour * 60 * 60 * 1000 + thisMin * 60 * 1000;
 			return nowTime;
 		}
+		let pre;
 		function showTime() {
-			let delta = str2time(nxtEventId()) - new Date().getTime();
-			document.getElementById("title-pre").innerText = timeDescrPre[nxtEventId()];
-			document.getElementById("title").innerText = " " + sched[new Date().getDay() - 1][Math.floor(nxtEventId() / 2)] + " ";
-			document.getElementById("title-sub").innerText = timeDescrSub[nxtEventId()];
+			let nxtId = nxtEventId();
+			if (nxtId == pre) return;
+			pre = nxtId;
+			let delta = str2time(nxtId) - new Date().getTime();
+			if (nxtId % 2 == 0) document.getElementById("nxt").innerText = "当前：" + spanDescr[Math.floor(nxtId / 2) - 1];
+			else document.getElementById("nxt").innerText = "下节：" + spanDescr[Math.floor(nxtId / 2)];
+			document.getElementById("title-pre").innerText = timeDescrPre[nxtId];
+			if (Math.floor(nxtId / 2) >= sched[new Date().getDay() - 1].length) document.getElementById("title").innerText = " 明天 ";
+			else document.getElementById("title").innerText = " " + sched[new Date().getDay() - 1][Math.floor(nxtId / 2)] + " ";
+			document.getElementById("title-sub").innerText = timeDescrSub[nxtId];
 			delta = delta / 1000;
 			let hor = Math.floor(delta / 3600);
 			let min = Math.floor(delta / 60 - hor * 60);
