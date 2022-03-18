@@ -67,7 +67,7 @@
 		function showTime() {
 			let delta = str2time(nxtEventId()) - new Date().getTime();
 			if (schedDescr[nxtEventId()] == "-1") document.getElementById("title").innerText = " " + schedDescr[nxtEventId() - 1] + "下课 ";
-			else document.getElementById("title").innerText = " " + schedDescr[nxtEventId() - 1] + "上课 ";
+			else document.getElementById("title").innerText = " " + schedDescr[nxtEventId()] + "上课 ";
 			delta = delta / 1000;
 			let hor = Math.floor(delta / 3600);
 			let min = Math.floor(delta / 60 - hor * 60);
