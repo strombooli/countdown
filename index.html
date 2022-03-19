@@ -117,6 +117,9 @@
 		function getNowStr() {
 			return add0(new Date().getHours().toString()) + add0(new Date().getMinutes().toString());
 		}
+		function getAdjDay() {
+			return (new Date().getDay() - 1 + 7) % 7 + 1;
+		}
 		function nxtSchedId() {
 			if (toNxtWorkDay()) return 0;
 			let nowStr = getNowStr();
@@ -134,7 +137,7 @@
 		}
 		let toNxtDescr = ["-1", "明天", "后天"];
 		function toNxtWorkDay() {
-			let nowDay = new Date().getDay();
+			let nowDay = getAdjDay();
 			if (nowDay >= 1 && nowDay <= 5) return 0;
 			$("#title-to").text(toNxtDescr[8 - nowDay]);
 			return 8 - nowDay;
@@ -170,8 +173,8 @@
 			if (nxtId % 2 == 0) $("#nxt").text("当前：" + spanList[Math.floor(nxtId / 2)]);
 			else $("#nxt").text("下节：" + spanList[Math.floor(nxtId / 2)]);
 			$("#title-pre").text(timeStampDescrPre[nxtId]);
-			if (Math.floor(nxtId / 2) >= schedList[(new Date().getDay() + toNxtWorkDay()) % 7 - 1].length) $("#title").innerText = " 明天 ";
-			else $("#title").text(" " + schedList[(new Date().getDay() + toNxtWorkDay()) % 7 - 1][Math.floor(nxtId / 2)] + " ");
+			if (Math.floor(nxtId / 2) >= schedList[(getAdjDay() + toNxtWorkDay()) % 7 - 1].length) $("#title").innerText = " 明天 ";
+			else $("#title").text(" " + schedList[(getAdjDay() + toNxtWorkDay()) % 7 - 1][Math.floor(nxtId / 2)] + " ");
 			$("#title-sub").text(timeStampDescrSub[nxtId]);
 		}
 		setInterval(function () { refr() }, 1000);
