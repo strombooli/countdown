@@ -68,21 +68,30 @@
 			<a class="cd-time" id="min"> 00 </a> <b class="cd-descr">分钟</b>
 			<a class="cd-time" id="sec"> 00 </a> <b class="cd-descr">秒</b>
 		</div>
+		<div class="text-center" id="cd-prompt">
+			<i class="fa fa-podcast"></i>
+			<span id="prompt-cont"></span>
+		</div>
 		<div style="display: none" class="text-center cd-music text-muted" id="cd-music">
 			<i class="fa fa-music"></i>
-			<a>当前播放：</a>
-			<a id="music-name">某首歌</a>
+			<span>当前播放：</span>
+			<span id="music-name">某首歌</span>
 		</div>
 		<div class="text-center cd-footer text-muted">
-			<a>SESCountdown v0.2</a><br>
-			<a>Made By JasonYing.</a>
+			<span>SESCountdown v0.3 beta0.1</span><br>
+			<span>Made By JasonYing.</span><br>
+			<span>当前为开发版本，包括了非常多没写完但急于上线的东西，敬请谅解。</span>
 		</div>
 	</div>
 	<script>
+		let dailyEventList = ["0758", "0848", "0931", "0950", "1043", "1228", "1318", "1408", "1505", "1558", "1700"];
+		let dailyEventMusic = [0, 0, 5, 3, 0, 0, 0, 0, 3, 0, 6];
+
 		let timeStampList = ["0800", "0840", "0850", "0930", "0955", "1035", "1045", "1125", "1230", "1310", "1320", "1400", "1410", "1450", "1510", "1550", "1600", "1650", "2400"];
 		let timeStampDescrPre = ["第一节课", "第一节课", "第二节课", "第二节课", "第三节课", "第三节课", "第四节课", "第四节课", "第五节课", "第五节课", "第六节课", "第六节课", "第七节课", "第七节课", "第八节课", "第八节课", "第九节课", "第九节课", ""];
 		let timeStampDescrSub = ["上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", ""];
-		let timeStampMusic = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, -1];
+		let timeStampMusic = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, -1]
+
 		let schedList = [
 			["化学", "升旗仪式", "英语", "数学", "体育", "劳技", "物理", "语文", "TI"],
 			["思想政治", "数学", "语文", "语文", "英语", "化学", "生物", "历史", "体育"],
@@ -90,16 +99,33 @@
 			["英语", "数学", "物理", "语文", "地理", "化学", "特需自修", "特需自修", "特需自修"],
 			["化学", "数学", "历史", "英语", "物理", "思想政治", "班会", "无", "无"]
 		];
-		let musicList = ["pre.aac", "on.aac", "off.aac", "eye.mp3", "body.mp3", "neversaygoodbye.mp3"];
-		let musicDescr = ["预备铃", "上课铃", "下课铃", "眼保健操", "广播体操", "Never Say Goodbye"];
 		let spanList = ["放学", "课间", "大课间", "课间", "午休", "课间", "课间", "大课间", "课间", "放学"];
-		let event = ["0758", "0848", "0931", "0950", "1043", "1205", "1228", "1318", "1408", "1505", "1558", "1700"];
-		let eventMusic = [0, 0, 4, 3, 0, -1, 0, 0, 0, 3, 0, 5];
+
+		let musicList = ["pre.aac", "on.aac", "off.aac", "eye.mp3", "inbody.aac", "body.mp3", "neversaygoodbye.aac"];
+		let musicDescr = ["预备铃", "上课铃", "下课铃", "眼保健操", "室内操", "广播体操", "Never Say Goodbye"];
+
+		let weeklyEventList = ["10851", "20931", "30931", "40931", "50931"];
+		let weeklyEventMusic = [-1, -2, -2, -2, -2];
+		let weeklyEventPrompt = ["升旗仪式进行中，<a href=\"https:\/\/ke.qq.com\/webcourse\/2537352\/102642177#taid=9050075915794312&lite=1\">点击此处收看</a>", "-1", "-1", "-1", "-1"];
+	</script>
+	<script>
+		function add0(s) {
+			return ("00" + s).substr(-2);
+		}
+		function getAdjDay() {
+			return (new Date().getDay() - 1 + 7) % 7 + 1;
+		}
+		function getNowStr() {
+			return add0(new Date().getHours().toString()) + add0(new Date().getMinutes().toString());
+		}
+		function getNowWkStr() {
+			return getAdjDay().toString() + getNowStr();
+		}
 	</script>
 	<script>
 		let player;
 		function playMusic(n) {
-			if (n == -1) return;
+			if (n < 0) return;
 			let s = musicList[n];
 			$("#music-name").text(musicDescr[n]);
 			$("#cd-music").fadeIn(2000);
@@ -110,15 +136,6 @@
 			player.addEventListener("ended", function () {
 				$("#cd-music").fadeOut(2000);
 			}, false)
-		}
-		function add0(s) {
-			return ("00" + s).substr(-2);
-		}
-		function getNowStr() {
-			return add0(new Date().getHours().toString()) + add0(new Date().getMinutes().toString());
-		}
-		function getAdjDay() {
-			return (new Date().getDay() - 1 + 7) % 7 + 1;
 		}
 		function nxtSchedId() {
 			if (toNxtWorkDay()) return 0;
@@ -142,13 +159,23 @@
 			$("#title-to").text(toNxtDescr[8 - nowDay]);
 			return 8 - nowDay;
 		}
-		let delta, nxtId, preId, preStr;
+		let delta, nxtId, preId, preStr, preWkStr;
 		function refr() {
 			if (preStr != getNowStr() && !toNxtWorkDay()) {
 				preStr = getNowStr();
-				for (let i = 0; i < event.length; i++) {
-					if (event[i] == preStr) {
-						playMusic(eventMusic[i]);
+				for (let i = 0; i < dailyEventList.length; i++) {
+					if (dailyEventList[i] == preStr) {
+						playMusic(dailyEventMusic[i]);
+						break;
+					}
+				}
+			}
+			if (preWkStr != getNowWkStr()) {
+				preWkStr = getNowWkStr();
+				for (let i = 0; i < weeklyEventList.length; i++) {
+					if (weeklyEventList[i] == preWkStr) {
+						playMusic(weeklyEventMusic[i]);
+						$("#prompt-cont").html(weeklyEventPrompt[i]);
 						break;
 					}
 				}
@@ -178,6 +205,9 @@
 			$("#title-sub").text(timeStampDescrSub[nxtId]);
 		}
 		setInterval(function () { refr() }, 1000);
+		// $.get("https://api.help.bj.cn/apis/weather/?id=101020600", function (data) {
+		// 	alert(data.city);
+		// })
 	</script>
 </body>
 
