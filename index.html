@@ -78,7 +78,7 @@
 			<span id="music-name">某首歌</span>
 		</div>
 		<div class="text-center cd-footer text-muted">
-			<span>SESCountdown v0.3 beta0.1</span><br>
+			<span>SESCountdown v0.3 beta0.2</span><br>
 			<span>Made By JasonYing.</span><br>
 			<span>当前为开发版本，包括了非常多没写完但急于上线的东西，敬请谅解。</span>
 		</div>
@@ -155,7 +155,10 @@
 		let toNxtDescr = ["-1", "明天", "后天"];
 		function toNxtWorkDay() {
 			let nowDay = getAdjDay();
-			if (nowDay >= 1 && nowDay <= 5) return 0;
+			if (nowDay >= 1 && nowDay <= 5) {
+				$("#title-to").text("");
+				return 0;
+			}
 			$("#title-to").text(toNxtDescr[8 - nowDay]);
 			return 8 - nowDay;
 		}
@@ -195,10 +198,10 @@
 			$("#sec").html(" " + add0(sec) + " ");
 		}
 		function updSched() {
-			playMusic(nxtId - 1);
-			pre = nxtId;
+			if (timeStampList[nxtId - 1] == getNowStr()) playMusic(nxtId - 1);
+			preId = nxtId;
 			if (nxtId % 2 == 0) $("#nxt").text("当前：" + spanList[Math.floor(nxtId / 2)]);
-			else $("#nxt").text("下节：" + spanList[Math.floor(nxtId / 2)]);
+			else $("#nxt").text("下节：" + spanList[Math.floor(nxtId / 2) + 1]);
 			$("#title-pre").text(timeStampDescrPre[nxtId]);
 			if (Math.floor(nxtId / 2) >= schedList[(getAdjDay() + toNxtWorkDay()) % 7 - 1].length) $("#title").innerText = " 明天 ";
 			else $("#title").text(" " + schedList[(getAdjDay() + toNxtWorkDay()) % 7 - 1][Math.floor(nxtId / 2)] + " ");
