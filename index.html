@@ -20,7 +20,8 @@
 			top: 0;
 			bottom: 0;
 			background-color: white;
-			overflow-y: scroll;
+			overflow-y: auto;
+			padding: 1rem;
 		}
 
 		.cd-tabs {
@@ -35,14 +36,27 @@
 			float: left;
 		}
 
+		.cd-tabs-right {
+			position: absolute;
+			right: 0;
+			margin-top: 1rem;
+			margin-right: 1rem;
+		}
+
+		.cd-tab-right {
+			padding: 0.5rem;
+			margin: 0.05rem;
+			float: right;
+		}
+
 		.cd-tab:hover {
 			cursor: pointer;
 			border-radius: 0.2rem;
 			background-color: lightgrey;
 		}
 
-		.cd-time {
-			font-size: 6.5rem;
+		.cd-title {
+			font-size: 5.5rem;
 			color: red;
 			white-space: pre;
 		}
@@ -51,8 +65,12 @@
 			font-size: 2rem;
 		}
 
-		.cd-title {
-			font-size: 5.5rem;
+		.cd-header {
+			font-weight: 2;
+		}
+
+		.cd-time {
+			font-size: 6.5rem;
 			color: red;
 			white-space: pre;
 		}
@@ -66,10 +84,6 @@
 			bottom: 10rem;
 		}
 
-		.cd-header {
-			font-weight: 2;
-		}
-
 		.cd-footer {
 			position: absolute;
 			margin: auto;
@@ -77,21 +91,77 @@
 			right: 0;
 			bottom: 1rem;
 		}
+
+		.tab-list {
+			cursor: pointer;
+			color: black;
+			width: 100%;
+			overflow: hidden;
+			margin-bottom: 0.5rem;
+			margin-left: 0.2rem;
+		}
+
+		.tab-list:hover {
+			color: rgb(45, 45, 255);
+		}
+
+		.list-label {
+			float: left;
+			color: white;
+			background-color: grey;
+			border-radius: 0.2rem;
+			padding: 0.2rem;
+			font-size: 0.2rem;
+			margin-right: 0.5rem;
+		}
+
+		.list-label.notin {
+			background-color: grey;
+		}
+
+		.list-label.in {
+			background-color: green;
+		}
+
+		.list-cont {
+			left: 0;
+			float: left;
+		}
 	</style>
 </head>
 
 <body>
 	<div>
 		<div id="cd-tab0" class="modal-side fade" style="display: none">
-			<div>abcabc</div>
+			<div id="event-no" class="text-center text-muted" style="display: none">暂无活动</div>
+			<div class="tab-list" style="display: none"> <!--example start-->
+				<label class="list-label notin">未开始</label>
+				<div class="list-cont">
+					<b class="list-name">升旗仪式</b><br>
+					<span class="list-time">每周一 08:51至09:30</span>
+				</div>
+			</div> <!--example end-->
 		</div>
 		<div id="cd-tab1" class="modal-side fade" style="display: none">
-			<div>abcabc</div>
+			<h3>v0.3</h3>
+				<h4>beta0.4</h4>
+					<div class="py-2"><label class="list-label">优化</label>布局调整，更简约美观</div>
+					<div class="py-2"><label class="list-label">优化</label>解决浏览器自动播放问题</div>
+					<div class="py-2"><label class="list-label">修复</label>修复音乐播放问题</div>
+					<div class="py-2"><label class="list-label">新增</label>新增活动列表及更新日志</div>
+			<br><h3>v0.2</h3>
+				<div class="py-2"><label class="list-label">新增</label>添加全部音乐</div>
+				<div class="py-2"><label class="list-label">修复</label>修复周期性问题</div>
+			<br><h3>v0.1</h3>
+				<div class="py-2"><label class="list-label">新增</label>基本框架</div>
 		</div>
 		<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
-		<div class="cd-tabs" style="position: absolute">
+		<div class="cd-tabs">
 			<div id="tab0" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
 			<div id="tab1" class="cd-tab"><i class="fa fa-bars"></i> 更新日志</div>
+		</div>
+		<div class="cd-tabs-right text-center">
+			<span id="nxt" class="cd-tab-right">下节/当前：某节休息</span>
 		</div>
 		<div class="text-center py-5 cd-header">
 			<b class="cd-descr">距离</b>
@@ -100,9 +170,6 @@
 			<a class="cd-title" id="title"> 某节课 </a>
 			<b class="cd-descr" id="title-sub">上/下课</b>
 			<b class="cd-descr" id="descr">还有</b>
-		</div>
-		<div class="text-center text-muted">
-			<a id="nxt">下节/当前：某节休息</a>
 		</div>
 		<div class="text-center" id="cd-time">
 			<a class="cd-time" id="hor"> 00 </a> <b class="cd-descr">小时</b>
@@ -115,7 +182,7 @@
 			<span id="music-name">某首歌</span>
 		</div>
 		<div class="text-center cd-footer text-muted">
-			<span>SESCountdown v0.3 beta0.2</span><br>
+			<span>SESCountdown v0.3 beta0.4</span><br>
 			<span>Made By JasonYing.</span><br>
 			<span>当前为开发版本，包括了非常多没写完但急于上线的东西，敬请谅解。</span>
 		</div>
@@ -142,6 +209,8 @@
 		let musicDescr = ["预备铃", "上课铃", "下课铃", "眼保健操", "室内操", "广播体操", "Never Say Goodbye"];
 
 		let weeklyEventList = ["10851", "20931", "30931", "40931", "50931"];
+		let weeklyEventEnd = ["10930", "-1", "-1", "-1", "-1"];
+		let weeklyName = ["-1", "每周一", "每周二", "每周三", "每周四", "每周五"];
 		let weeklyEventMusic = [-1, -2, -2, -2, -2];
 		let weeklyEventDescr = ["升旗仪式", "-1", "-1", "-1", "-1"];
 		let weeklyEventLink = ["https:\/\/ke.qq.com\/webcourse\/2537352\/102642177#taid=9050075915794312&lite=1"];
@@ -184,6 +253,43 @@
 				$("#cd-tab" + i.toString()).hide();
 			}
 		}
+
+		let eventModal =
+			"<div class=\"tab-list\">" +
+			"<label class=\"list-label EVENTCLR\">EVENTSTAT</label>" +
+			"<div class=\"list-cont\">" +
+			"<b class=\"list-name\">EVENTNAME</b><br>" +
+			"<span class=\"list-time\">EVENTTIME</span>" +
+			"</div>" +
+			"</div>";
+		function showEvent() {
+			let hasEvent = false;
+			for (let i = 0; i < weeklyEventList.length; i++) {
+				if (weeklyEventDescr[i] == "-1" || weeklyEventEnd[i] == "-1") continue;
+				hasEvent = true;
+
+				let evm = eventModal;
+				if (weeklyEventList[i] <= getNowWkStr() && getNowWkStr() <= weeklyEventEnd[i]) {
+					evm = evm.replace(/EVENTSTAT/g, "进行中");
+					evm = evm.replace(/EVENTCLR/g, "in");
+				}
+				else {
+					evm = evm.replace(/EVENTSTAT/g, "未开始");
+					evm = evm.replace(/EVENTCLR/g, "notin");
+				}
+				evm = evm.replace(/EVENTNAME/g, weeklyEventDescr[i]);
+				evm = evm.replace(/EVENTTIME/g,
+					weeklyName[weeklyEventList[i][0]] + " " + weeklyEventList[i].substring(1, 3) + ":" + weeklyEventList[i].substring(3, 5)
+					+ "至" + weeklyEventEnd[i].substring(1, 3) + ":" + weeklyEventEnd[i].substring(3, 5));
+
+				$("#cd-tab0").on("click", function () { window.open(weeklyEventLink[i]); });
+
+				$("#cd-tab0").append(evm);
+			}
+			if (!hasEvent) $("#event-no").show();
+			else $("#event-no").hide();
+		}
+		showEvent();
 	</script>
 	<script>
 		let player;
@@ -235,6 +341,8 @@
 			$("#title-to").text(toNxtDescr[8 - nowDay]);
 			return 8 - nowDay;
 		}
+	</script>
+	<script>
 		let delta, nxtId, preId, preStr, preWkStr;
 		function refr() {
 			if (preStr != getNowStr() && !toNxtWorkDay()) {
