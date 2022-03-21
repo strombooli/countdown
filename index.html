@@ -198,7 +198,7 @@
 			$("#sec").html(" " + add0(sec) + " ");
 		}
 		function updSched() {
-			if (timeStampList[nxtId - 1] == getNowStr()) playMusic(nxtId - 1);
+			if (timeStampList[nxtId - 1] == getNowStr()) playMusic(timeStampMusic[nxtId - 1]);
 			preId = nxtId;
 			if (nxtId % 2 == 0) $("#nxt").text("当前：" + spanList[Math.floor(nxtId / 2)]);
 			else $("#nxt").text("下节：" + spanList[Math.floor(nxtId / 2) + 1]);
