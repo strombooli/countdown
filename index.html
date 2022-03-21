@@ -11,6 +11,36 @@
 	<link href="./assets/layout/common.min.css" rel="stylesheet">
 	<link href="./assets/layout/all.min.css" rel="stylesheet">
 	<style>
+		.modal-side {
+			z-index: 1100;
+			position: fixed;
+			width: 20%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			background-color: white;
+			overflow-y: scroll;
+		}
+
+		.cd-tabs {
+			position: absolute;
+			margin-top: 1rem;
+			margin-left: 1rem;
+		}
+
+		.cd-tab {
+			padding: 0.5rem;
+			margin: 0.05rem;
+			float: left;
+		}
+
+		.cd-tab:hover {
+			cursor: pointer;
+			border-radius: 0.2rem;
+			background-color: lightgrey;
+		}
+
 		.cd-time {
 			font-size: 6.5rem;
 			color: red;
@@ -52,6 +82,17 @@
 
 <body>
 	<div>
+		<div id="cd-tab0" class="modal-side fade" style="display: none">
+			<div>abcabc</div>
+		</div>
+		<div id="cd-tab1" class="modal-side fade" style="display: none">
+			<div>abcabc</div>
+		</div>
+		<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
+		<div class="cd-tabs" style="position: absolute">
+			<div id="tab0" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
+			<div id="tab1" class="cd-tab"><i class="fa fa-bars"></i> 更新日志</div>
+		</div>
 		<div class="text-center py-5 cd-header">
 			<b class="cd-descr">距离</b>
 			<b class="cd-descr" id="title-to">某天</b>
@@ -67,10 +108,6 @@
 			<a class="cd-time" id="hor"> 00 </a> <b class="cd-descr">小时</b>
 			<a class="cd-time" id="min"> 00 </a> <b class="cd-descr">分钟</b>
 			<a class="cd-time" id="sec"> 00 </a> <b class="cd-descr">秒</b>
-		</div>
-		<div class="text-center" id="cd-prompt">
-			<i class="fa fa-podcast"></i>
-			<span id="prompt-cont"></span>
 		</div>
 		<div style="display: none" class="text-center cd-music text-muted" id="cd-music">
 			<i class="fa fa-music"></i>
@@ -106,7 +143,8 @@
 
 		let weeklyEventList = ["10851", "20931", "30931", "40931", "50931"];
 		let weeklyEventMusic = [-1, -2, -2, -2, -2];
-		let weeklyEventPrompt = ["升旗仪式进行中，<a href=\"https:\/\/ke.qq.com\/webcourse\/2537352\/102642177#taid=9050075915794312&lite=1\">点击此处收看</a>", "-1", "-1", "-1", "-1"];
+		let weeklyEventDescr = ["升旗仪式", "-1", "-1", "-1", "-1"];
+		let weeklyEventLink = ["https:\/\/ke.qq.com\/webcourse\/2537352\/102642177#taid=9050075915794312&lite=1"];
 	</script>
 	<script>
 		function add0(s) {
@@ -123,16 +161,41 @@
 		}
 	</script>
 	<script>
+		function initTabs(){
+			for (let i = 0; i < 10; i++) {
+				if (document.getElementById("tab" + i.toString()) == undefined) break;
+				$("#tab"+ i.toString()).on("click", function(){showTab(i);});
+			}
+			$("#cd-tabback").on("click", function(){hideTab();});
+		}
+		initTabs();
+		function showTab(n) {
+			$("#cd-tabback").addClass("show");
+			$("#cd-tabback").show();
+			$("#cd-tab" + n.toString()).addClass("show");
+			$("#cd-tab" + n.toString()).show();
+		}
+		function hideTab() {
+			for (let i = 0; i < 10; i++) {
+				if (document.getElementById("cd-tab" + i.toString()) == undefined) return;
+				$("#cd-tabback").removeClass("show");
+				$("#cd-tabback").hide();
+				$("#cd-tab" + i.toString()).removeClass("show");
+				$("#cd-tab" + i.toString()).hide();
+			}
+		}
+	</script>
+	<script>
 		let player;
 		function playMusic(n) {
 			if (n < 0) return;
 			let s = musicList[n];
-			$("#music-name").text(musicDescr[n]);
-			$("#cd-music").fadeIn(2000);
 			let mp3 = "./assets/music/" + s;
 			player = new Audio(mp3);
 			document.getElementById("cd-music").appendChild(player);
 			player.play();
+			$("#music-name").text(musicDescr[n]);
+			$("#cd-music").fadeIn(2000);
 			player.addEventListener("ended", function () {
 				$("#cd-music").fadeOut(2000);
 			}, false)
@@ -178,7 +241,7 @@
 				for (let i = 0; i < weeklyEventList.length; i++) {
 					if (weeklyEventList[i] == preWkStr) {
 						playMusic(weeklyEventMusic[i]);
-						$("#prompt-cont").html(weeklyEventPrompt[i]);
+						// $("#prompt-cont").html(weeklyEventPrompt[i]);
 						break;
 					}
 				}
