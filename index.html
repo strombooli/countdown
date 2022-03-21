@@ -124,9 +124,9 @@
 		let dailyEventList = ["0758", "0848", "0931", "0950", "1043", "1228", "1318", "1408", "1505", "1558", "1700"];
 		let dailyEventMusic = [0, 0, 5, 3, 0, 0, 0, 0, 3, 0, 6];
 
-		let timeStampList = ["0800", "0840", "0850", "0930", "0955", "1035", "1045", "1125", "1230", "1310", "1320", "1400", "1410", "1450", "1510", "1550", "1600", "1650", "2400"];
-		let timeStampDescrPre = ["第一节课", "第一节课", "第二节课", "第二节课", "第三节课", "第三节课", "第四节课", "第四节课", "第五节课", "第五节课", "第六节课", "第六节课", "第七节课", "第七节课", "第八节课", "第八节课", "第九节课", "第九节课", ""];
-		let timeStampDescrSub = ["上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", ""];
+		let timeStampList = ["0800", "0840", "0850", "0930", "0955", "1035", "1045", "1125", "1230", "1310", "1320", "1400", "1410", "1450", "1510", "1550", "1600", "1650"];
+		let timeStampDescrPre = ["第一节课", "第一节课", "第二节课", "第二节课", "第三节课", "第三节课", "第四节课", "第四节课", "第五节课", "第五节课", "第六节课", "第六节课", "第七节课", "第七节课", "第八节课", "第八节课", "第九节课", "第九节课"];
+		let timeStampDescrSub = ["上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课"];
 		let timeStampMusic = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, -1]
 
 		let schedList = [
@@ -161,12 +161,12 @@
 		}
 	</script>
 	<script>
-		function initTabs(){
+		function initTabs() {
 			for (let i = 0; i < 10; i++) {
 				if (document.getElementById("tab" + i.toString()) == undefined) break;
-				$("#tab"+ i.toString()).on("click", function(){showTab(i);});
+				$("#tab" + i.toString()).on("click", function () { showTab(i); });
 			}
-			$("#cd-tabback").on("click", function(){hideTab();});
+			$("#cd-tabback").on("click", function () { hideTab(); });
 		}
 		initTabs();
 		function showTab(n) {
@@ -218,9 +218,19 @@
 		let toNxtDescr = ["-1", "明天", "后天"];
 		function toNxtWorkDay() {
 			let nowDay = getAdjDay();
-			if (nowDay >= 1 && nowDay <= 5) {
-				$("#title-to").text("");
-				return 0;
+			if (nowDay >= 1 && nowDay <= 4) {
+				if (getNowStr() <= timeStampList[timeStampList.length - 1]) {
+					$("#title-to").text("");
+					return 0;
+				}
+				$("#title-to").text(toNxtDescr[1]);
+				return 1;
+			}
+			if (nowDay == 5) {
+				if (getNowStr() <= timeStampList[timeStampList.length - 1]) {
+					$("#title-to").text("");
+					return 0;
+				}
 			}
 			$("#title-to").text(toNxtDescr[8 - nowDay]);
 			return 8 - nowDay;
