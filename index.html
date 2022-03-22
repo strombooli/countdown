@@ -134,31 +134,47 @@
 	<div>
 		<div id="cd-tab0" class="modal-side fade" style="display: none">
 			<div id="event-no" class="text-center text-muted" style="display: none">暂无活动</div>
-			<div class="tab-list" style="display: none"> <!--example start-->
+			<div class="tab-list" style="display: none">
+				<!--example start-->
 				<label class="list-label notin">未开始</label>
 				<div class="list-cont">
 					<b class="list-name">升旗仪式</b><br>
 					<span class="list-time">每周一 08:51至09:30</span>
 				</div>
-			</div> <!--example end-->
+			</div>
+			<!--example end-->
 		</div>
 		<div id="cd-tab1" class="modal-side fade" style="display: none">
+			<h3>v0.4</h3>
+			<h4>v0.4.0</h4>
+			<div class="py-2"><label class="list-label">修复</label>修复托管缓存导致的音乐播放问题</div>
+			<div class="py-2"><label class="list-label">新增</label>新增单次活动</div>
+			<div class="py-2"><label class="list-label">新增</label>新增调色板页面</div>
+			<div class="py-2"><label class="list-label">新增</label>新增引导按钮，提升使用体验</div>
+			<div class="py-2"><label class="list-label">优化</label>微调页面，降低交互性</div>
+			<br><br>
 			<h3>v0.3</h3>
-				<h4>beta0.4</h4>
-					<div class="py-2"><label class="list-label">优化</label>布局调整，更简约美观</div>
-					<div class="py-2"><label class="list-label">优化</label>解决浏览器自动播放问题</div>
-					<div class="py-2"><label class="list-label">修复</label>修复音乐播放问题</div>
-					<div class="py-2"><label class="list-label">新增</label>新增活动列表及更新日志</div>
-			<br><h3>v0.2</h3>
-				<div class="py-2"><label class="list-label">新增</label>添加全部音乐</div>
-				<div class="py-2"><label class="list-label">修复</label>修复周期性问题</div>
-			<br><h3>v0.1</h3>
-				<div class="py-2"><label class="list-label">新增</label>基本框架</div>
+			<h4>v0.3.4</h4>
+			<div class="py-2"><label class="list-label">修复</label>修复音乐播放问题</div>
+			<div class="py-2"><label class="list-label">新增</label>新增活动列表及更新日志</div>
+			<div class="py-2"><label class="list-label">优化</label>布局调整，更简约美观</div>
+			<div class="py-2"><label class="list-label">优化</label>解决浏览器自动播放问题</div>
+			<br>
+			<h4>v0.3.3~v0.3.0</h4>
+			<div class="py-2"><label class="list-label">优化</label>我说优化就是优化</div>
+			<br><br>
+			<h3>v0.2</h3>
+			<div class="py-2"><label class="list-label">修复</label>修复周期性问题</div>
+			<div class="py-2"><label class="list-label">新增</label>添加全部音乐</div>
+			<br><br>
+			<h3>v0.1</h3>
+			<div class="py-2"><label class="list-label">新增</label>基本框架</div>
 		</div>
 		<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
 		<div class="cd-tabs">
 			<div id="tab0" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
 			<div id="tab1" class="cd-tab"><i class="fa fa-bars"></i> 更新日志</div>
+			<div id="tab2" class="cd-tab"><i class="fa fa-adjust"></i> 摆烂式调色板</div>
 		</div>
 		<div class="cd-tabs-right text-center">
 			<span id="nxt" class="cd-tab-right">下节/当前：某节休息</span>
@@ -167,14 +183,14 @@
 			<b class="cd-descr">距离</b>
 			<b class="cd-descr" id="title-to">某天</b>
 			<b class="cd-descr" id="title-pre">第某节课</b>
-			<a class="cd-title" id="title"> 某节课 </a>
+			<label class="cd-title" id="title"> 某节课 </label>
 			<b class="cd-descr" id="title-sub">上/下课</b>
 			<b class="cd-descr" id="descr">还有</b>
 		</div>
 		<div class="text-center" id="cd-time">
-			<a class="cd-time" id="hor"> 00 </a> <b class="cd-descr">小时</b>
-			<a class="cd-time" id="min"> 00 </a> <b class="cd-descr">分钟</b>
-			<a class="cd-time" id="sec"> 00 </a> <b class="cd-descr">秒</b>
+			<label class="cd-time" id="hor"> 00 </label> <b class="cd-descr">小时</b>
+			<label class="cd-time" id="min"> 00 </label> <b class="cd-descr">分钟</b>
+			<label class="cd-time" id="sec"> 00 </label> <b class="cd-descr">秒</b>
 		</div>
 		<div style="display: none" class="text-center cd-music text-muted" id="cd-music">
 			<i class="fa fa-music"></i>
@@ -182,7 +198,7 @@
 			<span id="music-name">某首歌</span>
 		</div>
 		<div class="text-center cd-footer text-muted">
-			<span>SESCountdown v0.3 beta0.4</span><br>
+			<span>SESCountdown v0.4 DEMO</span><br>
 			<span>Made By JasonYing.</span><br>
 			<span>当前为开发版本，包括了非常多没写完但急于上线的东西，敬请谅解。</span>
 		</div>
@@ -214,6 +230,11 @@
 		let weeklyEventMusic = [-1, -2, -2, -2, -2];
 		let weeklyEventDescr = ["升旗仪式", "-1", "-1", "-1", "-1"];
 		let weeklyEventLink = ["https:\/\/ke.qq.com\/webcourse\/2537352\/102642177#taid=9050075915794312&lite=1"];
+
+		let onceEventList = ["202203231540"];
+		let onceEventEnd = ["202203231640"];
+		let onceEventDescr = ["天宫课堂第二课"];
+		let onceEventLink = ["https://tv.cctv.com/live/cctv1"];
 	</script>
 	<script>
 		function add0(s) {
@@ -228,11 +249,19 @@
 		function getNowWkStr() {
 			return getAdjDay().toString() + getNowStr();
 		}
+		function getNowOnceStr() {
+			return new Date().getFullYear().toString() + add0(new Date().getMonth().toString()) + add0(new Date().getDate().toString()) + getNowStr();
+		}
 	</script>
 	<script>
 		function initTabs() {
+			let tabOpen = ["-1", "-1", "./color.html"];
 			for (let i = 0; i < 10; i++) {
-				if (document.getElementById("tab" + i.toString()) == undefined) break;
+				if (document.getElementById("tab" + i.toString()) === null) break;
+				if (document.getElementById("cd-tab" + i.toString()) === null) {
+					$("#tab" + i.toString()).on("click", function () { window.open(tabOpen[i]); });
+					continue;
+				}
 				$("#tab" + i.toString()).on("click", function () { showTab(i); });
 			}
 			$("#cd-tabback").on("click", function () { hideTab(); });
@@ -246,7 +275,7 @@
 		}
 		function hideTab() {
 			for (let i = 0; i < 10; i++) {
-				if (document.getElementById("cd-tab" + i.toString()) == undefined) return;
+				if (document.getElementById("cd-tab" + i.toString()) === null) return;
 				$("#cd-tabback").removeClass("show");
 				$("#cd-tabback").hide();
 				$("#cd-tab" + i.toString()).removeClass("show");
@@ -264,6 +293,7 @@
 			"</div>";
 		function showEvent() {
 			let hasEvent = false;
+			let eventCnt = 1;
 			for (let i = 0; i < weeklyEventList.length; i++) {
 				if (weeklyEventDescr[i] == "-1" || weeklyEventEnd[i] == "-1") continue;
 				hasEvent = true;
@@ -282,9 +312,31 @@
 					weeklyName[weeklyEventList[i][0]] + " " + weeklyEventList[i].substring(1, 3) + ":" + weeklyEventList[i].substring(3, 5)
 					+ "至" + weeklyEventEnd[i].substring(1, 3) + ":" + weeklyEventEnd[i].substring(3, 5));
 
-				$("#cd-tab0").on("click", function () { window.open(weeklyEventLink[i]); });
+				$("#cd-tab0").append(evm);
+				$("#cd-tab0 .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.open(weeklyEventLink[i]); });
+				eventCnt++;
+			}
+			for (let i = 0; i < onceEventList.length; i++) {
+				if (onceEventDescr[i] == "-1" || onceEventEnd[i] == "-1") continue;
+				hasEvent = true;
+
+				let evm = eventModal;
+				if (onceEventList[i] <= getNowOnceStr() && getNowOnceStr() <= onceEventEnd[i]) {
+					evm = evm.replace(/EVENTSTAT/g, "进行中");
+					evm = evm.replace(/EVENTCLR/g, "in");
+				}
+				else {
+					evm = evm.replace(/EVENTSTAT/g, "未开始");
+					evm = evm.replace(/EVENTCLR/g, "notin");
+				}
+				evm = evm.replace(/EVENTNAME/g, onceEventDescr[i]);
+				evm = evm.replace(/EVENTTIME/g,
+					onceEventList[i].substring(0, 4) + "/" + onceEventList[i].substring(4, 6) + "/" + onceEventList[i].substring(6, 8) + " " +
+					onceEventList[i].substring(8, 10) + ":" + onceEventList[i].substring(10, 12));
 
 				$("#cd-tab0").append(evm);
+				$("#cd-tab0 .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.open(onceEventLink[i]); });
+				eventCnt++;
 			}
 			if (!hasEvent) $("#event-no").show();
 			else $("#event-no").hide();
@@ -296,7 +348,7 @@
 		function playMusic(n) {
 			if (n < 0) return;
 			let s = musicList[n];
-			let mp3 = "./assets/music/" + s;
+			let mp3 = "./assets/music/" + s + "?" + (new Date().getTime() / 86400000).toString();
 			player = new Audio(mp3);
 			document.getElementById("cd-music").appendChild(player);
 			player.play();
