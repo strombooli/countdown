@@ -199,7 +199,7 @@
 			<label>科目 Subject </label><input id="csub" type="text" onchange=updColor() style="float: right"><br>
 			<label>时间 Countdown </label><input id="ccd" type="text" onchange=updColor() style="float: right"><br>
 			<label>文字 Text </label><input id="ctxt" type="text" onchange=updColor() style="float: right"><br>
-			<input type="button" class="mt-1" style="width: 100%" value="确认">
+			<input type="button" class="mt-1" style="width: 100%" value="确认" onclick=initColor()>
 			<hr>
 			<label>第3步. 如果您调出了满意的颜色并愿意分享，请填写以下匿名征集问卷。您的配色方案有几率被设为备选方案展示在网页上。</label>
 			<iframe src='https://www.wjx.cn/vj/QEMEoS9.aspx?width=350&source=iframe&s=t' width='100%' height='90%'
@@ -324,7 +324,7 @@
 	</script>
 	<script>
 		function initColor() {
-			$("body").attr({ style: "color: " + getCookie("cbg") });
+			$("body").attr({ style: "background-color: " + getCookie("cbg") });
 			$("#cbg").attr({ placeholder: getCookie("cbg") });
 			$(".cd-title").attr({ style: "color" + getCookie("csub") });
 			$("#csub").attr({ placeholder: getCookie("csub") });
