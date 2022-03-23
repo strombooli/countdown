@@ -201,6 +201,9 @@
 			<label>第1步. 调色界面，请忽略顶部导航并进行调色。</label>
 			<iframe frameborder="0" src="https://www.shouce.ren/api/html/html4/tools-color_selector.html"
 				scrolling="auto" width="100%" height="70%"></iframe>
+			R <input id="cr" style="width: 28%" onchange=calcHtml()> G <input id="cg" style="width: 28%"
+				onchange=calcHtml()> B <input id="cb" style="width: 30%" onchange=calcHtml()><br>
+			HTML颜色代码 <input id="chtml" style="float: right">
 			<hr>
 			<label>第2步. 调色结束后，请复制“HTML颜色代码”输入框中全部内容，并根据需要输入下列输入框中；<br><i
 					class="fa fa-exclamation-triangle"></i>也可直接输入颜色，如red。</label>
@@ -313,7 +316,6 @@
 		}
 	</script>
 	<script>
-		$("#cd-hint").on("click", function () { $("#cd-hint").hide() })
 		function setCookie(cname, cvalue, exdays) {
 			var d = new Date();
 			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -337,6 +339,13 @@
 		}
 	</script>
 	<script>
+		$("#cd-hint").on("click", function () { $("#cd-hint").hide() })
+		function calcHtml() {
+			let r = parseInt($("#cr").val());
+			let g = parseInt($("#cg").val());
+			let b = parseInt($("#cb").val());
+			$("#chtml").val("#" + ("000000" + ((r << 16) | (g << 8) | b).toString(16)).substr(-6).toUpperCase());
+		}
 		function initColor() {
 			$("body").attr({ style: "background-color: " + getCookie("cbg") });
 			$("#cbg").attr({ placeholder: getCookie("cbg") });
