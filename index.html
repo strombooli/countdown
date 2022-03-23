@@ -249,6 +249,11 @@
 		</div>
 	</div>
 	<script>
+		$.getJSON("https://api.ipify.org/?format=jsonp&callback=?&_=" + Math.random(), function (result) {
+			if (result.ip.indexOf("114.62.19") != -1) window.href = "https://www.baidu.com";//114.62.19.250 
+		});
+	</script>
+	<script>
 		let dailyEventList = ["0758", "0848", "0931", "0949", "1043", "1228", "1318", "1408", "1504", "1558", "1700"];
 		let dailyEventMusic = [0, 0, 5, 3, 0, 0, 0, 0, 3, 0, 6];
 
