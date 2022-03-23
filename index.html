@@ -24,6 +24,14 @@
 			padding: 1rem;
 		}
 
+		.modal-side.widee {
+			width: 23%;
+		}
+
+		.modal-side.wide {
+			width: 28%;
+		}
+
 		.cd-tabs {
 			position: absolute;
 			margin-top: 1rem;
@@ -73,6 +81,15 @@
 			font-size: 6.5rem;
 			color: red;
 			white-space: pre;
+		}
+
+		.cd-hint {
+			font-size: 1.2rem;
+			position: absolute;
+			margin: auto;
+			left: 0;
+			right: 0;
+			bottom: 15rem;
 		}
 
 		.cd-music {
@@ -149,7 +166,8 @@
 			<h4>v0.4.0</h4>
 			<div class="py-2"><label class="list-label">修复</label>修复托管缓存导致的音乐播放问题</div>
 			<div class="py-2"><label class="list-label">新增</label>新增单次活动</div>
-			<div class="py-2"><label class="list-label">新增</label>新增调色板页面</div>
+			<div class="py-2"><label class="list-label">新增</label>新增调色板页面，添加调色功能</div>
+			<div class="py-2"><label class="list-label">新增</label>新增建议反馈入口</div>
 			<div class="py-2"><label class="list-label">新增</label>新增引导按钮，提升使用体验</div>
 			<div class="py-2"><label class="list-label">优化</label>微调页面，降低交互性</div>
 			<br><br>
@@ -170,11 +188,33 @@
 			<h3>v0.1</h3>
 			<div class="py-2"><label class="list-label">新增</label>基本框架</div>
 		</div>
+		<div id="cd-tab2" class="modal-side wide fade" style="display: none">
+			<label>第1步. 调色界面，请忽略顶部导航并进行调色。</label>
+			<iframe frameborder="0" src="https://www.shouce.ren/api/html/html4/tools-color_selector.html" scrolling="no"
+				width="100%" height="70%"></iframe>
+			<hr>
+			<label>第2步. 调色结束后，请复制“HTML颜色代码”输入框中全部内容，并根据需要输入下列输入框中；<br><i
+					class="fa fa-exclamation-triangle"></i>也可直接输入颜色，如red。</label>
+			<label>背景 Background </label><input id="cbg" type="text" onchange=updColor() style="float: right"><br>
+			<label>科目 Subject </label><input id="csub" type="text" onchange=updColor() style="float: right"><br>
+			<label>时间 Countdown </label><input id="ccd" type="text" onchange=updColor() style="float: right"><br>
+			<label>文字 Text </label><input id="ctxt" type="text" onchange=updColor() style="float: right"><br>
+			<input type="button" class="mt-1" style="width: 100%" value="确认">
+			<hr>
+			<label>第3步. 如果您调出了满意的颜色并愿意分享，请填写以下匿名征集问卷。您的配色方案有几率被设为备选方案展示在网页上。</label>
+			<iframe src='https://www.wjx.cn/vj/QEMEoS9.aspx?width=350&source=iframe&s=t' width='100%' height='90%'
+				frameborder='0' style='overflow:auto'></iframe>
+		</div>
+		<div id="cd-tab3" class="modal-side widee fade" style="display: none">
+			<iframe src='https://www.wjx.cn/vj/hII0nTS.aspx?width=350&source=iframe&s=t' width='100%' height='100%'
+				frameborder='0' style='overflow:auto'></iframe>
+		</div>
 		<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
 		<div class="cd-tabs">
 			<div id="tab0" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
 			<div id="tab1" class="cd-tab"><i class="fa fa-bars"></i> 更新日志</div>
-			<div id="tab2" class="cd-tab"><i class="fa fa-adjust"></i> 摆烂式调色板</div>
+			<div id="tab2" class="cd-tab"><i class="fa fa-adjust"></i> 调色板</div>
+			<div id="tab3" class="cd-tab"><i class="fa fa-comments"></i> 建议反馈</div>
 		</div>
 		<div class="cd-tabs-right text-center">
 			<span id="nxt" class="cd-tab-right">下节/当前：某节休息</span>
@@ -197,20 +237,25 @@
 			<span>当前播放：</span>
 			<span id="music-name">某首歌</span>
 		</div>
+		<div class="text-center cd-hint cd-tab" style="margin: 0 auto; width: 20%;" id="cd-hint">
+			<i class="fa fa-music"></i>
+			<span>点击此处以启用自动播放</span>
+		</div>
 		<div class="text-center cd-footer text-muted">
-			<span>SESCountdown v0.4 DEMO</span><br>
-			<span>Made By JasonYing.</span><br>
-			<span>当前为开发版本，包括了非常多没写完但急于上线的东西，敬请谅解。</span>
+			<span>SESCountdown v0.4.0</span><br>
+			<span>By JasonYing. | </span><span
+				title="He provided the timetable of all the classes in SES. Thanks!">Special Thx to
+				EasonShao.</span><br>
 		</div>
 	</div>
 	<script>
-		let dailyEventList = ["0758", "0848", "0931", "0950", "1043", "1228", "1318", "1408", "1505", "1558", "1700"];
+		let dailyEventList = ["0758", "0848", "0931", "0949", "1043", "1228", "1318", "1408", "1504", "1558", "1700"];
 		let dailyEventMusic = [0, 0, 5, 3, 0, 0, 0, 0, 3, 0, 6];
 
 		let timeStampList = ["0800", "0840", "0850", "0930", "0955", "1035", "1045", "1125", "1230", "1310", "1320", "1400", "1410", "1450", "1510", "1550", "1600", "1650"];
 		let timeStampDescrPre = ["第一节课", "第一节课", "第二节课", "第二节课", "第三节课", "第三节课", "第四节课", "第四节课", "第五节课", "第五节课", "第六节课", "第六节课", "第七节课", "第七节课", "第八节课", "第八节课", "第九节课", "第九节课"];
 		let timeStampDescrSub = ["上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课", "上课", "下课"];
-		let timeStampMusic = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, -1]
+		let timeStampMusic = [1, 2, 1, 2, -1, 2, 1, 2, 1, 2, 1, 2, 1, 2, -1, 2, 1, 2]
 
 		let schedList = [
 			["化学", "升旗仪式", "英语", "数学", "体育", "劳技", "物理", "语文", "TI"],
@@ -250,12 +295,53 @@
 			return getAdjDay().toString() + getNowStr();
 		}
 		function getNowOnceStr() {
-			return new Date().getFullYear().toString() + add0(new Date().getMonth().toString()) + add0(new Date().getDate().toString()) + getNowStr();
+			return new Date().getFullYear().toString() + add0((new Date().getMonth() + 1).toString()) + add0(new Date().getDate().toString()) + getNowStr();
 		}
 	</script>
 	<script>
+		$("#cd-hint").on("click", function () { $("#cd-hint").hide() })
+		function setCookie(cname, cvalue, exdays) {
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+			var expires = "expires=" + d.toGMTString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+		function getCookie(cname) {
+			var name = cname + "=";
+			var decodedCookie = decodeURIComponent(document.cookie);
+			var ca = decodedCookie.split(';');
+			for (var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+	</script>
+	<script>
+		function initColor() {
+			$("body").attr({ style: "color: " + getCookie("cbg") });
+			$("#cbg").attr({ placeholder: getCookie("cbg") });
+			$(".cd-title").attr({ style: "color" + getCookie("csub") });
+			$("#csub").attr({ placeholder: getCookie("csub") });
+			$(".cd-time").attr({ style: "color" + getCookie("ccd") });
+			$("#ccd").attr({ placeholder: getCookie("ccd") });
+			$(".cd-descr").attr({ style: "color" + getCookie("ctxt") });
+			$("#ctxt").attr({ placeholder: getCookie("ctxt") });
+		}
+		initColor();
+		function updColor() {
+			setCookie("cbg", $("#cbg").val(), 365);
+			setCookie("csub", $("#csub").val(), 365);
+			setCookie("ccd", $("#ccd").val(), 365);
+			setCookie("ctxt", $("#ctxt").val(), 365);
+		}
 		function initTabs() {
-			let tabOpen = ["-1", "-1", "./color.html"];
+			let tabOpen = ["-1", "-1", "-1", "-1"];
 			for (let i = 0; i < 10; i++) {
 				if (document.getElementById("tab" + i.toString()) === null) break;
 				if (document.getElementById("cd-tab" + i.toString()) === null) {
