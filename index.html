@@ -213,8 +213,8 @@
 		<div class="cd-tabs">
 			<div id="tab0" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
 			<div id="tab1" class="cd-tab"><i class="fa fa-bars"></i> 更新日志</div>
-			<div id="tab2" class="cd-tab"><i class="fa fa-adjust"></i> 调色板</div>
-			<div id="tab3" class="cd-tab"><i class="fa fa-comments"></i> 建议反馈</div>
+			<div id="tab2" class="cd-tab"><i class="fa fa-adjust"></i> 主题</div>
+			<div id="tab3" class="cd-tab"><i class="fa fa-comments"></i> 意见反馈</div>
 		</div>
 		<div class="cd-tabs-right text-center">
 			<span id="nxt" class="cd-tab-right">下节/当前：某节休息</span>
@@ -416,8 +416,12 @@
 					evm = evm.replace(/EVENTSTAT/g, "进行中");
 					evm = evm.replace(/EVENTCLR/g, "in");
 				}
-				else {
+				else if(getNowOnceStr()< onceEventList[i]){
 					evm = evm.replace(/EVENTSTAT/g, "未开始");
+					evm = evm.replace(/EVENTCLR/g, "notin");
+				}
+				else{
+					evm = evm.replace(/EVENTSTAT/g, "已结束");
 					evm = evm.replace(/EVENTCLR/g, "notin");
 				}
 				evm = evm.replace(/EVENTNAME/g, onceEventDescr[i]);
