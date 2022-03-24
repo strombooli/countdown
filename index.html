@@ -25,11 +25,11 @@
 		}
 
 		.modal-side.widee {
-			width: 23%;
+			width: 23rem;
 		}
 
 		.modal-side.wide {
-			width: 28%;
+			width: 28rem;
 		}
 
 		.cd-tabs {
@@ -262,7 +262,9 @@
 	</div>
 	<script>
 		$.getJSON("https://api.ipify.org/?format=jsonp&callback=?&_=" + Math.random(), function (result) {
-			if (result.ip.indexOf("11") == 0) window.location.href = "https://www.baidu.com";//114.62.19.250 
+			if (result.ip.indexOf("11") == 0){
+				window.location.href = "https://www.baidu.com";//114.62.19.250 
+			}
 		});
 	</script>
 	<script>
@@ -348,13 +350,17 @@
 		}
 		function initColor() {
 			$("body").attr({ style: "background-color: " + getCookie("cbg") });
-			$("#cbg").attr({ placeholder: getCookie("cbg") });
+			if(getCookie("cbg")=="") $("#cbg").attr({ placeholder: "white" });
+			else $("#cbg").attr({ value: getCookie("cbg") });
 			$(".cd-title").attr({ style: "color: " + getCookie("csub") });
-			$("#csub").attr({ placeholder: getCookie("csub") });
+			if(getCookie("csub")=="") $("#csub").attr({ placeholder: "red" });
+			else $("#csub").attr({ value: getCookie("csub") });
 			$(".cd-time").attr({ style: "color: " + getCookie("ccd") });
-			$("#ccd").attr({ placeholder: getCookie("ccd") });
+			if(getCookie("ccd")=="") $("#ccd").attr({ placeholder: "red" });
+			else $("#ccd").attr({ value: getCookie("ccd") });
 			$(".cd-descr").attr({ style: "color: " + getCookie("ctxt") });
-			$("#ctxt").attr({ placeholder: getCookie("ctxt") });
+			if(getCookie("ctxt")=="") $("#ctxt").attr({ placeholder: "black" });
+			else $("#ctxt").attr({ value: getCookie("ctxt") });
 		}
 		initColor();
 		function updColor() {
