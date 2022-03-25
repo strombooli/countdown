@@ -185,6 +185,8 @@
 			<div class="py-2"><label class="list-label">新增</label>新增调色板页面，添加调色功能</div>
 			<div class="py-2"><label class="list-label">新增</label>新增建议反馈入口</div>
 			<div class="py-2"><label class="list-label">新增</label>新增引导按钮，提升使用体验</div>
+			<div class="py-2"><label class="list-label">新增</label>新增右上角显示当前周</div>
+			<div class="py-2"><label class="list-label">优化</label>优化初次加载时间至原20%左右，提升体验</div>
 			<div class="py-2"><label class="list-label">优化</label>微调页面，降低交互性</div>
 			<br><br>
 			<h3>v0.3</h3>
@@ -990,6 +992,7 @@
 			$("#title").text(" " + schedNow + " ");
 			$("#title-sub").text(timeStampDescrSub[getClass().depart][nxtId]);
 		}
+		refr();
 		setInterval(function () { refr() }, 1000);
 		// $.get("https://api.help.bj.cn/apis/weather/?id=101020600", function (data) {
 		// 	alert(data.city);
