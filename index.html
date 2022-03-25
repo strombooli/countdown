@@ -735,6 +735,9 @@
 			window.location.reload();
 		}
 		function getClass() {
+			if (localStorage.getItem("classNo") === null) {
+				localStorage.setItem("classNo", "116");
+			}
 			let myClass = localStorage.getItem("classNo");
 			let depart = parseInt(myClass[0]);
 			let grade = parseInt(myClass[1]);
