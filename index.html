@@ -924,7 +924,7 @@
 			let nowTime = todayStart + thisHour * 60 * 60 * 1000 + thisMin * 60 * 1000;
 			return nowTime;
 		}
-		let toNxtDescr = ["-1", "明天", "后天"];
+		let toNxtDescr = ["-1", "明天", "后天", "周一"];
 		function toNxtWorkDay() {
 			let nowDay = getAdjDay();
 			if (nowDay >= 1 && nowDay <= 4) {
