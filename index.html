@@ -88,7 +88,7 @@
 			white-space: pre;
 		}
 
-		.cd-hint {
+		.cd-tabs-mid {
 			font-size: 1.2rem;
 			position: absolute;
 			margin: auto;
@@ -236,6 +236,47 @@
 			<iframe src='https://www.wjx.cn/vj/hII0nTS.aspx?width=350&source=iframe&s=t' width='100%' height='100%'
 				frameborder='0' style='overflow:auto'></iframe>
 		</div>
+		<div id="cd-tab4" class="modal-side widee fade" style="display: none">
+			<div class="form-group">
+				<div class="row">
+					<div id="tog-0" class="col-4 text-center tgl" onclick="toggle(0)">
+						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+						<br>
+						<i>预备铃</i>
+					</div>
+					<div id="tog-1" class="col-4 text-center tgl" onclick="toggle(1)">
+						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+						<br>
+						<i>上课铃</i>
+					</div>
+					<div id="tog-2" class="col-4 text-center tgl" onclick="toggle(2)">
+						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+						<br>
+						<i>下课铃</i>
+					</div>
+					<div id="tog-3" class="col-4 text-center tgl" onclick="toggle(3)">
+						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+						<br>
+						<i>眼保健操</i>
+					</div>
+					<div id="tog-4" class="col-4 text-center tgl" onclick="toggle(4)">
+						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+						<br>
+						<i>室内操</i>
+					</div>
+					<div id="tog-5" class="col-4 text-center tgl" onclick="toggle(5)">
+						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+						<br>
+						<i>广播体操</i>
+					</div>
+					<div id="tog-6" class="col-4 text-center tgl" onclick="toggle(6)">
+						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+						<br>
+						<i>Never Say Goodbye</i>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
 		<div class="cd-tabs">
 			<div id="tab0" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
@@ -324,9 +365,15 @@
 			<span id="music-name">某首歌</span>
 			<i class="fa fa-times" id="music-stop" title="关闭此次"></i>
 		</div>
-		<div class="text-center cd-hint cd-tab" style="margin: 0 auto; width: 20%;" id="cd-hint">
-			<i class="fa fa-music"></i>
-			<span>点击此处以启用自动播放</span>
+		<div class="text-center cd-tabs-mid" style="width: 21rem;" id="cd-hint">
+			<div id="cd-hint-close" class="cd-tab">
+				<i class="fa fa-music"></i>
+				<span>点击此处以启用自动播放</span>
+			</div>
+			<div id="tab4" class="cd-tab">
+				<i class="fa fa-cog"></i>
+				<span>设置</span>
+			</div>
 		</div>
 		<div class="text-center cd-footer text-muted">
 			<span>SESCountdown v0.4.0</span><br>
@@ -754,6 +801,35 @@
 		}
 	</script>
 	<script>
+		let toggled = new Array();
+		function initTog() {
+			let togStr = getCookie("tog");
+			if (togStr === "") {
+				togStr = "1111111";
+			}
+			for (let i = 0; i < togStr.length; i++) {
+				toggled[i] = parseInt(togStr[i]);
+			}
+			for (let i = 0; i < 1000; i++) {
+				if (document.getElementById("tog-" + i.toString()) === null) break;
+				if (toggled[i]) {
+					$("#tog-" + i.toString() + " i:first").toggleClass("fa-toggle-on", true);
+					$("#tog-" + i.toString() + " i:first").toggleClass("fa-toggle-off", false);
+				} else {
+					$("#tog-" + i.toString() + " i:first").toggleClass("fa-toggle-on", false);
+					$("#tog-" + i.toString() + " i:first").toggleClass("fa-toggle-off", true);
+				}
+			}
+		}
+		initTog();
+		function toggle(n) {
+			let togStr = getCookie("tog");
+			togStr[n] = (1 - parseInt(togStr[n])).toString();
+			setCookie("tog", togStr, 365);
+			initTog();
+		}
+	</script>
+	<script>
 		$("#week").text("第" + getWk().toString() + "周");
 		function updClass() {
 			localStorage.setItem("classNo", $("#class").val());
@@ -792,7 +868,7 @@
 		}
 		setClassDisplay();
 		$("#class").on("change", function () { updClass(); });
-		$("#cd-hint").on("click", function () { $("#cd-hint").hide() });
+		$("#cd-hint-close").on("click", function () { $("#cd-hint").hide() });
 		function calcHtml() {
 			let r = parseInt($("#cr").val());
 			let g = parseInt($("#cg").val());
@@ -918,17 +994,24 @@
 	<script>
 		let player;
 		function playMusic(n) {
-			if (n < 0) return;
+			if (n < 0 || !toggled[n]) return;
 			let s = musicList[n];
 			let mp3 = "./assets/music/" + s + "?" + (new Date().getTime() / 86400000).toString();
 			player = new Audio(mp3);
 			document.getElementById("cd-music").appendChild(player);
-			player.play();
-			$("#music-name").text(musicDescr[n]);
-			$("#cd-music").fadeIn(2000);
-			player.addEventListener("ended", function () {
-				$("#cd-music").fadeOut(2000);
-			}, false)
+			let playerer = player.play();
+			if (playerer !== undefined) {
+				playerer.then(_ => {
+					$("#cd-hint").hide();
+					$("#music-name").text(musicDescr[n]);
+					$("#cd-music").fadeIn(2000);
+					player.addEventListener("ended", function () {
+						$("#cd-music").fadeOut(2000);
+					}, false)
+				}).catch(error => {
+					$("#cd-hint").show();
+				});
+			}
 		}
 		function stopMusic() {
 			player.pause();
