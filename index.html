@@ -806,6 +806,7 @@
 			let togStr = getCookie("tog");
 			if (togStr === "") {
 				togStr = "1111111";
+				setCookie("tog", togStr, 365);
 			}
 			for (let i = 0; i < togStr.length; i++) {
 				toggled[i] = parseInt(togStr[i]);
