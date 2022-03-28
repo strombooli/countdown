@@ -830,7 +830,7 @@
 		initTog();
 		function toggle(n) {
 			let togStr = getCookie("tog");
-			replaceStr(togStr,n,(1 - parseInt(togStr[n])).toString());
+			togStr = replaceStr(togStr,n,(1 - parseInt(togStr[n])).toString());
 			setCookie("tog", togStr, 365);
 			initTog();
 		}
