@@ -772,6 +772,11 @@
 		function rand(x, y) {
 			return Math.round(Math.random() * (y - x) + x);
 		}
+		function replaceStr(str, index, char){
+			let strAry = str.split('');
+			strAry[index] = char;
+			return strAry.join('');
+		}
 	</script>
 	<script>
 		let quoteList = ["憋疯了，别封了", "(0,0)", "锟斤拷烫烫烫", "AMD yes!", "PHP是世界上最好的语言！", "」「", "以前浦东到浦西，叫摆渡。现在浦东到浦西，叫偷渡。"];
@@ -804,7 +809,7 @@
 		let toggled = new Array();
 		function initTog() {
 			let togStr = getCookie("tog");
-			if (togStr === "") {
+			if (togStr.length != 7) {
 				togStr = "1111111";
 				setCookie("tog", togStr, 365);
 			}
@@ -825,7 +830,7 @@
 		initTog();
 		function toggle(n) {
 			let togStr = getCookie("tog");
-			togStr[n] = (1 - parseInt(togStr[n])).toString();
+			replaceStr(togStr,n,(1 - parseInt(togStr[n])).toString());
 			setCookie("tog", togStr, 365);
 			initTog();
 		}
