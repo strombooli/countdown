@@ -1,5 +1,10 @@
 # SESCountdown
 
+<p align="center">
+    <a href="/README.en.md">English</a> | 
+    <a href="/README.md">简体中文</a>
+ </p>
+  
 #### 介绍
 SESCountdown 是由我编写的沉浸式上学网页，旨在为疫情期间参加网课的同学们提供真实的学习环境。
 
