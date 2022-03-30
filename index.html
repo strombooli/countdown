@@ -181,6 +181,17 @@
 			cursor: pointer;
 		}
 	</style>
+	<style>
+		.theme-tab {
+			width: 40%;
+			height: 10rem;
+			border-width: 0.5rem;
+			border: grey;
+			border-style: solid;
+			border-radius: 0.5rem;
+			padding: 0.5rem;
+		}
+	</style>
 	<script>
 		var _hmt = _hmt || [];
 		(function () {
@@ -222,6 +233,8 @@
 		</div>
 		<div id="cd-tab1" class="modal-side fade widee" style="display: none">
 			<h3>v0.4</h3>
+			<h4>v0.4.1</h4>
+			<div class="py-2"><label class="list-label">修复</label>修复音乐播放失败后与页面交互导致的播放问题</div>
 			<h4>v0.4.0</h4>
 			<div class="py-2"><label class="list-label">修复</label>修复托管缓存导致的音乐播放问题</div>
 			<div class="py-2"><label class="list-label">新增</label>新增回声洞功能</div>
@@ -318,7 +331,18 @@
 				</div>
 			</div>
 		</div>
-		<div id="cd-tab5" class="modal-side wide fade" style="display: none">布局临时调整，本功能敬请期待，欢迎在底部入口进行反馈</div>
+		<div id="cd-tab5" class="modal-side wide fade" style="display: none">
+			布局临时调整，本功能敬请期待，欢迎在底部入口进行反馈
+			<!-- <div>
+				<div class="theme-tab" style="position: relative; margin-right: 0">
+					<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
+					<span style="bottom: 1rem ;position: absolute">theme-name</span>
+				</div><div class="theme-tab" style="position: relative">
+					<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
+					<span style="bottom: 1rem ;position: absolute">theme-name</span>
+				</div>
+			</div> -->
+		</div>
 		<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
 		<div class="cd-tabs">
 			<div id="tab0" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
@@ -442,7 +466,7 @@
 		function playMusic(n) {
 			if (n < 0 || !toggled[n]) return;
 			let s = musicList[n];
-			let mp3 = "./assets/music/" + s + "?" + (new Date().getTime() / 86400000).toString();
+			let mp3 = "./assets/music/" + s + "?" + Math.round(new Date().getTime() / 86400000).toString();
 			player = new Audio(mp3);
 			document.getElementById("cd-music").appendChild(player);
 			let playerer = player.play();
@@ -456,6 +480,7 @@
 					}, false)
 				}).catch(error => {
 					$("#cd-hint").show();
+					player.pause();
 				});
 			}
 		}
