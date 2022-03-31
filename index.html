@@ -183,13 +183,27 @@
 	</style>
 	<style>
 		.theme-tab {
-			width: 40%;
-			height: 10rem;
-			border-width: 0.5rem;
-			border: grey;
+			float: left;
+			width: 12.4rem;
+			border-width: thin;
+			border-color: gray;
 			border-style: solid;
 			border-radius: 0.5rem;
-			padding: 0.5rem;
+			padding: 0.5rem 0.5rem 0.1rem 0.5rem;
+			margin: 0.3rem;
+		}
+
+		.theme-tab:hover{
+			background-color: lightgray;
+		}
+
+		.theme-tab.chosen{
+			box-shadow: 0rem 0rem 0.5rem gray;
+			background-color: lightgray;
+		}
+
+		.theme-name {
+			margin-bottom: 0.1rem;
 		}
 	</style>
 	<script>
@@ -334,12 +348,13 @@
 		<div id="cd-tab5" class="modal-side wide fade" style="display: none">
 			布局临时调整，本功能敬请期待，欢迎在底部入口进行反馈
 			<!-- <div>
-				<div class="theme-tab" style="position: relative; margin-right: 0">
+				<div class="theme-tab text-center">
 					<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
-					<span style="bottom: 1rem ;position: absolute">theme-name</span>
-				</div><div class="theme-tab" style="position: relative">
+					<label class="theme-name">theme-name</label>
+				</div>
+				<div class="theme-tab text-center">
 					<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
-					<span style="bottom: 1rem ;position: absolute">theme-name</span>
+					<label class="theme-name">theme-name</label>
 				</div>
 			</div> -->
 		</div>
@@ -450,6 +465,13 @@
 			<span id="quote"></span>
 		</div>
 	</div>
+	<!-- <script>
+		for(let i=0;i<document.getElementsByClassName("theme-tab").length;i++){
+			document.getElementsByClassName("theme-tab")[i].onclick = function(){
+				document.getElementsByClassName("theme-tab")[i].className += " chosen";
+			}
+		}
+	</script> -->
 	<script>
 		$.getJSON("https://api.ipify.org/?format=jsonp&callback=?&_=" + Math.random(), function (result) {
 			// if (result.ip.indexOf("11") == 0){
@@ -556,9 +578,12 @@
 			let hor = Math.floor(delta / 3600);
 			let min = Math.floor(delta / 60 - hor * 60);
 			let sec = Math.floor(delta - hor * 3600 - min * 60);
-			$("#hor").html(" " + add0(hor) + " ");
+			// $("#hor").html(" " + add0(hor) + " ");
+			// $("#min").html(" " + add0(min) + " ");
+			// $("#sec").html(" " + add0(sec) + " ");
+			$("#hor").html(" " + add0(sec) + " ");
 			$("#min").html(" " + add0(min) + " ");
-			$("#sec").html(" " + add0(sec) + " ");
+			$("#sec").html(" " + add0(hor) + " ");
 		}
 		function updSched() {
 			if (timeStampList[getClass().depart][nxtId - 1] == getNowStr()) playMusic(timeStampMusic[getClass().depart][nxtId - 1]);
