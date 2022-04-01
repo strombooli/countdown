@@ -112,6 +112,7 @@ function initColor() {
 	$(".cd-time").attr({ style: "color: " + getCookie("ccd") });
 	$(".cd-descr").attr({ style: "color: " + getCookie("ctxt") });
 }
+initColor();
 
 
 function initTabs() {

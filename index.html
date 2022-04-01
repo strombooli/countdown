@@ -478,11 +478,15 @@
 			"<label class=\"theme-name\">THEMENAME</label>" +
 			"</div>";
 		let themeGlbBg = ["white", "white", "#FFF7D3", "#F5E8C8", "#F5F1DA", "#E0D5F2"];
-		let themeGlbSub = ["red", "navyblue", "#00768F", "#AE1027", "#808C6C", "#0E97B6"];
-		let themeGlbCd = ["red", "navyblue", "#FAC457", "#A12F2F", "#F4B46A", "#0E97B6"];
+		let themeGlbSub = ["red", "skyblue", "#00768F", "#AE1027", "#808C6C", "#0E97B6"];
+		let themeGlbCd = ["red", "skyblue", "#FAC457", "#A12F2F", "#F4B46A", "#0E97B6"];
 		let themeGlbTxt = ["black", "black", "#00768F", "#752423", "#9A9C94", "black"];
 		let themeGlbName = ["经典", "经典2", "游乐场(投稿)", "JasonYing都觉得好(投稿)", "春天来啦~(投稿)", "奶思(投稿)"];
-		let themeChosen = 0;
+
+		if (localStorage.getItem("theme_id") === null) localStorage.setItem("theme_id", "0");
+		let themeChosen = localStorage.getItem("theme_id");
+		chooseTheme(themeChosen);
+		
 		for (let i = 0; i < themeGlbBg.length; i++) {
 			let thm = themeModel;
 			thm = thm.replace(/ID/g, i.toString());
