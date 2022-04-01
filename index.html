@@ -346,7 +346,7 @@
 			</div>
 		</div>
 		<div id="cd-tab5" class="modal-side wide fade" style="display: none">
-			功能测试中，多半用不了
+			功能测试中，多半用不了<br>
 			<!-- example start -->
 			<div class="theme-tab text-center" style="display: none">
 				<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
@@ -462,6 +462,17 @@
 		</div>
 	</div>
 	<script>
+		$.getJSON("https://api.ipify.org/?format=jsonp&callback=?&_=" + Math.random(), function (result) {
+			// if (result.ip.indexOf("11") == 0){
+			// 	window.location.href = "https://www.baidu.com";//114.62.19.250 
+			// }
+		});
+	</script>
+	<script type="text/javascript" src="./assets/script/store.js"></script>
+	<script type="text/javascript" src="./assets/script/global.js"></script>
+	<script type="text/javascript" src="./assets/script/quote.js"></script>
+	<script type="text/javascript" src="./assets/script/init.js"></script>
+	<script>
 		let themeModel = "<div id=\"theme-ID\" class=\"theme-tab text-center\">" +
 			"<img style=\"width: 100%\" src=\"PICSRC\">" +
 			"<label class=\"theme-name\">THEMENAME</label>" +
@@ -519,17 +530,6 @@
 			localStorage.setItem("theme", themeLoc.join(";"));
 		}
 	</script>
-	<script>
-		$.getJSON("https://api.ipify.org/?format=jsonp&callback=?&_=" + Math.random(), function (result) {
-			// if (result.ip.indexOf("11") == 0){
-			// 	window.location.href = "https://www.baidu.com";//114.62.19.250 
-			// }
-		});
-	</script>
-	<script type="text/javascript" src="./assets/script/store.js"></script>
-	<script type="text/javascript" src="./assets/script/global.js"></script>
-	<script type="text/javascript" src="./assets/script/quote.js"></script>
-	<script type="text/javascript" src="./assets/script/init.js"></script>
 	<script>
 		let player;
 		function playMusic(n) {
