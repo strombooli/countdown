@@ -193,11 +193,11 @@
 			margin: 0.3rem;
 		}
 
-		.theme-tab:hover{
+		.theme-tab:hover {
 			background-color: lightgray;
 		}
 
-		.theme-tab.chosen{
+		.theme-tab.chosen {
 			box-shadow: 0rem 0rem 0.5rem gray;
 			background-color: lightgray;
 		}
@@ -290,11 +290,11 @@
 			<hr>
 			<label>第2步. 调色结束后，请复制“HTML颜色代码”输入框中全部内容，并根据需要输入下列输入框中；<br><i
 					class="fa fa-exclamation-triangle"></i>也可直接输入颜色，如red。</label>
-			<label>背景 Background </label><input id="cbg" type="text" onchange=updColor() style="float: right"><br>
-			<label>科目 Subject </label><input id="csub" type="text" onchange=updColor() style="float: right"><br>
-			<label>时间 Countdown </label><input id="ccd" type="text" onchange=updColor() style="float: right"><br>
-			<label>文字 Text </label><input id="ctxt" type="text" onchange=updColor() style="float: right"><br>
-			<input type="button" class="mt-1" style="width: 100%" value="确认" onclick=initColor()>
+			<label>背景 Background </label><input id="cbg" type="text" style="float: right"><br>
+			<label>科目 Subject </label><input id="csub" type="text" style="float: right"><br>
+			<label>时间 Countdown </label><input id="ccd" type="text" style="float: right"><br>
+			<label>文字 Text </label><input id="ctxt" type="text" style="float: right"><br>
+			<input type="button" class="mt-1" style="width: 100%" value="确认" onclick=setColorFromInput()>
 			<hr>
 			<label>第3步. 如果您调出了满意的颜色并愿意分享，请填写以下匿名征集问卷。您的配色方案有几率被设为备选方案展示在网页上。</label>
 			<iframe src='https://www.wjx.cn/vj/QEMEoS9.aspx?width=350&source=iframe&s=t' width='100%' height='110%'
@@ -346,17 +346,13 @@
 			</div>
 		</div>
 		<div id="cd-tab5" class="modal-side wide fade" style="display: none">
-			布局临时调整，本功能敬请期待，欢迎在底部入口进行反馈
-			<!-- <div>
-				<div class="theme-tab text-center">
-					<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
-					<label class="theme-name">theme-name</label>
-				</div>
-				<div class="theme-tab text-center">
-					<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
-					<label class="theme-name">theme-name</label>
-				</div>
-			</div> -->
+			功能测试中，多半用不了
+			<!-- example start -->
+			<div class="theme-tab text-center" style="display: none">
+				<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
+				<label class="theme-name">theme-name</label>
+			</div>
+			<!-- example end -->
 		</div>
 		<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
 		<div class="cd-tabs">
@@ -461,17 +457,68 @@
 		</div>
 		<div class="text-center cd-footer text-muted">
 			<span>SESCountdown v0.4.0</span><br>
-			<span>Made By JasonYing. Thx to EasonShao for providing timetables.</span><br>
+			<span>Made By JasonYing. Timetables from EasonShao.</span><br>
 			<span id="quote"></span>
 		</div>
 	</div>
-	<!-- <script>
-		for(let i=0;i<document.getElementsByClassName("theme-tab").length;i++){
-			document.getElementsByClassName("theme-tab")[i].onclick = function(){
-				document.getElementsByClassName("theme-tab")[i].className += " chosen";
+	<script>
+		let themeModel = "<div id=\"theme-ID\" class=\"theme-tab text-center\">" +
+			"<img style=\"width: 100%\" src=\"PICSRC\">" +
+			"<label class=\"theme-name\">THEMENAME</label>" +
+			"</div>";
+		let themeGlbBg = ["white", "white", "#FFF7D3", "#F5E8C8", "#F5F1DA", "#E0D5F2"];
+		let themeGlbSub = ["red", "navyblue", "#00768F", "#AE1027", "#808C6C", "#0E97B6"];
+		let themeGlbCd = ["red", "navyblue", "#FAC457", "#A12F2F", "#F4B46A", "#0E97B6"];
+		let themeGlbTxt = ["black", "black", "#00768F", "#752423", "#9A9C94", "black"];
+		let themeGlbName = ["经典", "经典2", "游乐场(投稿)", "JasonYing都觉得好(投稿)", "春天来啦~(投稿)", "奶思(投稿)"];
+		let themeChosen = 0;
+		for (let i = 0; i < themeGlbBg.length; i++) {
+			let thm = themeModel;
+			thm = thm.replace(/ID/g, i.toString());
+			thm = thm.replace(/PICSRC/g, "./assets/image/theme/" + i.toString() + ".png");
+			thm = thm.replace(/THEMENAME/g, themeGlbName[i]);
+			document.getElementById("cd-tab5").innerHTML += thm;
+		}
+		let themeLocBg = new Array(), themeLocSub = new Array(), themeLocCd = new Array(), themeLocTxt = new Array(), themeLocName = new Array();
+		getThemeLoc();
+		for (let i = themeGlbBg.length; i < themeGlbBg.length + themeLocBg.length; i++) {
+			let thm = themeModel;
+			thm = thm.replace(/ID/g, i.toString());
+			thm = thm.replace(/PICSRC/g, "");
+			thm = thm.replace(/THEMENAME/g, themeLocName[i - themeGlbBg.length]);
+			document.getElementById("cd-tab5").innerHtml += thm;
+		}
+		for (let i = 0; i < 1000; i++) {
+			if (document.getElementById("theme-" + i.toString()) === null) break;
+			$("#theme-" + i.toString()).on("click", function () { chooseTheme(i) });
+		}
+		function chooseTheme(n) {
+			$("#theme-" + themeChosen.toString()).removeClass("chosen");
+			$("#theme-" + n.toString()).addClass("chosen");
+			themeChosen = n;
+			if (n < themeGlbBg.length) setColorFromThemeGlb(n);
+			else setColorFromThemeLoc(n - themeGlbBg.length);
+		}
+		function getThemeLoc() {
+			if (localStorage.getItem("theme") === null) localStorage.setItem("theme", "");
+			let themeLoc = localStorage.getItem("theme").split(";");
+			for (let i = 0; i < themeLoc.length - 1; i++) {
+				themeLocName.push(themeLoc[i].split(",")[0]);
+				themeLocBg.push(themeLoc[i].split(",")[1]);
+				themeLocSub.push(themeLoc[i].split(",")[2]);
+				themeLocCd.push(themeLoc[i].split(",")[3]);
+				themeLocTxt.push(themeLoc[i].split(",")[4]);
 			}
 		}
-	</script> -->
+		function addThemeLoc(name, bg, sub, cd, txt) {
+			localStorage.setItem("theme", localStorage.getItem("theme") + name + "," + bg + "," + sub + "," + cd + "," + txt + ";");
+		}
+		function delThemeLoc(n) {
+			let themeLoc = localStorage.getItem("theme").split(";");
+			themeLoc.splice(n, 1);
+			localStorage.setItem("theme", themeLoc.join(";"));
+		}
+	</script>
 	<script>
 		$.getJSON("https://api.ipify.org/?format=jsonp&callback=?&_=" + Math.random(), function (result) {
 			// if (result.ip.indexOf("11") == 0){
@@ -578,12 +625,9 @@
 			let hor = Math.floor(delta / 3600);
 			let min = Math.floor(delta / 60 - hor * 60);
 			let sec = Math.floor(delta - hor * 3600 - min * 60);
-			// $("#hor").html(" " + add0(hor) + " ");
-			// $("#min").html(" " + add0(min) + " ");
-			// $("#sec").html(" " + add0(sec) + " ");
-			$("#hor").html(" " + add0(sec) + " ");
+			$("#hor").html(" " + add0(hor) + " ");
 			$("#min").html(" " + add0(min) + " ");
-			$("#sec").html(" " + add0(hor) + " ");
+			$("#sec").html(" " + add0(sec) + " ");
 		}
 		function updSched() {
 			if (timeStampList[getClass().depart][nxtId - 1] == getNowStr()) playMusic(timeStampMusic[getClass().depart][nxtId - 1]);

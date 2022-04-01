@@ -27,6 +27,7 @@ function toggle(n) {
 	initTog();
 }
 
+
 $("#week").text("第" + getWk().toString() + "周");
 function updClass() {
 	localStorage.setItem("classNo", $("#class").val());
@@ -66,7 +67,10 @@ function setClassDisplay() {
 setClassDisplay();
 $("#class").on("change", function () { updClass(); });
 
+
 $("#cd-hint-close").on("click", function () { $("#cd-hint").hide() });
+$("#music-stop").on("click", function () { stopMusic() });
+
 
 function calcHtml() {
 	let r = parseInt($("#cr").val());
@@ -74,27 +78,41 @@ function calcHtml() {
 	let b = parseInt($("#cb").val());
 	$("#chtml").val("#" + ("000000" + ((r << 16) | (g << 8) | b).toString(16)).substr(-6).toUpperCase());
 }
-function initColor() {
-	$("body").attr({ style: "background-color: " + getCookie("cbg") });
+function initColorInput() {
 	if (getCookie("cbg") == "") $("#cbg").attr({ placeholder: "white" });
 	else $("#cbg").attr({ value: getCookie("cbg") });
-	$(".cd-title").attr({ style: "color: " + getCookie("csub") });
 	if (getCookie("csub") == "") $("#csub").attr({ placeholder: "red" });
 	else $("#csub").attr({ value: getCookie("csub") });
-	$(".cd-time").attr({ style: "color: " + getCookie("ccd") });
 	if (getCookie("ccd") == "") $("#ccd").attr({ placeholder: "red" });
 	else $("#ccd").attr({ value: getCookie("ccd") });
-	$(".cd-descr").attr({ style: "color: " + getCookie("ctxt") });
 	if (getCookie("ctxt") == "") $("#ctxt").attr({ placeholder: "black" });
 	else $("#ctxt").attr({ value: getCookie("ctxt") });
 }
-initColor();
-function updColor() {
-	setCookie("cbg", $("#cbg").val(), 365);
-	setCookie("csub", $("#csub").val(), 365);
-	setCookie("ccd", $("#ccd").val(), 365);
-	setCookie("ctxt", $("#ctxt").val(), 365);
+initColorInput();
+
+function setColor(bg, sub, cd, txt) {
+	setCookie("cbg", bg, 365);
+	setCookie("csub", sub, 365);
+	setCookie("ccd", cd, 365);
+	setCookie("ctxt", txt, 365);
+	initColor();
 }
+function setColorFromInput() {
+	setColor($("#cbg").val(), $("#csub").val(), $("#ccd").val(), $("#ctxt").val());
+}
+function setColorFromThemeLoc() {
+	setColor(themeLocBg[i], themeLocSub[i], themeLocCd[i], themeLocTxt[i]);
+}
+function setColorFromThemeGlb(i) {
+	setColor(themeGlbBg[i], themeGlbSub[i], themeGlbCd[i], themeGlbTxt[i]);
+}
+function initColor() {
+	$("body").attr({ style: "background-color: " + getCookie("cbg") });
+	$(".cd-title").attr({ style: "color: " + getCookie("csub") });
+	$(".cd-time").attr({ style: "color: " + getCookie("ccd") });
+	$(".cd-descr").attr({ style: "color: " + getCookie("ctxt") });
+}
+
 
 function initTabs() {
 	let tabOpen = ["-1", "-1", "-1", "-1"];
@@ -124,6 +142,7 @@ function hideTab() {
 		$("#cd-tab" + i.toString()).hide();
 	}
 }
+
 
 let eventModal =
 	"<div class=\"tab-list\">" +
@@ -188,5 +207,3 @@ function showEvent() {
 	else $("#event-no").hide();
 }
 showEvent();
-
-$("#music-stop").on("click", function () { stopMusic() });
