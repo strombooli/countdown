@@ -484,9 +484,9 @@
 		let themeGlbName = ["经典", "经典2", "游乐场(投稿)", "JasonYing都觉得好(投稿)", "春天来啦~(投稿)", "奶思(投稿)"];
 
 		if (localStorage.getItem("theme_id") === null) localStorage.setItem("theme_id", "0");
-		let themeChosen = localStorage.getItem("theme_id");
+		let themeChosen = parseInt(localStorage.getItem("theme_id"));
 		chooseTheme(themeChosen);
-		
+
 		for (let i = 0; i < themeGlbBg.length; i++) {
 			let thm = themeModel;
 			thm = thm.replace(/ID/g, i.toString());
@@ -513,6 +513,7 @@
 			themeChosen = n;
 			if (n < themeGlbBg.length) setColorFromThemeGlb(n);
 			else setColorFromThemeLoc(n - themeGlbBg.length);
+			localStorage.setItem("theme_id", n.toString());
 		}
 		function getThemeLoc() {
 			if (localStorage.getItem("theme") === null) localStorage.setItem("theme", "");
