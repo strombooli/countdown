@@ -340,7 +340,7 @@ let schedList =
 	];
 let spanList = ["放学", "课间", "大课间", "课间", "午休", "课间", "课间", "大课间", "课间", "放学"];
 
-let musicList = ["pre.aac", "on.aac", "off.aac", "eye.mp3", "inbody.aac", "body.mp3", "neversaygoodbye.aac"];
+let musicList = ["pre.aac", "on.mp3", "off.aac", "eye.mp3", "inbody.aac", "body.mp3", "neversaygoodbye.aac"];
 let musicDescr = ["预备铃", "上课铃", "下课铃", "眼保健操", "室内操", "广播体操", "Never Say Goodbye"];
 
 let weeklyEventList = ["10851", "20931", "30931", "40931", "50931"];
