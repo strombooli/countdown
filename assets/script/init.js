@@ -100,7 +100,7 @@ function setColor(bg, sub, cd, txt) {
 function setColorFromInput() {
 	setColor($("#cbg").val(), $("#csub").val(), $("#ccd").val(), $("#ctxt").val());
 }
-function setColorFromThemeLoc() {
+function setColorFromThemeLoc(i) {
 	setColor(themeLocBg[i], themeLocSub[i], themeLocCd[i], themeLocTxt[i]);
 }
 function setColorFromThemeGlb(i) {
