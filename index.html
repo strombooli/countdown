@@ -247,10 +247,14 @@
 		</div>
 		<div id="cd-tab1" class="modal-side fade widee" style="display: none">
 			<h3>v0.4</h3>
+			<h4>v0.4.2</h4>
+			<div class="py-2"><label class="list-label">修复</label>修复节假日错误问题</div>
+			<div class="py-2"><label class="list-label">优化</label>调整反馈入口为Tape提问箱</div>
+			<div class="py-2"><label class="list-label">新增</label>新增本地主题</div>
+			<br>
 			<h4>v0.4.1</h4>
 			<div class="py-2"><label class="list-label">修复</label>修复音乐播放失败后与页面交互导致的播放问题</div>
 			<div class="py-2"><label class="list-label">新增</label>新增主题功能</div>
-			<div class="py-2"><label class="list-label">新增</label>新增本地主题</div>
 			<div class="py-2"><label class="list-label">新增</label>新增可选播放音乐</div>
 			<div class="py-2"><label class="list-label">修复</label>修复了上课铃声音过小的问题（反馈#W11）</div>
 			<br>
@@ -361,8 +365,8 @@
 		</div>
 		<div id="cd-tab6" class="modal-side wide fade" style="display: none">
 			正在计划将反馈入口转为Tape提问箱，测试中
-			<iframe src='https://www.tapechat.net/uu/U6UFNO/0YF30FPM' width='100%' height='100%'
-				frameborder='0' style='overflow:auto'></iframe>`
+			<iframe src='https://www.tapechat.net/uu/U6UFNO/0YF30FPM' width='100%' height='100%' frameborder='0'
+				style='overflow:auto'></iframe>`
 		</div>
 		<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
 		<div class="cd-tabs">
@@ -467,7 +471,7 @@
 			</div>
 		</div>
 		<div class="text-center cd-footer text-muted">
-			<span>SESCountdown v0.4.2 Demo</span><br>
+			<span>SESCountdown v0.4.2 Demo Alpha (NOT STABLE)</span><br>
 			<span>Made By JasonYing. Timetables from EasonShao.</span><br>
 			<span id="quote"></span>
 		</div>
@@ -483,121 +487,9 @@
 	<script type="text/javascript" src="./assets/script/global.js?v=220401"></script>
 	<script type="text/javascript" src="./assets/script/quote.js?v=220401"></script>
 	<script type="text/javascript" src="./assets/script/init.js?v=220401"></script>
+	<script type="text/javascript" src="./assets/script/theme.js?v=220405"></script>
+	<script type="text/javascript" src="./assets/script/music.js?v=220405"></script>
 	<script>
-		let themeModelGlb = "<div id=\"theme-ID\" class=\"theme-tab text-center\">" +
-			"<img style=\"width: 100%\" src=\"PICSRC\">" +
-			"<label class=\"theme-name\">THEMENAME</label>" +
-			"</div>";
-		let themeModelLoc = "<div id=\"theme-ID\" class=\"theme-tab text-center\">" +
-			"<input type=\"button\" class=\"theme-del\" value=\"删除\"><br>" +
-			"<label class=\"theme-name\">THEMENAME</label>" +
-			"</div>";
-		let themeGlbBg = ["white", "white", "#FFF7D3", "#F5E8C8", "#F5F1DA", "#E0D5F2"];
-		let themeGlbSub = ["red", "skyblue", "#00768F", "#AE1027", "#808C6C", "#0E97B6"];
-		let themeGlbCd = ["red", "skyblue", "#FAC457", "#A12F2F", "#F4B46A", "#0E97B6"];
-		let themeGlbTxt = ["black", "black", "#00768F", "#752423", "#9A9C94", "black"];
-		let themeGlbName = ["经典", "经典2", "游乐场(投稿)", "JasonYing都觉得好(投稿)", "春天来啦~(投稿)", "奶思(投稿)"];
-		let themeLocBg = new Array(), themeLocSub = new Array(), themeLocCd = new Array(), themeLocTxt = new Array(), themeLocName = new Array();
-
-		if (localStorage.getItem("theme_id") === null) localStorage.setItem("theme_id", "0");
-		let themeChosen = parseInt(localStorage.getItem("theme_id"));
-
-		function chooseTheme(n, e) {
-			$("#theme-" + themeChosen.toString()).removeClass("chosen");
-			$("#theme-" + n.toString()).addClass("chosen");
-			themeChosen = n;
-			if (n < themeGlbBg.length) setColorFromThemeGlb(n);
-			else {
-				if (e) delThemeLoc(n - themeGlbBg.length);
-				else setColorFromThemeLoc(n - themeGlbBg.length);
-			}
-			localStorage.setItem("theme_id", n.toString());
-			initColorInput();
-		}
-		chooseTheme(themeChosen);
-
-		function getThemeLoc() {
-			if (localStorage.getItem("theme") === null) localStorage.setItem("theme", "");
-			let themeLoc = localStorage.getItem("theme").split(";");
-			for (let i = 0; i < themeLoc.length - 1; i++) {
-				themeLocName.push(themeLoc[i].split(",")[0]);
-				themeLocBg.push(themeLoc[i].split(",")[1]);
-				themeLocSub.push(themeLoc[i].split(",")[2]);
-				themeLocCd.push(themeLoc[i].split(",")[3]);
-				themeLocTxt.push(themeLoc[i].split(",")[4]);
-			}
-		}
-		function addThemeLoc(name, bg, sub, cd, txt) {
-			localStorage.setItem("theme", localStorage.getItem("theme") + name + "," + bg + "," + sub + "," + cd + "," + txt + ";");
-		}
-		function delThemeLoc(n) {
-			let themeLoc = localStorage.getItem("theme").split(";");
-			themeLoc.splice(n, 1);
-			localStorage.setItem("theme", themeLoc.join(";"));
-			window.location.reload();
-		}
-		function addThemeFromColor() {
-			let name = prompt("请输入主题名:");
-			if (name) {
-				addThemeLoc(name, $("#cbg").val(), $("#csub").val(), $("#ccd").val(), $("#ctxt").val());
-				window.location.reload();
-			}
-		}
-
-		getThemeLoc();
-		for (let i = 0; i < themeGlbBg.length; i++) {
-			let thmg = themeModelGlb;
-			thmg = thmg.replace(/ID/g, i.toString());
-			thmg = thmg.replace(/PICSRC/g, "./assets/image/theme/" + i.toString() + ".png");
-			thmg = thmg.replace(/THEMENAME/g, themeGlbName[i]);
-			document.getElementById("cd-tab5").innerHTML += thmg;
-		}
-		for (let i = themeGlbBg.length; i < themeGlbBg.length + themeLocBg.length; i++) {
-			let thml = themeModelLoc;
-			thml = thml.replace(/ID/g, i.toString());
-			thml = thml.replace(/THEMENAME/g, themeLocName[i - themeGlbBg.length]);
-			document.getElementById("cd-tab5").innerHTML += thml;
-		}
-		for (let i = 0; i < 1000; i++) {
-			if (document.getElementById("theme-" + i.toString()) === null) break;
-			$("#theme-" + i.toString()).on("click", function (e) { chooseTheme(i, $(e.target).is(".theme-del")) });
-		}
-	</script>
-	<script>
-		let player;
-		function playMusic(n) {
-			if (n < 0 || !toggled[n]) return;
-			let s = musicList[n];
-			let mp3 = "./assets/music/" + s + "?" + Math.round(new Date().getTime() / 86400000).toString();
-			player = new Audio(mp3);
-			document.getElementById("cd-music").appendChild(player);
-			let playerer = player.play();
-			if (playerer !== undefined) {
-				playerer.then(_ => {
-					$("#cd-hint").hide();
-					$("#music-name").text(musicDescr[n]);
-					$("#cd-music").fadeIn(2000);
-					player.addEventListener("ended", function () {
-						$("#cd-music").fadeOut(2000);
-					}, false)
-				}).catch(error => {
-					$("#cd-hint").show();
-					player.pause();
-				});
-			}
-		}
-		function stopMusic() {
-			player.pause();
-			$("#cd-music").hide();
-		}
-		function nxtSchedId() {
-			if (toNxtWorkDay()) return 0;
-			let nowStr = getNowStr();
-			let i;
-			for (i = 0; i < timeStampList[getClass().depart].length; i++) {
-				if (nowStr < timeStampList[getClass().depart][i]) return i;
-			}
-		}
 		function str2time(n) {
 			let todayStart = new Date().getTime() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000 - new Date().getSeconds() * 1000 - new Date().getMilliseconds();
 			let thisHour = parseInt(timeStampList[getClass().depart][n].substring(0, 2));
@@ -605,31 +497,44 @@
 			let nowTime = todayStart + thisHour * 60 * 60 * 1000 + thisMin * 60 * 1000;
 			return nowTime;
 		}
+		function nxtSchedId() {
+			if (toNxtWorkDay(getAdjDate()) || isOff(getAdjDate())) return 0;
+			let nowStr = getNowStr();
+			let i;
+			for (i = 0; i < timeStampList[getClass().depart].length; i++) {
+				if (nowStr < timeStampList[getClass().depart][i]) return i;
+			}
+		}
 		let toNxtDescr = ["-1", "明天", "后天", "周一"];
-		function toNxtWorkDay() {
-			let nowDay = getAdjDay();
-			if (nowDay >= 1 && nowDay <= 4) {
-				if (getNowStr() <= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) {
-					$("#title-to").text("");
-					return 0;
+		function toNxtWorkDay(n) {
+			let nowDay = getAdjDay(n);
+			if (!isOff(n)) {
+				if (nowDay >= 1 && nowDay <= 4) {
+					if (getNowStr() <= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) {
+						$("#title-to").text("");
+						return 0;
+					}
+					$("#title-to").text(toNxtDescr[1]);
+					return 1;
 				}
-				$("#title-to").text(toNxtDescr[1]);
-				return 1;
-			}
-			if (nowDay == 5) {
-				if (getNowStr() <= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) {
-					$("#title-to").text("");
-					return 0;
+				if (nowDay == 5) {
+					if (getNowStr() <= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) {
+						$("#title-to").text("");
+						return 0;
+					}
 				}
+				$("#title-to").text(toNxtDescr[8 - nowDay]);
+				return 8 - nowDay;
 			}
-			$("#title-to").text(toNxtDescr[8 - nowDay]);
-			return 8 - nowDay;
+			else{
+				return toNxtWorkDay(new Date(n.getTime()+86400000)) + 1;
+			}
 		}
 	</script>
 	<script>
 		let delta, nxtId, preId, preStr, preWkStr;
 		function refr() {
-			if (preStr != getNowStr() && !toNxtWorkDay()) {
+			if (preStr != getNowStr() && !toNxtWorkDay(new Date())) {
 				preStr = getNowStr();
 				for (let i = 0; i < dailyEventList[getClass().depart].length; i++) {
 					if (dailyEventList[getClass().depart][i] == preStr) {
@@ -650,7 +555,7 @@
 			}
 			nxtId = nxtSchedId();
 			delta = str2time(nxtId) - new Date().getTime();
-			delta = delta / 1000 + (toNxtWorkDay() * 24 * 60 * 60);
+			delta = delta / 1000 + (toNxtWorkDay(new Date()) * 24 * 60 * 60);
 			updTime();
 			if (nxtId != preId) updSched();
 		}
@@ -668,7 +573,7 @@
 			if (nxtId % 2 == 0) $("#nxt").text("当前：" + spanList[Math.floor(nxtId / 2)]);
 			else $("#nxt").text("下节：" + spanList[Math.floor(nxtId / 2) + 1]);
 			$("#title-pre").text(timeStampDescrPre[getClass().depart][nxtId]);
-			let schedNow = schedList[getClass().depart][getClass().grade][getClass().classs][(getAdjDay() + toNxtWorkDay()) % 7 - 1][Math.floor(nxtId / 2)];
+			let schedNow = schedList[getClass().depart][getClass().grade][getClass().classs][(getAdjDay(getAdjDate()) + toNxtWorkDay(new Date())) % 7 - 1][Math.floor(nxtId / 2)];
 			if (schedNow.indexOf("/") != -1 && schedNow.indexOf("H") == -1 && schedNow.indexOf("D") == -1) schedNow = schedNow.split("/")[1 - getWk() % 2];
 			$("#title").text(" " + schedNow + " ");
 			$("#title-sub").text(timeStampDescrSub[getClass().depart][nxtId]);
