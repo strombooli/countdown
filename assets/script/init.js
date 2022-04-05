@@ -161,7 +161,7 @@ function showEvent() {
 		hasEvent = true;
 
 		let evm = eventModal;
-		if (weeklyEventList[i] <= getNowWkStr() && getNowWkStr() <= weeklyEventEnd[i]) {
+		if (weeklyEventList[i] <= getNowWkStr(new Date()) && getNowWkStr(new Date()) <= weeklyEventEnd[i]) {
 			evm = evm.replace(/EVENTSTAT/g, "进行中");
 			evm = evm.replace(/EVENTCLR/g, "in");
 		}

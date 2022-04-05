@@ -25,14 +25,14 @@ function add0(s) {
 function getAdjDay(n) {
 	return (n.getDay() - 1 + 7) % 7 + 1;
 }
-function getNowStr() {
-	return add0(new Date().getHours().toString()) + add0(new Date().getMinutes().toString());
+function getNowStr(n) {
+	return add0(n.getHours().toString()) + add0(n.getMinutes().toString());
 }
-function getNowWkStr() {
-	return getAdjDay(getAdjDate()).toString() + getNowStr();
+function getNowWkStr(n) {
+	return getAdjDay(getAdjDate()).toString() + getNowStr(n);
 }
 function getNowOnceStr(n) {
-	return n.getFullYear().toString() + add0((n.getMonth() + 1).toString()) + add0(n.getDate().toString()) + getNowStr();
+	return n.getFullYear().toString() + add0((n.getMonth() + 1).toString()) + add0(n.getDate().toString()) + getNowStr(n);
 }
 function getWk() {
 	return 6 + Math.floor((new Date().getTime() - 1647792000000) / 604800000);

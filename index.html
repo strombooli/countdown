@@ -471,7 +471,7 @@
 			</div>
 		</div>
 		<div class="text-center cd-footer text-muted">
-			<span>SESCountdown v0.4.2 Demo Alpha (NOT STABLE)</span><br>
+			<span>SESCountdown v0.4.2 Beta (NOT STABLE)</span><br>
 			<span>Made By JasonYing. Timetables from EasonShao.</span><br>
 			<span id="quote"></span>
 		</div>
@@ -499,43 +499,36 @@
 		}
 		function nxtSchedId() {
 			if (toNxtWorkDay(getAdjDate()) || isOff(getAdjDate())) return 0;
-			let nowStr = getNowStr();
+			let nowStr = getNowStr(new Date());
 			let i;
 			for (i = 0; i < timeStampList[getClass().depart].length; i++) {
 				if (nowStr < timeStampList[getClass().depart][i]) return i;
 			}
 		}
-		let toNxtDescr = ["-1", "明天", "后天", "周一"];
+		let toNxtDescr = ["", "明天", "后天", "周一"];
 		function toNxtWorkDay(n) {
 			let nowDay = getAdjDay(n);
 			if (!isOff(n)) {
 				if (nowDay >= 1 && nowDay <= 4) {
-					if (getNowStr() <= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) {
-						$("#title-to").text("");
-						return 0;
-					}
-					$("#title-to").text(toNxtDescr[1]);
+					if (getNowStr(n) <= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return 0;
 					return 1;
 				}
 				if (nowDay == 5) {
-					if (getNowStr() <= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) {
-						$("#title-to").text("");
-						return 0;
-					}
+					if (getNowStr(n) <= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return 0;
 				}
-				$("#title-to").text(toNxtDescr[8 - nowDay]);
 				return 8 - nowDay;
 			}
-			else{
-				return toNxtWorkDay(new Date(n.getTime()+86400000)) + 1;
+			else {
+				return toNxtWorkDay(new Date(Math.floor((new Date().getTime() + 86400000) / 86400000) * 86400000)) + 1;
 			}
 		}
+		$("#title-to").text(toNxtDescr[toNxtWorkDay(new Date())]);
 	</script>
 	<script>
 		let delta, nxtId, preId, preStr, preWkStr;
 		function refr() {
-			if (preStr != getNowStr() && !toNxtWorkDay(new Date())) {
-				preStr = getNowStr();
+			if (preStr != getNowStr(new Date()) && !toNxtWorkDay(new Date())) {
+				preStr = getNowStr(new Date());
 				for (let i = 0; i < dailyEventList[getClass().depart].length; i++) {
 					if (dailyEventList[getClass().depart][i] == preStr) {
 						playMusic(dailyEventMusic[getClass().depart][i]);
@@ -543,8 +536,8 @@
 					}
 				}
 			}
-			if (preWkStr != getNowWkStr()) {
-				preWkStr = getNowWkStr();
+			if (preWkStr != getNowWkStr(new Date())) {
+				preWkStr = getNowWkStr(new Date());
 				for (let i = 0; i < weeklyEventList.length; i++) {
 					if (weeklyEventList[i] == preWkStr) {
 						playMusic(weeklyEventMusic[i]);
@@ -568,7 +561,7 @@
 			$("#sec").html(" " + add0(sec) + " ");
 		}
 		function updSched() {
-			if (timeStampList[getClass().depart][nxtId - 1] == getNowStr()) playMusic(timeStampMusic[getClass().depart][nxtId - 1]);
+			if (timeStampList[getClass().depart][nxtId - 1] == getNowStr(new Date())) playMusic(timeStampMusic[getClass().depart][nxtId - 1]);
 			preId = nxtId;
 			if (nxtId % 2 == 0) $("#nxt").text("当前：" + spanList[Math.floor(nxtId / 2)]);
 			else $("#nxt").text("下节：" + spanList[Math.floor(nxtId / 2) + 1]);
