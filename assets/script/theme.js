@@ -65,7 +65,7 @@ getThemeLoc();
 for (let i = 0; i < themeGlbBg.length; i++) {
 	let thmg = themeModelGlb;
 	thmg = thmg.replace(/ID/g, i.toString());
-	thmg = thmg.replace(/PICSRC/g, "./assets/image/theme/" + i.toString() + ".png");
+	thmg = thmg.replace(/PICSRC/g, "./assets/image/theme/" + i.toString() + ".png?v=220406");
 	thmg = thmg.replace(/THEMENAME/g, themeGlbName[i]);
 	document.getElementById("cd-tab5").innerHTML += thmg;
 }
