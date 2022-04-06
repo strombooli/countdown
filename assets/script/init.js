@@ -70,6 +70,7 @@ $("#class").on("change", function () { updClass(); });
 
 $("#cd-hint-close").on("click", function () { $("#cd-hint").hide() });
 $("#music-stop").on("click", function () { stopMusic() });
+$("#prompt-close").on("click", function () { $("#cd-prompt").hide() });
 
 
 function calcHtml() {

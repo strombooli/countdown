@@ -106,13 +106,22 @@
 			white-space: pre;
 		}
 
+		.cd-prompt {
+			font-size: 1.2rem;
+			position: absolute;
+			margin: auto;
+			left: 0;
+			right: 0;
+			bottom: 36%;
+		}
+
 		.cd-tabs-mid {
 			font-size: 1.2rem;
 			position: absolute;
 			margin: auto;
 			left: 0;
 			right: 0;
-			bottom: 15rem;
+			bottom: 27%;
 		}
 
 		.cd-music {
@@ -121,7 +130,7 @@
 			margin: auto;
 			left: 0;
 			right: 0;
-			bottom: 10rem;
+			bottom: 18%;
 		}
 
 		.cd-footer {
@@ -218,272 +227,322 @@
 </head>
 
 <body style="overflow: none">
-	<div>
-		<div id="cd-tab0" class="modal-side fade widen" style="display: none">
-			<div id="event-no" class="text-center text-muted" style="display: none">暂无活动</div>
-			<div class="tab-list" style="display: none">
-				<!--example start-->
-				<label class="list-label notin">未开始</label>
-				<div class="list-cont">
-					<b class="list-name">升旗仪式</b><br>
-					<span class="list-time">每周一 08:51至09:30</span>
+	<div id="cd-tab0" class="modal-side fade widen" style="display: none">
+		<div id="event-no" class="text-center text-muted" style="display: none">暂无活动</div>
+		<div class="tab-list" style="display: none">
+			<!--example start-->
+			<label class="list-label notin">未开始</label>
+			<div class="list-cont">
+				<b class="list-name">升旗仪式</b><br>
+				<span class="list-time">每周一 08:51至09:30</span>
+			</div>
+		</div>
+		<!--example end-->
+		<div class="tab-listex">
+			<label class="list-label notin">置顶</label>
+			<div class="list-cont">
+				<b class="list-name">高一(6)班语文</b><br>
+				<span class="list-time">988-2484-3300 300300</span>
+			</div>
+		</div>
+		<div class="tab-listex">
+			<label class="list-label notin">置顶</label>
+			<div class="list-cont">
+				<b class="list-name">高一(6)班政治</b><br>
+				<span class="list-time">599-650-5652</span>
+			</div>
+		</div>
+	</div>
+	<div id="cd-tab1" class="modal-side fade widee" style="display: none">
+		<h3>v0.4</h3>
+		<h4>v0.4.3</h4>
+		<div class="py-2"><label class="list-label">优化</label>修复室内操声音过小的问题</div>
+		<div class="py-2"><label class="list-label">新增</label>新增过热/过冷/大雾/下雨等气象状况下广播操转为室内操</div>
+		<br>
+		<h4>v0.4.2</h4>
+		<div class="py-2"><label class="list-label">修复</label>修复节假日错误问题</div>
+		<div class="py-2"><label class="list-label">优化</label>修复室内操声音过小的问题</div>
+		<div class="py-2"><label class="list-label">优化</label>调整反馈入口为Tape提问箱</div>
+		<div class="py-2"><label class="list-label">优化</label>优化缓存</div>
+		<div class="py-2"><label class="list-label">新增</label>新增本地主题</div>
+		<br>
+		<h4>v0.4.1</h4>
+		<div class="py-2"><label class="list-label">修复</label>修复音乐播放失败后与页面交互导致的播放问题</div>
+		<div class="py-2"><label class="list-label">新增</label>新增主题功能</div>
+		<div class="py-2"><label class="list-label">新增</label>新增可选播放音乐</div>
+		<div class="py-2"><label class="list-label">修复</label>修复了上课铃声音过小的问题（反馈#W11）</div>
+		<br>
+		<h4>v0.4.0</h4>
+		<div class="py-2"><label class="list-label">修复</label>修复托管缓存导致的音乐播放问题</div>
+		<div class="py-2"><label class="list-label">新增</label>新增回声洞功能</div>
+		<div class="py-2"><label class="list-label">新增</label>新增暂时关闭音乐按钮</div>
+		<div class="py-2"><label class="list-label">新增</label>新增单双周自动判断</div>
+		<div class="py-2"><label class="list-label">新增</label>新增适配全校班级</div>
+		<div class="py-2"><label class="list-label">新增</label>新增单次活动</div>
+		<div class="py-2"><label class="list-label">新增</label>新增调色板页面，添加调色功能</div>
+		<div class="py-2"><label class="list-label">新增</label>新增建议反馈入口</div>
+		<div class="py-2"><label class="list-label">新增</label>新增引导按钮，提升使用体验</div>
+		<div class="py-2"><label class="list-label">新增</label>新增右上角显示当前周</div>
+		<div class="py-2"><label class="list-label">优化</label>优化初次加载时间至原20%左右，提升体验</div>
+		<div class="py-2"><label class="list-label">优化</label>微调页面，降低交互性</div>
+		<br><br>
+		<h3>v0.3</h3>
+		<h4>v0.3.4</h4>
+		<div class="py-2"><label class="list-label">修复</label>修复音乐播放问题</div>
+		<div class="py-2"><label class="list-label">新增</label>新增活动列表及更新日志</div>
+		<div class="py-2"><label class="list-label">优化</label>布局调整，更简约美观</div>
+		<div class="py-2"><label class="list-label">优化</label>解决浏览器自动播放问题</div>
+		<br>
+		<h4>v0.3.3~v0.3.0</h4>
+		<div class="py-2"><label class="list-label">优化</label>我说优化就是优化</div>
+		<br><br>
+		<h3>v0.2</h3>
+		<div class="py-2"><label class="list-label">修复</label>修复周期性问题</div>
+		<div class="py-2"><label class="list-label">新增</label>添加全部音乐</div>
+		<br><br>
+		<h3>v0.1</h3>
+		<div class="py-2"><label class="list-label">新增</label>基本框架</div>
+	</div>
+	<div id="cd-tab2" class="modal-side wide fade" style="display: none">
+		<label>第1步. 调色界面，请忽略顶部导航并进行调色。</label>
+		<iframe frameborder="0" src="https://www.shouce.ren/api/html/html4/tools-color_selector.html" scrolling="auto"
+			width="100%" height="70%"></iframe>
+		R <input id="cr" style="width: 28%" onchange=calcHtml()> G <input id="cg" style="width: 28%"
+			onchange=calcHtml()> B <input id="cb" style="width: 30%" onchange=calcHtml()><br>
+		HTML颜色代码 <input id="chtml" style="float: right">
+		<hr>
+		<label>第2步. 调色结束后，请复制“HTML颜色代码”输入框中全部内容，并根据需要输入下列输入框中；<br><i
+				class="fa fa-exclamation-triangle"></i>也可直接输入颜色，如red。</label>
+		<label>背景 Background </label><input id="cbg" type="text" style="float: right"><br>
+		<label>科目 Subject </label><input id="csub" type="text" style="float: right"><br>
+		<label>时间 Countdown </label><input id="ccd" type="text" style="float: right"><br>
+		<label>文字 Text </label><input id="ctxt" type="text" style="float: right"><br>
+		<input type="button" class="mt-1" style="width: 100%" value="确认" onclick=setColorFromInput()>
+		<input type="button" class="mt-1" style="width: 100%" value="添加到主题" onclick=addThemeFromColor()>
+		<hr>
+		<label>第3步. 如果您调出了满意的颜色并愿意分享，请填写以下匿名征集问卷。您的配色方案有几率被设为备选方案展示在网页上。</label>
+		<iframe src='https://www.wjx.cn/vj/QEMEoS9.aspx?width=350&source=iframe&s=t' width='100%' height='110%'
+			frameborder='0' style='overflow:auto'></iframe>
+	</div>
+	<div id="cd-tab3" class="modal-side wide fade" style="display: none">
+		<iframe src='https://www.tapechat.net/uu/U6UFNO/0YF30FPM' width='100%' height='100%' frameborder='0'
+			style='overflow:auto'></iframe>
+	</div>
+	<div id="cd-tab4" class="modal-side widee fade" style="display: none">
+		<div class="form-group">
+			<div class="row">
+				<div id="tog-0" class="col-4 text-center tgl" onclick="toggle(0)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+					<br>
+					<i>预备铃</i>
+				</div>
+				<div id="tog-1" class="col-4 text-center tgl" onclick="toggle(1)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+					<br>
+					<i>上课铃</i>
+				</div>
+				<div id="tog-2" class="col-4 text-center tgl" onclick="toggle(2)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+					<br>
+					<i>下课铃</i>
+				</div>
+				<div id="tog-3" class="col-4 text-center tgl" onclick="toggle(3)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+					<br>
+					<i>眼保健操</i>
+				</div>
+				<div id="tog-4" class="col-4 text-center tgl" onclick="toggle(4)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+					<br>
+					<i>室内操</i>
+				</div>
+				<div id="tog-5" class="col-4 text-center tgl" onclick="toggle(5)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+					<br>
+					<i>广播体操</i>
+				</div>
+				<div id="tog-6" class="col-4 text-center tgl" onclick="toggle(6)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
+					<br>
+					<i>Never Say Goodbye</i>
 				</div>
 			</div>
-			<!--example end-->
-			<div class="tab-listex">
-				<label class="list-label notin">置顶</label>
-				<div class="list-cont">
-					<b class="list-name">高一(6)班语文</b><br>
-					<span class="list-time">988-2484-3300 300300</span>
-				</div>
-			</div>
-			<div class="tab-listex">
-				<label class="list-label notin">置顶</label>
-				<div class="list-cont">
-					<b class="list-name">高一(6)班政治</b><br>
-					<span class="list-time">599-650-5652</span>
-				</div>
-			</div>
 		</div>
-		<div id="cd-tab1" class="modal-side fade widee" style="display: none">
-			<h3>v0.4</h3>
-			<h4>v0.4.2</h4>
-			<div class="py-2"><label class="list-label">修复</label>修复节假日错误问题</div>
-			<div class="py-2"><label class="list-label">优化</label>调整反馈入口为Tape提问箱</div>
-			<div class="py-2"><label class="list-label">新增</label>新增本地主题</div>
-			<br>
-			<h4>v0.4.1</h4>
-			<div class="py-2"><label class="list-label">修复</label>修复音乐播放失败后与页面交互导致的播放问题</div>
-			<div class="py-2"><label class="list-label">新增</label>新增主题功能</div>
-			<div class="py-2"><label class="list-label">新增</label>新增可选播放音乐</div>
-			<div class="py-2"><label class="list-label">修复</label>修复了上课铃声音过小的问题（反馈#W11）</div>
-			<br>
-			<h4>v0.4.0</h4>
-			<div class="py-2"><label class="list-label">修复</label>修复托管缓存导致的音乐播放问题</div>
-			<div class="py-2"><label class="list-label">新增</label>新增回声洞功能</div>
-			<div class="py-2"><label class="list-label">新增</label>新增暂时关闭音乐按钮</div>
-			<div class="py-2"><label class="list-label">新增</label>新增单双周自动判断</div>
-			<div class="py-2"><label class="list-label">新增</label>新增适配全校班级</div>
-			<div class="py-2"><label class="list-label">新增</label>新增单次活动</div>
-			<div class="py-2"><label class="list-label">新增</label>新增调色板页面，添加调色功能</div>
-			<div class="py-2"><label class="list-label">新增</label>新增建议反馈入口</div>
-			<div class="py-2"><label class="list-label">新增</label>新增引导按钮，提升使用体验</div>
-			<div class="py-2"><label class="list-label">新增</label>新增右上角显示当前周</div>
-			<div class="py-2"><label class="list-label">优化</label>优化初次加载时间至原20%左右，提升体验</div>
-			<div class="py-2"><label class="list-label">优化</label>微调页面，降低交互性</div>
-			<br><br>
-			<h3>v0.3</h3>
-			<h4>v0.3.4</h4>
-			<div class="py-2"><label class="list-label">修复</label>修复音乐播放问题</div>
-			<div class="py-2"><label class="list-label">新增</label>新增活动列表及更新日志</div>
-			<div class="py-2"><label class="list-label">优化</label>布局调整，更简约美观</div>
-			<div class="py-2"><label class="list-label">优化</label>解决浏览器自动播放问题</div>
-			<br>
-			<h4>v0.3.3~v0.3.0</h4>
-			<div class="py-2"><label class="list-label">优化</label>我说优化就是优化</div>
-			<br><br>
-			<h3>v0.2</h3>
-			<div class="py-2"><label class="list-label">修复</label>修复周期性问题</div>
-			<div class="py-2"><label class="list-label">新增</label>添加全部音乐</div>
-			<br><br>
-			<h3>v0.1</h3>
-			<div class="py-2"><label class="list-label">新增</label>基本框架</div>
+	</div>
+	<div id="cd-tab5" class="modal-side wide fade" style="display: none">
+		<!-- example start -->
+		<div class="theme-tab text-center" style="display: none">
+			<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
+			<label class="theme-name">theme-name</label>
 		</div>
-		<div id="cd-tab2" class="modal-side wide fade" style="display: none">
-			<label>第1步. 调色界面，请忽略顶部导航并进行调色。</label>
-			<iframe frameborder="0" src="https://www.shouce.ren/api/html/html4/tools-color_selector.html"
-				scrolling="auto" width="100%" height="70%"></iframe>
-			R <input id="cr" style="width: 28%" onchange=calcHtml()> G <input id="cg" style="width: 28%"
-				onchange=calcHtml()> B <input id="cb" style="width: 30%" onchange=calcHtml()><br>
-			HTML颜色代码 <input id="chtml" style="float: right">
-			<hr>
-			<label>第2步. 调色结束后，请复制“HTML颜色代码”输入框中全部内容，并根据需要输入下列输入框中；<br><i
-					class="fa fa-exclamation-triangle"></i>也可直接输入颜色，如red。</label>
-			<label>背景 Background </label><input id="cbg" type="text" style="float: right"><br>
-			<label>科目 Subject </label><input id="csub" type="text" style="float: right"><br>
-			<label>时间 Countdown </label><input id="ccd" type="text" style="float: right"><br>
-			<label>文字 Text </label><input id="ctxt" type="text" style="float: right"><br>
-			<input type="button" class="mt-1" style="width: 100%" value="确认" onclick=setColorFromInput()>
-			<input type="button" class="mt-1" style="width: 100%" value="添加到主题" onclick=addThemeFromColor()>
-			<hr>
-			<label>第3步. 如果您调出了满意的颜色并愿意分享，请填写以下匿名征集问卷。您的配色方案有几率被设为备选方案展示在网页上。</label>
-			<iframe src='https://www.wjx.cn/vj/QEMEoS9.aspx?width=350&source=iframe&s=t' width='100%' height='110%'
-				frameborder='0' style='overflow:auto'></iframe>
-		</div>
-		<div id="cd-tab3" class="modal-side wide fade" style="display: none">
-			<iframe src='https://www.tapechat.net/uu/U6UFNO/0YF30FPM' width='100%' height='150%' frameborder='0'
-				style='overflow:auto'></iframe>`
-		</div>
-		<div id="cd-tab4" class="modal-side widee fade" style="display: none">
-			<div class="form-group">
-				<div class="row">
-					<div id="tog-0" class="col-4 text-center tgl" onclick="toggle(0)">
-						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-						<br>
-						<i>预备铃</i>
-					</div>
-					<div id="tog-1" class="col-4 text-center tgl" onclick="toggle(1)">
-						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-						<br>
-						<i>上课铃</i>
-					</div>
-					<div id="tog-2" class="col-4 text-center tgl" onclick="toggle(2)">
-						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-						<br>
-						<i>下课铃</i>
-					</div>
-					<div id="tog-3" class="col-4 text-center tgl" onclick="toggle(3)">
-						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-						<br>
-						<i>眼保健操</i>
-					</div>
-					<div id="tog-4" class="col-4 text-center tgl" onclick="toggle(4)">
-						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-						<br>
-						<i>室内操</i>
-					</div>
-					<div id="tog-5" class="col-4 text-center tgl" onclick="toggle(5)">
-						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-						<br>
-						<i>广播体操</i>
-					</div>
-					<div id="tog-6" class="col-4 text-center tgl" onclick="toggle(6)">
-						<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-						<br>
-						<i>Never Say Goodbye</i>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="cd-tab5" class="modal-side wide fade" style="display: none">
-			<!-- example start -->
-			<div class="theme-tab text-center" style="display: none">
-				<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
-				<label class="theme-name">theme-name</label>
-			</div>
-			<!-- example end -->
-		</div>
-		<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
-		<div class="cd-tabs">
-			<div id="tab0" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
-			<div id="tab5" class="cd-tab"><i class="fa fa-palette"></i> 主题</div>
-		</div>
-		<div class="cd-tabs-down">
-			<div id="tab1" class="cd-tab"><i class="fa fa-bars"></i> 更新日志</div>
-			<div id="tab2" class="cd-tab"><i class="fa fa-adjust"></i> 调色板</div>
-			<div id="tab3" class="cd-tab"><i class="fa fa-comments"></i> 意见反馈</div>
-		</div>
-		<div class="cd-tabs-right text-center">
-			<span id="nxt" class="cd-tab-right">下节/当前：某节休息</span>
-			<select id="class" class="cd-tab-right" style="border: none; outline: none; width: 1rem; background: none">
-				<optgroup label="中一">
-					<option value="011">中一(1)班</option>
-					<option value="012">中一(2)班</option>
-					<option value="013">中一(3)班</option>
-					<option value="014">中一(4)班</option>
-					<option value="015">中一(5)班</option>
-				</optgroup>
-				<optgroup label="中二">
-					<option value="021">中二(1)班</option>
-					<option value="022">中二(2)班</option>
-					<option value="023">中二(3)班</option>
-					<option value="024">中二(4)班</option>
-					<option value="025">中二(5)班</option>
-				</optgroup>
-				<optgroup label="中三">
-					<option value="031">中三(1)班</option>
-					<option value="032">中三(2)班</option>
-					<option value="033">中三(3)班</option>
-					<option value="034">中三(4)班</option>
-					<option value="035">中三(5)班</option>
-				</optgroup>
-				<optgroup label="高一">
-					<option value="111">高一(1)班</option>
-					<option value="112">高一(2)班</option>
-					<option value="113">高一(3)班</option>
-					<option value="114">高一(4)班</option>
-					<option value="115">高一(5)班</option>
-					<option value="116">高一(6)班</option>
-				</optgroup>
-				<optgroup label="高二">
-					<option value="121">高二(1)班</option>
-					<option value="122">高二(2)班</option>
-					<option value="123">高二(3)班</option>
-					<option value="124">高二(4)班</option>
-					<option value="125">高二(5)班</option>
-					<option value="126">高二(6)班</option>
-				</optgroup>
-				<optgroup label="高三">
-					<option value="131">高三(1)班</option>
-					<option value="132">高三(2)班</option>
-					<option value="133">高三(3)班</option>
-					<option value="134">高三(4)班</option>
-					<option value="135">高三(5)班</option>
-					<option value="136">高三(6)班</option>
-				</optgroup>
-				<optgroup label="国际部">
-					<option value="211">6A</option>
-					<option value="212">6B</option>
-					<option value="221">7A</option>
-					<option value="222">7B</option>
-					<option value="231">8A</option>
-					<option value="232">8B</option>
-					<option value="233">9A</option>
-					<option value="234">10A</option>
-				</optgroup>
-			</select>
-			<span id="class-name" class="cd-tab-right">班级：高一(6)班</span>
-			<span id="week" class="cd-tab-right"></span>
-		</div>
-		<div class="text-center py-5 cd-header">
-			<b class="cd-descr">距离</b>
-			<b class="cd-descr" id="title-to">某天</b>
-			<b class="cd-descr" id="title-pre">第某节课</b>
-			<label class="cd-title" id="title"> 某节课 </label>
-			<b class="cd-descr" id="title-sub">上/下课</b>
-			<b class="cd-descr" id="descr">还有</b>
-		</div>
-		<div class="text-center" id="cd-time">
-			<label class="cd-time" id="hor"> 00 </label> <b class="cd-descr">小时</b>
-			<label class="cd-time" id="min"> 00 </label> <b class="cd-descr">分钟</b>
-			<label class="cd-time" id="sec"> 00 </label> <b class="cd-descr">秒</b>
-		</div>
-		<div style="display: none" class="text-center cd-music text-muted" id="cd-music">
+		<!-- example end -->
+	</div>
+	<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
+	<div class="cd-tabs">
+		<div id="tab0" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
+		<div id="tab5" class="cd-tab"><i class="fa fa-palette"></i> 主题</div>
+	</div>
+	<div class="cd-tabs-down">
+		<div id="tab1" class="cd-tab"><i class="fa fa-bars"></i> 更新日志</div>
+		<div id="tab2" class="cd-tab"><i class="fa fa-adjust"></i> 调色板</div>
+		<div id="tab3" class="cd-tab"><i class="fa fa-comments"></i> 意见反馈</div>
+	</div>
+	<div class="cd-tabs-right text-center">
+		<span id="nxt" class="cd-tab-right">下节/当前：某节休息</span>
+		<select id="class" class="cd-tab-right" style="border: none; outline: none; width: 1rem; background: none">
+			<optgroup label="中一">
+				<option value="011">中一(1)班</option>
+				<option value="012">中一(2)班</option>
+				<option value="013">中一(3)班</option>
+				<option value="014">中一(4)班</option>
+				<option value="015">中一(5)班</option>
+			</optgroup>
+			<optgroup label="中二">
+				<option value="021">中二(1)班</option>
+				<option value="022">中二(2)班</option>
+				<option value="023">中二(3)班</option>
+				<option value="024">中二(4)班</option>
+				<option value="025">中二(5)班</option>
+			</optgroup>
+			<optgroup label="中三">
+				<option value="031">中三(1)班</option>
+				<option value="032">中三(2)班</option>
+				<option value="033">中三(3)班</option>
+				<option value="034">中三(4)班</option>
+				<option value="035">中三(5)班</option>
+			</optgroup>
+			<optgroup label="高一">
+				<option value="111">高一(1)班</option>
+				<option value="112">高一(2)班</option>
+				<option value="113">高一(3)班</option>
+				<option value="114">高一(4)班</option>
+				<option value="115">高一(5)班</option>
+				<option value="116">高一(6)班</option>
+			</optgroup>
+			<optgroup label="高二">
+				<option value="121">高二(1)班</option>
+				<option value="122">高二(2)班</option>
+				<option value="123">高二(3)班</option>
+				<option value="124">高二(4)班</option>
+				<option value="125">高二(5)班</option>
+				<option value="126">高二(6)班</option>
+			</optgroup>
+			<optgroup label="高三">
+				<option value="131">高三(1)班</option>
+				<option value="132">高三(2)班</option>
+				<option value="133">高三(3)班</option>
+				<option value="134">高三(4)班</option>
+				<option value="135">高三(5)班</option>
+				<option value="136">高三(6)班</option>
+			</optgroup>
+			<optgroup label="国际部">
+				<option value="211">6A</option>
+				<option value="212">6B</option>
+				<option value="221">7A</option>
+				<option value="222">7B</option>
+				<option value="231">8A</option>
+				<option value="232">8B</option>
+				<option value="233">9A</option>
+				<option value="234">10A</option>
+			</optgroup>
+		</select>
+		<span id="class-name" class="cd-tab-right">班级：高一(6)班</span>
+		<span id="week" class="cd-tab-right"></span>
+	</div>
+	<div class="text-center py-5 cd-header">
+		<b class="cd-descr">距离</b>
+		<b class="cd-descr" id="title-to">某天</b>
+		<b class="cd-descr" id="title-pre">第某节课</b>
+		<label class="cd-title" id="title"> 某节课 </label>
+		<b class="cd-descr" id="title-sub">上/下课</b>
+		<b class="cd-descr" id="descr">还有</b>
+	</div>
+	<div class="text-center" id="cd-time">
+		<label class="cd-time" id="hor"> 00 </label> <b class="cd-descr">小时</b>
+		<label class="cd-time" id="min"> 00 </label> <b class="cd-descr">分钟</b>
+		<label class="cd-time" id="sec"> 00 </label> <b class="cd-descr">秒</b>
+	</div>
+	<div style="display: none" class="text-center cd-prompt text-muted" id="cd-prompt">
+		<span id="prompt-cont"></span>
+		<i class="fa fa-times" id="prompt-close"></i>
+	</div>
+	<div style="display: none" class="text-center cd-music text-muted" id="cd-music">
+		<i class="fa fa-music"></i>
+		<span>当前播放：</span>
+		<span id="music-name">某首歌</span>
+		<i class="fa fa-times" id="music-stop" title="关闭此次"></i>
+	</div>
+	<div class="text-center cd-tabs-mid" style="width: 21rem;" id="cd-hint">
+		<div id="cd-hint-close" class="cd-tab">
 			<i class="fa fa-music"></i>
-			<span>当前播放：</span>
-			<span id="music-name">某首歌</span>
-			<i class="fa fa-times" id="music-stop" title="关闭此次"></i>
+			<span>点击此处以启用自动播放</span>
 		</div>
-		<div class="text-center cd-tabs-mid" style="width: 21rem;" id="cd-hint">
-			<div id="cd-hint-close" class="cd-tab">
-				<i class="fa fa-music"></i>
-				<span>点击此处以启用自动播放</span>
-			</div>
-			<div id="tab4" class="cd-tab">
-				<i class="fa fa-cog"></i>
-				<span>设置</span>
-			</div>
+		<div id="tab4" class="cd-tab">
+			<i class="fa fa-cog"></i>
+			<span>设置</span>
 		</div>
-		<div class="text-center cd-footer text-muted">
-			<span>SESCountdown v0.4.2</span><br>
-			<span>Made By JasonYing. Timetables from EasonShao.</span><br>
-			<span id="quote"></span>
-		</div>
+	</div>
+	<div class="text-center cd-footer text-muted">
+		<span>SESCountdown v0.4.3</span><br>
+		<span>Made By JasonYing. Timetables from EasonShao.</span><br>
+		<span id="quote"></span>
 	</div>
 	<script>
 		$.getJSON("https://api.ipify.org/?format=jsonp&callback=?&_=" + Math.random(), function (result) {
-			// if (result.ip.indexOf("11") == 0){
-			// 	window.location.href = "https://www.baidu.com";//114.62.19.250 
-			// }
+			let bannedIp = ["256.256.256.256"];
+			for (let i = 0; i < bannedIp.length; i++) {
+				if (result.ip.indexOf(bannedIp[i]) != -1) {
+					window.location.href = "https://www.baidu.com/";
+				}
+			}
 		});
 	</script>
-	<script type="text/javascript" src="./assets/script/store.js?v=220401"></script>
+	<script type="text/javascript" src="./assets/script/store.js?v=220406"></script>
 	<script type="text/javascript" src="./assets/script/global.js?v=220405"></script>
 	<script type="text/javascript" src="./assets/script/quote.js?v=220401"></script>
 	<script type="text/javascript" src="./assets/script/init.js?v=220405"></script>
 	<script type="text/javascript" src="./assets/script/theme.js?v=220405"></script>
-	<script type="text/javascript" src="./assets/script/music.js?v=220405"></script>
+	<script type="text/javascript" src="./assets/script/music.js?v=220407"></script>
 	<script>
+		function eventPrompt(s, t) {
+			$("#prompt-cont").text(s);
+			$("#cd-prompt").show();
+			setTimeout(function () { $("#cd-prompt").hide(); }, t);
+		}
+		function specialEvent(n) {
+			switch (n) {
+				case 0:
+					$.get("https://api.help.bj.cn/apis/weather/?id=101020600", function (data) {
+						let doIn = false;
+						if (parseInt(data.temp) > 32-33) {
+							eventPrompt("今天气温" + data.temp + "摄氏度，太热了，良心学校决定进行室内操！", 300000);
+							doIn = true;
+						} else if (parseInt(data.temp) < 10) {
+							eventPrompt("今天气温" + data.temp + "摄氏度，太冷了，良心学校决定进行室内操！", 300000);
+							doIn = true;
+						} else if (parseInt(data.wdforce) >= 6) {
+							eventPrompt("今天风力" + data.wdforce + "，学生要被吹跑了，良心学校决定进行室内操！", 300000);
+							doIn = true;
+						} else if (parseInt(data.humidity) >= 80) {
+							eventPrompt("今天湿度" + data.humidity + "，学生要被水淹死了，良心学校决定进行室内操！", 300000);
+							doIn = true;
+						} else if (parseInt(data.wisib) <= 1) {
+							eventPrompt("今天能见度" + data.wisib + "，学生要撞墙上了，良心学校决定进行室内操！", 300000);
+							doIn = true;
+						} else if (parseInt(data.weathercode.substring(1)) >= 3) {
+							eventPrompt("今天" + data.weather + "良心学校决定进行室内操！", 300000);
+							doIn = true;
+						} else {
+							doIn = false;
+						}
+						if (doIn) playMusic(4);
+						else playMusic(5);
+					})
+					break;
+				default:
+					return;
+			}
+		}
 		function str2time(n) {
 			let todayStart = new Date().getTime() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000 - new Date().getSeconds() * 1000 - new Date().getMilliseconds();
 			let thisHour = parseInt(timeStampList[getClass().depart][n].substring(0, 2));
@@ -535,6 +594,7 @@
 				for (let i = 0; i < weeklyEventList.length; i++) {
 					if (weeklyEventList[i] == preWkStr) {
 						playMusic(weeklyEventMusic[i]);
+						specialEvent(weeklyEventSpecial[getClass().depart][i]);
 						// $("#prompt-cont").html(weeklyEventPrompt[i]);
 						break;
 					}
@@ -567,9 +627,6 @@
 		}
 		refr();
 		setInterval(function () { refr() }, 1000);
-		// $.get("https://api.help.bj.cn/apis/weather/?id=101020600", function (data) {
-		// 	alert(data.city);
-		// })
 	</script>
 </body>
 
