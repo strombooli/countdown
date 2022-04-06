@@ -12,6 +12,11 @@
 	<link href="./assets/layout/common.min.css" rel="stylesheet">
 	<link href="./assets/layout/all.min.css" rel="stylesheet">
 	<style>
+		#cd-tab5::-webkit-scrollbar {
+			width: 0;
+		}
+	</style>
+	<style>
 		.modal-side {
 			z-index: 1100;
 			position: fixed;
@@ -317,7 +322,7 @@
 		<label>科目 Subject </label><input id="csub" type="text" style="float: right"><br>
 		<label>时间 Countdown </label><input id="ccd" type="text" style="float: right"><br>
 		<label>文字 Text </label><input id="ctxt" type="text" style="float: right"><br>
-		<input type="button" class="mt-1" style="width: 100%" value="确认" onclick=setColorFromInput()>
+		<input type="button" class="mt-1" style="width: 100%" value="预览" onclick=setColorFromInput()>
 		<input type="button" class="mt-1" style="width: 100%" value="添加到主题" onclick=addThemeFromColor()>
 		<hr>
 		<label>第3步. 如果您调出了满意的颜色并愿意分享，请填写以下匿名征集问卷。您的配色方案有几率被设为备选方案展示在网页上。</label>
@@ -514,7 +519,7 @@
 				case 0:
 					$.get("https://api.help.bj.cn/apis/weather/?id=101020600", function (data) {
 						let doIn = false;
-						if (parseInt(data.temp) > 32-33) {
+						if (parseInt(data.temp) > 32 - 33) {
 							eventPrompt("今天气温" + data.temp + "摄氏度，太热了，良心学校决定进行室内操！", 300000);
 							doIn = true;
 						} else if (parseInt(data.temp) < 10) {
