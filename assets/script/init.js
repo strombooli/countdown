@@ -209,3 +209,19 @@ function showEvent() {
 	else $("#event-no").hide();
 }
 showEvent();
+
+let schedModal = "<tr><td>ID</td><td>MON</td><td>TUES</td><td>WED</td><td>THUR</td><td>FRI</td></tr>";
+function showAllSched() {
+	let nowSched = schedList[getClass().depart][getClass().grade][getClass().classs];
+	for (let i = 0; i < nowSched[0].length; i++) {
+		let sm = schedModal;
+		sm = sm.replace(/ID/g, (i + 1).toString());
+		sm = sm.replace(/MON/g, nowSched[0][i]);
+		sm = sm.replace(/TUES/g, nowSched[1][i]);
+		sm = sm.replace(/WED/g, nowSched[2][i]);
+		sm = sm.replace(/THUR/g, nowSched[3][i]);
+		sm = sm.replace(/FRI/g, nowSched[4][i]);
+		document.getElementById("cd-table").innerHTML += sm;
+	}
+}
+showAllSched();
