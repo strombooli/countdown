@@ -25,5 +25,6 @@ function playMusic(n) {
 }
 function stopMusic() {
 	player.pause();
+	player = new Audio();
 	$("#cd-music").hide();
 }

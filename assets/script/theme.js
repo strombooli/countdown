@@ -6,11 +6,11 @@ let themeModelLoc = "<div id=\"theme-ID\" class=\"theme-tab text-center\">" +
 	"<input type=\"button\" class=\"theme-del\" value=\"删除\"><br>" +
 	"<label class=\"theme-name\">THEMENAME</label>" +
 	"</div>";
-let themeGlbBg = ["white", "white", "black", "#FFF7D3", "#F5E8C8", "#F5F1DA", "#E0D5F2", "#FEEEED", "#6C757D", "#7F9BA8"];
-let themeGlbSub = ["red", "skyblue", "black", "#00768F", "#AE1027", "#808C6C", "#0E97B6", "#EF5B9C", "#6C757D", "#D0D3DC"];
-let themeGlbCd = ["red", "skyblue", "black", "#FAC457", "#A12F2F", "#F4B46A", "#0E97B6", "#EF5B9C", "#6C757D", "#C8B493"];
-let themeGlbTxt = ["black", "black", "black", "#00768F", "#752423", "#9A9C94", "black", "#F7ACBC", "#6C757D", "#383C4A"];
-let themeGlbName = ["[官方]经典", "[官方]经典2", "[官方]护眼配色", "[投稿]游乐场", "[投稿]我都觉得好", "[投稿]春天来啦~", "[投稿]奶思", "[投稿]樱花粉", "[投稿]看个毛线", "[投稿]海盐夏日"];
+let themeGlbBg = ["white", "white", "black", "#FFF7D3", "#F5E8C8", "#F5F1DA", "#E0D5F2", "#FEEEED", "#6C757D", "#7F9BA8", "#DDC9AC"];
+let themeGlbSub = ["red", "skyblue", "black", "#00768F", "#AE1027", "#808C6C", "#0E97B6", "#EF5B9C", "#6C757D", "#D0D3DC", "#F6EDD5"];
+let themeGlbCd = ["red", "skyblue", "black", "#FAC457", "#A12F2F", "#F4B46A", "#0E97B6", "#EF5B9C", "#6C757D", "#C8B493", "#BCA491"];
+let themeGlbTxt = ["black", "black", "black", "#00768F", "#752423", "#9A9C94", "black", "#F7ACBC", "#6C757D", "#383C4A", "#64AC73"];
+let themeGlbName = ["[官方]经典", "[官方]经典2", "[官方]护眼配色", "[投稿]游乐场", "[投稿]我都觉得好", "[投稿]春天来啦~", "[投稿]奶思", "[投稿]樱花粉", "[投稿]看个毛线", "[投稿]海盐夏日", "[投稿]初秋奶茶"];
 let themeLocBg = new Array(), themeLocSub = new Array(), themeLocCd = new Array(), themeLocTxt = new Array(), themeLocName = new Array();
 
 if (localStorage.getItem("theme_id") === null) localStorage.setItem("theme_id", "0");
