@@ -57,7 +57,6 @@ function setClassDisplay() {
 	for (let i = 0; i < document.getElementById("class").children.length; i++) {
 		for (let j = 0; j < document.getElementById("class").children[i].children.length; j++) {
 			if (document.getElementById("class").children[i].children[j].value == localStorage.getItem("classNo")) {
-				console.log(document.getElementById("class").children[i].children[j].value);
 				document.getElementById("class").children[i].children[j].selected = "selected";
 				break;
 			}

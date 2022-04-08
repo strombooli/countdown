@@ -1,0 +1,20 @@
+{
+	"name": "SESCountdown | 沉浸式网课",
+	"short_name": "SESCountdown",
+	"display": "standalone",
+	"start_url": "/?source=pwa",
+	"theme_color": "#282c34",
+	"background_color": "#282c34",
+	"description": "The PWA for SESCountdown, providing immersed online learning environment.",
+	"categories": [
+		"productivity",
+		"utilities"
+	],
+	"icons": [
+		{
+			"type": "image/png",
+			"sizes": "192x192",
+			"src": "/assets/favicon.png"
+		}
+	]
+}

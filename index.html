@@ -2,7 +2,9 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="./assets/favicon.svg" type="image/x-icon">
+	<link rel="manifest" href="/manifest.json">
+	<!-- <link rel="apple-touch-icon" href="/assets/image/icons/apple-touch.png"> -->
 	<script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 	<title>沉浸式网课 | SESCountdown</title>
 	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
@@ -229,6 +231,17 @@
 			s.parentNode.insertBefore(hm, s);
 		})();
 	</script>
+	<script>
+		if ('serviceWorker' in window.navigator) {
+			navigator.serviceWorker.register('./sw.js', { scope: './' })
+				.then(function (reg) {
+					console.log('success', reg);
+				})
+				.catch(function (err) {
+					console.log('fail', err);
+				});
+		}
+	</script>
 </head>
 
 <body style="overflow: none">
@@ -259,6 +272,11 @@
 		</div>
 	</div>
 	<div id="cd-tab1" class="modal-side fade widee" style="display: none">
+		<h3>v0.5</h3>
+		<h4>v0.5.0</h4>
+		<div class="py-2"><label class="list-label">新增</label>新增PWA应用，请使用主流浏览器（Google Chrome, Microsoft Edge, Safari）等以体验此功能。</div>
+		<br>
+		<br>
 		<h3>v0.4</h3>
 		<h4>v0.4.3</h4>
 		<div class="py-2"><label class="list-label">修复</label>修复主题配图显示错误的问题</div>
@@ -505,7 +523,7 @@
 		</div>
 	</div>
 	<div class="text-center cd-footer text-muted">
-		<span>SESCountdown v0.4.3</span><br>
+		<span>SESCountdown v0.5.0</span><br>
 		<span>Made By JasonYing. Timetables from EasonShao.</span><br>
 		<span id="quote"></span>
 	</div>
@@ -522,9 +540,9 @@
 	<script type="text/javascript" src="./assets/script/store.js?v=220406"></script>
 	<script type="text/javascript" src="./assets/script/global.js?v=220405"></script>
 	<script type="text/javascript" src="./assets/script/quote.js?v=220401"></script>
-	<script type="text/javascript" src="./assets/script/init.js?v=220406"></script>
+	<script type="text/javascript" src="./assets/script/init.js?v=220407"></script>
 	<script type="text/javascript" src="./assets/script/theme.js?v=220407"></script>
-	<script type="text/javascript" src="./assets/script/music.js?v=220407"></script>
+	<script type="text/javascript" src="./assets/script/music.js?v=220408"></script>
 	<script>
 		function eventPrompt(s, t) {
 			$("#prompt-cont").text(s);
