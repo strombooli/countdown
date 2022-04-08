@@ -6,12 +6,19 @@ let themeModelLoc = "<div id=\"theme-ID\" class=\"theme-tab text-center\">" +
 	"<input type=\"button\" class=\"theme-del\" value=\"删除\"><br>" +
 	"<label class=\"theme-name\">THEMENAME</label>" +
 	"</div>";
-let themeGlbBg = ["white", "white", "black", "#FFF7D3", "#F5E8C8", "#F5F1DA", "#E0D5F2", "#FEEEED", "#6C757D", "#7F9BA8", "#DDC9AC"];
-let themeGlbSub = ["red", "skyblue", "black", "#00768F", "#AE1027", "#808C6C", "#0E97B6", "#EF5B9C", "#6C757D", "#D0D3DC", "#F6EDD5"];
-let themeGlbCd = ["red", "skyblue", "black", "#FAC457", "#A12F2F", "#F4B46A", "#0E97B6", "#EF5B9C", "#6C757D", "#C8B493", "#BCA491"];
-let themeGlbTxt = ["black", "black", "black", "#00768F", "#752423", "#9A9C94", "black", "#F7ACBC", "#6C757D", "#383C4A", "#64AC73"];
-let themeGlbName = ["[官方]经典", "[官方]经典2", "[官方]护眼配色", "[投稿]游乐场", "[投稿]我都觉得好", "[投稿]春天来啦~", "[投稿]奶思", "[投稿]樱花粉", "[投稿]看个毛线", "[投稿]海盐夏日", "[投稿]初秋奶茶"];
-let themeLocBg = new Array(), themeLocSub = new Array(), themeLocCd = new Array(), themeLocTxt = new Array(), themeLocName = new Array();
+let themeGlb =
+	[{ id: "off-classical", descr: "[官方]经典", 		bg: "white", 	sub: "red", 	cd: "red", 		txt: "black" },
+	{ id: "off-classical2", descr: "[官方]经典2", 		bg: "white", 	sub: "skyblue", cd: "skyblue", 	txt: "black" },
+	{ id: "off-eye", 		descr: "[官方]护眼配色", 	bg: "black", 	sub: "black", 	cd: "black", 	txt: "black" },
+	{ id: "spring-talk", 	descr: "[投稿]春日私语", 	bg: "#F5F1DA", 	sub: "#808C6C", cd: "#F4B46A", 	txt: "#9A9C94" },
+	{ id: "summer-salt", 	descr: "[投稿]海盐夏日", 	bg: "#7F9BA8", 	sub: "#D0D3DC", cd: "#C8B493", 	txt: "#383C4A" },
+	{ id: "autumn-milktea", descr: "[投稿]初秋奶茶", 	bg: "#DDC9AC", 	sub: "#F6EDD5", cd: "#BCA491", 	txt: "#D4AC73" },
+	{ id: "playground", 	descr: "[投稿]游乐场", 		bg: "#FFF7D3", 	sub: "#00768F", cd: "#FAC457", 	txt: "#00768F" },
+	{ id: "very-good", 		descr: "[投稿]都觉得好", 	bg: "#F5E8C8", 	sub: "#AE1027", cd: "#A12F2F", 	txt: "#752423" },
+	{ id: "nice", 			descr: "[投稿]奶思",		bg: "#E0D5F2", 	sub: "#0E97B6", cd: "#0E97B6", 	txt: "black" },
+	{ id: "cherry-pink", 	descr: "[投稿]樱花粉", 		bg: "#FEEEED", 	sub: "#EF5B9C", cd: "#EF5B9C", 	txt: "#F7ACBC" },
+	{ id: "see-nothing", 	descr: "[投稿]看个毛线", 	bg: "#6C757D", 	sub: "#6C757D", cd: "#6C757D", 	txt: "#6C757D" }
+	];
 
 if (localStorage.getItem("theme_id") === null) localStorage.setItem("theme_id", "0");
 let themeChosen = parseInt(localStorage.getItem("theme_id"));
@@ -20,10 +27,10 @@ function chooseTheme(n, e) {
 	$("#theme-" + themeChosen.toString()).removeClass("chosen");
 	$("#theme-" + n.toString()).addClass("chosen");
 	themeChosen = n;
-	if (n < themeGlbBg.length) setColorFromThemeGlb(n);
+	if (n < themeGlb.length) setColorFromThemeGlb(n);
 	else {
-		if (e) delThemeLoc(n - themeGlbBg.length);
-		else setColorFromThemeLoc(n - themeGlbBg.length);
+		if (e) delThemeLoc(n - themeGlb.length);
+		else setColorFromThemeLoc(n - themeGlb.length);
 	}
 	localStorage.setItem("theme_id", n.toString());
 	initColorInput();
@@ -62,17 +69,17 @@ function addThemeFromColor() {
 }
 
 getThemeLoc();
-for (let i = 0; i < themeGlbBg.length; i++) {
+for (let i = 0; i < themeGlb.length; i++) {
 	let thmg = themeModelGlb;
 	thmg = thmg.replace(/ID/g, i.toString());
-	thmg = thmg.replace(/PICSRC/g, "./assets/image/theme/" + i.toString() + ".png?v=220406");
-	thmg = thmg.replace(/THEMENAME/g, themeGlbName[i]);
+	thmg = thmg.replace(/PICSRC/g, "./assets/image/theme/" + themeGlb[i].id + ".png?v=220408");
+	thmg = thmg.replace(/THEMENAME/g, themeGlb[i].descr);
 	document.getElementById("cd-tab5").innerHTML += thmg;
 }
-for (let i = themeGlbBg.length; i < themeGlbBg.length + themeLocBg.length; i++) {
+for (let i = themeGlb.length; i < themeGlb.length + themeLocBg.length; i++) {
 	let thml = themeModelLoc;
 	thml = thml.replace(/ID/g, i.toString());
-	thml = thml.replace(/THEMENAME/g, "[本地]" + themeLocName[i - themeGlbBg.length]);
+	thml = thml.replace(/THEMENAME/g, "[本地]" + themeLocName[i - themeGlb.length]);
 	document.getElementById("cd-tab5").innerHTML += thml;
 }
 for (let i = 0; i < 1000; i++) {

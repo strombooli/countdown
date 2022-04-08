@@ -104,7 +104,7 @@ function setColorFromThemeLoc(i) {
 	setColor(themeLocBg[i], themeLocSub[i], themeLocCd[i], themeLocTxt[i]);
 }
 function setColorFromThemeGlb(i) {
-	setColor(themeGlbBg[i], themeGlbSub[i], themeGlbCd[i], themeGlbTxt[i]);
+	setColor(themeGlb[i].bg, themeGlb[i].sub, themeGlb[i].cd, themeGlb[i].txt);
 }
 function initColor() {
 	$("body").attr({ style: "background-color: " + getCookie("cbg") });
