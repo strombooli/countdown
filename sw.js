@@ -2,7 +2,8 @@ const PRECACHE = 'precache-v1';
 const RUNTIME = 'runtime';
 const HOSTNAME_WHITELIST = [
 	self.location.hostname
-]
+];
+const precacheResources = ['./index.html','./assets'];
 
 
 // The Util Function to hack URLs of intercepted requests
@@ -65,15 +66,15 @@ const getRedirectUrl = (req) => {
  *  waitUntil() : installing ====> installed
  *  skipWaiting() : waiting(installed) ====> activating
  */
-// self.addEventListener('install', e => {
-// 	e.waitUntil(
-// 		caches.open(PRECACHE).then(cache => {
-// 			return cache.add('index.html')
-// 				.then(self.skipWaiting())
-// 				.catch(err => console.log(err))
-// 		})
-// 	)
-// });
+self.addEventListener('install', e => {
+	e.waitUntil(
+		caches.open(PRECACHE).then(cache => {
+			return cache.addAll(precacheResources)
+				.then(self.skipWaiting())
+				.catch(err => console.log(err))
+		})
+	)
+});
 
 
 /**

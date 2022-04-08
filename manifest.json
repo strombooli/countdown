@@ -1,5 +1,5 @@
 {
-	"name": "SESCountdown | 沉浸式网课",
+	"name": "SESCountdown",
 	"short_name": "SESCountdown",
 	"display": "standalone",
 	"start_url": "./?source=pwa",
