@@ -261,7 +261,7 @@
 	</script>
 </head>
 
-<body style="overflow: none">
+<body style="overflow: none; background-repeat: no-repeat; background-size: cover">
 	<div id="cd-tab0" class="modal-side fade widen" style="display: none">
 		<div id="event-no" class="text-center text-muted" style="display: none">暂无活动</div>
 		<div class="tab-list" style="display: none">
@@ -293,8 +293,10 @@
 		<h4>v0.5.1</h4>
 		<div class="py-2"><label class="list-label">修复</label>修复室内操播放条件判断错误问题</div>
 		<div class="py-2"><label class="list-label">修复</label>修复主题错乱问题，重写逻辑</div>
+		<div class="py-2"><label class="list-label">优化</label>平衡所有音频的音量大小（反馈#W13）</div>
 		<div class="py-2"><label class="list-label">优化</label>调整布局，<span style="color: red">原左下角三个按钮（更新日志、调色板、意见反馈）已移至右侧。</span></div>
 		<div class="py-2"><label class="list-label">新增</label>新增广告位，<span style="color: red">免费招租！</span></div>
+		<div class="py-2"><label class="list-label">新增</label>支持使用在线的图片作为背景（反馈#W12）</div>
 		<br>
 		<h4>v0.5.0</h4>
 		<div class="py-2"><label class="list-label">新增</label>新增PWA应用，请使用主流浏览器(Chrome,Edge,Safari)等以体验此功能，<span style="color: red">地址栏右侧可见安装按钮，安装后可离线使用，但更新速度较慢。</span></div>
@@ -316,9 +318,9 @@
 		<br>
 		<h4>v0.4.1</h4>
 		<div class="py-2"><label class="list-label">修复</label>修复音乐播放失败后与页面交互导致的播放问题</div>
+		<div class="py-2"><label class="list-label">修复</label>修复了上课铃声音过小的问题（反馈#W11）</div>
 		<div class="py-2"><label class="list-label">新增</label>新增主题功能</div>
 		<div class="py-2"><label class="list-label">新增</label>新增可选播放音乐</div>
-		<div class="py-2"><label class="list-label">修复</label>修复了上课铃声音过小的问题（反馈#W11）</div>
 		<br>
 		<h4>v0.4.0</h4>
 		<div class="py-2"><label class="list-label">修复</label>修复托管缓存导致的音乐播放问题</div>
@@ -359,8 +361,9 @@
 			onchange=calcHtml()> B <input id="cb" style="width: 30%" onchange=calcHtml()><br>
 		HTML颜色代码 <input id="chtml" style="float: right">
 		<hr>
-		<label>第2步. 调色结束后，请复制“HTML颜色代码”输入框中全部内容，并根据需要输入下列输入框中；<br><i
-				class="fa fa-exclamation-triangle"></i>也可直接输入颜色，如red。</label>
+		<label>第2步. 调色结束后，请复制“HTML颜色代码”输入框中全部内容，并根据需要输入下列输入框中；<br>
+		<i class="fa fa-exclamation-triangle"></i>也可直接输入颜色，如red。<br>
+		<i class="fa fa-exclamation-triangle"></i>支持使用图片作为背景，推荐使用<a href="https://imgtu.com/">路过图床</a>，上传图片后将【完整】【图片URL链接】输入即可。</i></label>
 		<label>背景 Background </label><input id="cbg" type="text" style="float: right"><br>
 		<label>科目 Subject </label><input id="csub" type="text" style="float: right"><br>
 		<label>时间 Countdown </label><input id="ccd" type="text" style="float: right"><br>
@@ -418,8 +421,10 @@
 				</div>
 			</div>
 		</div>
+		<hr>
 	</div>
 	<div id="cd-tab5" class="modal-side wide fade" style="display: none">
+		<input role="button" type="button" value="创建主题" style="width: 100%;" onclick=hideTab(),showTab(2)>
 		<!-- example start -->
 		<div class="theme-tab text-center" style="display: none">
 			<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
@@ -443,9 +448,9 @@
 	</div>
 	<div id="cd-tabback" class="modal-backdrop fade" style="display: none"></div>
 	<div class="cd-tabs">
-		<div id="tab0" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
-		<div id="tab5" class="cd-tab"><i class="fa fa-palette"></i> 主题</div>
-		<div id="tab6" class="cd-tab"><i class="fa fa-table"></i> 课表</div>
+		<div id="tab0a" class="cd-tab"><i class="fa fa-podcast"></i> 活动</div>
+		<div id="tab5a" class="cd-tab"><i class="fa fa-palette"></i> 主题</div>
+		<div id="tab6a" class="cd-tab"><i class="fa fa-table"></i> 课表</div>
 	</div>
 	<!-- <div class="cd-tabs-down">
 		<div id="tab1" class="cd-tab"><i class="fa fa-bars"></i> 更新日志</div>
@@ -453,9 +458,10 @@
 		<div id="tab3" class="cd-tab"><i class="fa fa-comments"></i> 意见反馈</div>
 	</div> -->
 	<div class="cd-sidetab">
-		<div id="tab1" class="cd-tab-side"><i class="fa fa-bars"></i></div>
-		<div id="tab2" class="cd-tab-side"><i class="fa fa-adjust"></i></div>
-		<div id="tab3" class="cd-tab-side"><i class="fa fa-comments"></i></div>
+		<div id="tab1a" class="cd-tab-side text-center"><i class="fa fa-bars"></i></div>
+		<div id="tab2a" class="cd-tab-side text-center"><i class="fa fa-adjust"></i></div>
+		<div id="tab3a" class="cd-tab-side text-center"><i class="fa fa-comments"></i></div>
+		<div id="tab4b" class="cd-tab-side text-center"><i class="fa fa-cog"></i></div>
 	</div>
 	<div class="cd-tabs-right text-center">
 		<span id="nxt" class="cd-tab-right">下节/当前：某节休息</span>
@@ -547,7 +553,7 @@
 			<i class="fa fa-music"></i>
 			<span>点击此处以启用自动播放</span>
 		</div>
-		<div id="tab4" class="cd-tab">
+		<div id="tab4a" class="cd-tab">
 			<i class="fa fa-cog"></i>
 			<span>设置</span>
 		</div>
@@ -590,9 +596,9 @@
 	<script type="text/javascript" src="./assets/script/store.js?v=220406"></script>
 	<script type="text/javascript" src="./assets/script/global.js?v=220405"></script>
 	<script type="text/javascript" src="./assets/script/quote.js?v=220401"></script>
-	<script type="text/javascript" src="./assets/script/init.js?v=220408"></script>
+	<script type="text/javascript" src="./assets/script/init.js?v=220409"></script>
 	<script type="text/javascript" src="./assets/script/theme.js?v=220409"></script>
-	<script type="text/javascript" src="./assets/script/music.js?v=220408"></script>
+	<script type="text/javascript" src="./assets/script/music.js?v=220409"></script>
 	<script>
 		function eventPrompt(s, t) {
 			$("#prompt-cont").text(s);

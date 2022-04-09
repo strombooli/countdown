@@ -107,10 +107,16 @@ function setColorFromThemeGlb(i) {
 	setColor(themeGlb[i].bg, themeGlb[i].sub, themeGlb[i].cd, themeGlb[i].txt);
 }
 function initColor() {
-	$("body").attr({ style: "background-color: " + getCookie("cbg") });
-	$(".cd-title").attr({ style: "color: " + getCookie("csub") });
-	$(".cd-time").attr({ style: "color: " + getCookie("ccd") });
-	$(".cd-descr").attr({ style: "color: " + getCookie("ctxt") });
+	if (getCookie("cbg").indexOf("/") != -1) {
+		$("body").css("background-image", "url(" + getCookie("cbg") + ")");
+		$("body").css("background-color", "white");
+	} else { 
+		$("body").css("background-color", getCookie("cbg"));
+		$("body").css("background-image");
+	}
+	$(".cd-title").css("color", getCookie("csub"));
+	$(".cd-time").css("color", getCookie("ccd"));
+	$(".cd-descr").css("color", getCookie("ctxt"));
 }
 initColor();
 
@@ -118,12 +124,16 @@ initColor();
 function initTabs() {
 	let tabOpen = ["-1", "-1", "-1", "-1"];
 	for (let i = 0; i < 10; i++) {
-		if (document.getElementById("tab" + i.toString()) === null) break;
-		if (document.getElementById("cd-tab" + i.toString()) === null) {
-			$("#tab" + i.toString()).on("click", function () { window.open(tabOpen[i]); });
-			continue;
+		if (document.getElementById("cd-tab" + i.toString()) === null) break;
+		for (let j = 0; j < 26; j++) {
+			let nowTabId = i.toString() + String.fromCharCode("a".charCodeAt() + j);
+			if (document.getElementById("tab" + nowTabId) === null) break;
+			if (document.getElementById("cd-tab" + i.toString()) === null) {
+				$("#tab" + nowTabId).on("click", function () { window.open(tabOpen[i]); });
+				continue;
+			}
+			$("#tab" + nowTabId).on("click", function () { showTab(i); });
 		}
-		$("#tab" + i.toString()).on("click", function () { showTab(i); });
 	}
 	$("#cd-tabback").on("click", function () { hideTab(); });
 }
