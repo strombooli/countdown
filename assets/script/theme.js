@@ -59,7 +59,6 @@ function chooseTheme(n, e) {
 	localStorage.setItem("theme_id", n.toString());
 	initColorInput();
 }
-chooseTheme(themeChosen);
 
 function addThemeLoc(name, bg, sub, cd, txt) {
 	localStorage.setItem("theme", localStorage.getItem("theme") + name + "," + bg + "," + sub + "," + cd + "," + txt + ";");
@@ -99,3 +98,5 @@ for (let i = 0; i < 1000; i++) {
 	if (document.getElementById("theme-" + i.toString()) === null) break;
 	$("#theme-" + i.toString()).on("click", function (e) { chooseTheme(i, $(e.target).is(".theme-del")) });
 }
+
+chooseTheme(themeChosen, false);
