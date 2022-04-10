@@ -101,7 +101,7 @@ function setColorFromInput() {
 	setColor($("#cbg").val(), $("#csub").val(), $("#ccd").val(), $("#ctxt").val());
 }
 function setColorFromThemeLoc(i) {
-	setColor(themeLocBg[i], themeLocSub[i], themeLocCd[i], themeLocTxt[i]);
+	setColor(themeLoc[i].bg, themeLoc[i].sub, themeLoc[i].cd, themeLoc[i].txt);
 }
 function setColorFromThemeGlb(i) {
 	setColor(themeGlb[i].bg, themeGlb[i].sub, themeGlb[i].cd, themeGlb[i].txt);
@@ -112,7 +112,7 @@ function initColor() {
 		$("body").css("background-color", "white");
 	} else { 
 		$("body").css("background-color", getCookie("cbg"));
-		$("body").css("background-image");
+		$("body").css("background-image", "none");
 	}
 	$(".cd-title").css("color", getCookie("csub"));
 	$(".cd-time").css("color", getCookie("ccd"));
