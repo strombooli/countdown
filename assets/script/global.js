@@ -1,23 +1,25 @@
-let adjDate = new Date();
-let trueNowDateStr = new Date().toLocaleDateString();
-for (let i = 0; i < daySwapFrom.length; i++) {
-	if (trueNowDateStr == daySwapFrom[i]) {
-		adjDate = new Date(daySwapTo[i]);
-		break;
-	}
-	if (trueNowDateStr == daySwapTo[i]) {
-		adjDate = new Date(daySwapFrom[i]);
-		break;
+function getAdjDate(n) {
+	let adjDate = n;
+	let trueNowDateStr = n.toLocaleDateString();
+	for (let i = 0; i < daySwapFrom.length; i++) {
+		if (trueNowDateStr == daySwapFrom[i]) {
+			adjDate = new Date(daySwapTo[i]);
+			break;
+		}
+		if (trueNowDateStr == daySwapTo[i]) {
+			adjDate = new Date(daySwapFrom[i]);
+			break;
+		}
+		return adjDate;
 	}
 }
 function isOff(n) {
+	// if(n >= new Date("2022/7/1") && n < new Date("2022/9/1")) return true;
 	for (let i = 0; i < dayOff.length; i++) {
 		if (dayOff[i] == n.toLocaleDateString()) return true;
 	}
+	if (getAdjDay(getAdjDate(n)) >= 6 && getAdjDay(getAdjDate(n)) <= 7) return true;
 	return false;
-}
-function getAdjDate(){
-	return adjDate;
 }
 function add0(s) {
 	return ("00" + s).substr(-2);
@@ -29,7 +31,7 @@ function getNowStr(n) {
 	return add0(n.getHours().toString()) + add0(n.getMinutes().toString());
 }
 function getNowWkStr(n) {
-	return getAdjDay(getAdjDate()).toString() + getNowStr(n);
+	return getAdjDay(getAdjDate(n)).toString() + getNowStr(n);
 }
 function getNowOnceStr(n) {
 	return n.getFullYear().toString() + add0((n.getMonth() + 1).toString()) + add0(n.getDate().toString()) + getNowStr(n);

@@ -193,11 +193,11 @@ function showEvent() {
 		hasEvent = true;
 
 		let evm = eventModal;
-		if (onceEventList[i] <= getNowOnceStr(getAdjDate()) && getNowOnceStr(getAdjDate()) <= onceEventEnd[i]) {
+		if (onceEventList[i] <= getNowOnceStr(getAdjDate(new Date())) && getNowOnceStr(getAdjDate(new Date())) <= onceEventEnd[i]) {
 			evm = evm.replace(/EVENTSTAT/g, "进行中");
 			evm = evm.replace(/EVENTCLR/g, "in");
 		}
-		else if (getNowOnceStr(getAdjDate()) < onceEventList[i]) {
+		else if (getNowOnceStr(getAdjDate(new Date())) < onceEventList[i]) {
 			evm = evm.replace(/EVENTSTAT/g, "未开始");
 			evm = evm.replace(/EVENTCLR/g, "notin");
 		}
