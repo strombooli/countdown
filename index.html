@@ -659,7 +659,7 @@
 			return nowTime;
 		}
 		function nxtSchedId() {
-			if (isOff(new Date())) return 0;
+			if (isOff(new Date()) || toNxtWorkDay(new Date())) return 0;
 			let nowStr = getNowStr(new Date());
 			let i;
 			for (i = 0; i < timeStampList[getClass().depart].length; i++) {
