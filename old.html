@@ -52,20 +52,20 @@
 	</div>
 	<script>
 		let eventTime = 1640966400;
-		let eventName,after=false;
+		let eventName, after = false;
 		document.getElementById("confirm").onclick = function () {
 			eventName = document.getElementById("event").value;
-			eventTime = new Date(document.getElementById("toDate").value + " " + document.getElementById("toTime").value).getTime()/1000;
+			eventTime = new Date(document.getElementById("toDate").value + " " + document.getElementById("toTime").value).getTime() / 1000;
 			document.getElementsByClassName("cd-title")[0].innerHTML = " " + eventName + " ";
 			if (document.getElementById("hide").checked === true) {
 				document.getElementById("input").style.display = "none";
 			}
 		}
 		function showTime() {
-            after=false;
-            if(eventTime < Date.now() / 1000){
-                after=true;
-            }
+			after = false;
+			if (eventTime < Date.now() / 1000) {
+				after = true;
+			}
 			let countdownAll = Math.abs(eventTime - Date.now() / 1000);
 			let countdownDay = Math.floor(countdownAll / 86400);
 			let countdownHor = Math.floor(countdownAll / 3600 - countdownDay * 24);
@@ -75,8 +75,8 @@
 			document.getElementById("hor").innerHTML = " " + ("0" + countdownHor).substr(-2) + " ";
 			document.getElementById("min").innerHTML = " " + ("0" + countdownMin).substr(-2) + " ";
 			document.getElementById("sec").innerHTML = " " + ("0" + countdownSec).substr(-2) + " ";
-            if(after) document.getElementById("descr").innerHTML = "已经";
-            else document.getElementById("descr").innerHTML = "还有";
+			if (after) document.getElementById("descr").innerHTML = "已经";
+			else document.getElementById("descr").innerHTML = "还有";
 		}
 		setInterval(function () { showTime() }, 10);
 	</script>
