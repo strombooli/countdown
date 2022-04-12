@@ -301,9 +301,11 @@
 		<h4>v0.5.1</h4>
 		<div class="py-2"><label class="list-label">修复</label>修复室内操播放条件判断错误问题</div>
 		<div class="py-2"><label class="list-label">修复</label>修复主题错乱问题，重写逻辑</div>
+		<div class="py-2"><label class="list-label">修复</label>修复最后一节课后停转一分钟的问题</div>
 		<div class="py-2"><label class="list-label">优化</label>平衡所有音频的音量大小（反馈#W13）</div>
 		<div class="py-2"><label class="list-label">优化</label>调整布局，<span
 				style="color: red">原左下角三个按钮（更新日志、调色板、意见反馈）已移至右侧。</span></div>
+		<div class="py-2"><label class="list-label">优化</label>重写主题逻辑，防止添加主题后选择的主题变化</div>
 		<div class="py-2"><label class="list-label">新增</label>支持使用在线的图片作为背景（反馈#W12）</div>
 		<div class="py-2"><label class="list-label">新增</label>初次使用新增选择班级的引导提示</div>
 		<br>
@@ -610,7 +612,7 @@
 	<script type="text/javascript" src="./assets/script/global.js?v=220411"></script>
 	<script type="text/javascript" src="./assets/script/quote.js?v=220401"></script>
 	<script type="text/javascript" src="./assets/script/init.js?v=220411"></script>
-	<script type="text/javascript" src="./assets/script/theme.js?v=220410"></script>
+	<script type="text/javascript" src="./assets/script/theme.js?v=220412"></script>
 	<script type="text/javascript" src="./assets/script/music.js?v=220409"></script>
 	<script>
 		function eventPrompt(s, t) {
@@ -672,11 +674,11 @@
 			let nowDay = getAdjDay(n);
 			if (!isOff(n)) {
 				if (nowDay >= 1 && nowDay <= 4) {
-					if (getNowStr(n) <= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return 0;
+					if (getNowStr(n) < timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return 0;
 					return 1;
 				}
 				if (nowDay == 5) {
-					if (getNowStr(n) <= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return 0;
+					if (getNowStr(n) < timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return 0;
 				}
 				return 8 - nowDay;
 			}
