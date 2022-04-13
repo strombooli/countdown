@@ -340,19 +340,6 @@ let schedList =
 	];
 let spanList = ["放学", "课间", "大课间", "课间", "午休", "课间", "课间", "大课间", "课间", "放学"];
 
-let weeklyEventList = ["10851", "20931", "30931", "40931", "50931"];
-let weeklyEventEnd = ["10930", "-1", "-1", "-1", "-1"];
-let weeklyName = ["-1", "每周一", "每周二", "每周三", "每周四", "每周五"];
-let weeklyEventMusic = [-1, -2, -2, -2, -2];
-let weeklyEventDescr = ["升旗仪式", "-1", "-1", "-1", "-1"];
-let weeklyEventLink = ["https:\/\/ke.qq.com\/webcourse\/2537352\/102642177#taid=9050075915794312&lite=1"];
-let weeklyEventSpecial = [-1, 0, 0, 0, 0];
-
-let onceEventList = ["202203231540"];
-let onceEventEnd = ["202203231640"];
-let onceEventDescr = ["天宫课堂第二课"];
-let onceEventLink = ["https://tv.cctv.com/live/cctv1"];
-
 let daySwapFrom = ["2022/4/2", "2022/4/24", "2022/5/4"];
 let daySwapTo = ["2022/4/4", "2022/4/30", "2022/5/7"];
 let dayOff = ["2022/4/5", "2022/5/1", "2022/5/2", "2022/5/3"];

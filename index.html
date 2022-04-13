@@ -2,10 +2,10 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="icon" href="./assets/favicon.svg" type="image/x-icon">
+	<link rel="icon" href="./assets/image/icons/favicon.svg" type="image/x-icon">
 	<link rel="manifest" href="manifest.json">
 	<!-- <link rel="apple-touch-icon" href="/assets/image/icons/apple-touch.png"> -->
-	<script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="./assets/jquery.min.js"></script>
 	<title>沉浸式网课 | SESCountdown</title>
 	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 	<meta content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1" name="viewport">
@@ -13,11 +13,6 @@
 	<meta content="" name="description">
 	<link href="./assets/layout/common.min.css" rel="stylesheet">
 	<link href="./assets/layout/all.min.css" rel="stylesheet">
-	<style>
-		#cd-tab5::-webkit-scrollbar {
-			width: 0;
-		}
-	</style>
 	<style>
 		.modal-side {
 			z-index: 1100;
@@ -187,14 +182,21 @@
 			color: rgb(45, 45, 255);
 		}
 
+		.list-all {
+			margin-top: 0.2rem;
+			margin-bottom: 0.2rem;
+		}
+
 		.list-label {
 			float: left;
+			position: relative;
 			color: white;
 			background-color: grey;
 			border-radius: 0.2rem;
-			padding: 0.2rem;
+			padding: 0.1rem 0.3rem;
 			font-size: 0.2rem;
 			margin-right: 0.5rem;
+			margin-bottom: 0;
 		}
 
 		.list-label.notin {
@@ -214,10 +216,11 @@
 			cursor: pointer;
 		}
 	</style>
+	
 	<style>
 		.theme-tab {
 			float: left;
-			width: 12.4rem;
+			width: calc(50% - 3.5px - 0.4rem); 
 			border-width: thin;
 			border-color: gray;
 			border-style: solid;
@@ -296,74 +299,60 @@
 		</div>
 	</div>
 	<div id="cd-tab1" class="modal-side fade widee" style="display: none">
-		服务调整，暂时下线
-		<!-- <h3>v0.5</h3>
+		<h3>v0.5</h3>
 		<h4>v0.5.1</h4>
-		<div class="py-2"><label class="list-label">修复</label>修复室内操播放条件判断错误问题</div>
-		<div class="py-2"><label class="list-label">修复</label>修复主题错乱问题，重写逻辑</div>
-		<div class="py-2"><label class="list-label">修复</label>修复最后一节课后停转一分钟的问题</div>
-		<div class="py-2"><label class="list-label">优化</label>平衡所有音频的音量大小（反馈#W13）</div>
-		<div class="py-2"><label class="list-label">优化</label>调整布局，<span
+		<div class="list-all"><label class="list-label">修复</label>修复室内操播放条件判断错误问题</div>
+		<div class="list-all"><label class="list-label">修复</label>修复主题错乱问题，重写逻辑</div>
+		<div class="list-all"><label class="list-label">修复</label>修复最后一节课后停转一分钟的问题</div>
+		<div class="list-all"><label class="list-label">优化</label>平衡所有音频的音量大小（反馈#W13）</div>
+		<div class="list-all"><label class="list-label">优化</label>调整布局，<span
 				style="color: red">原左下角三个按钮（更新日志、调色板、意见反馈）已移至右侧。</span></div>
-		<div class="py-2"><label class="list-label">优化</label>重写主题逻辑，防止添加主题后选择的主题变化</div>
-		<div class="py-2"><label class="list-label">新增</label>支持使用在线的图片作为背景（反馈#W12）</div>
-		<div class="py-2"><label class="list-label">新增</label>初次使用新增选择班级的引导提示</div>
-		<br>
+		<div class="list-all"><label class="list-label">优化</label>重写主题逻辑，防止添加主题后选择的主题变化</div>
+		<div class="list-all"><label class="list-label">新增</label>支持使用在线的图片作为背景（反馈#W12）</div>
+		<div class="list-all"><label class="list-label">新增</label>初次使用新增选择班级的引导提示</div>
 		<h4>v0.5.0</h4>
-		<div class="py-2"><label class="list-label">新增</label>新增PWA应用，请使用主流浏览器(Chrome,Edge,Safari)等以体验此功能，<span
+		<div class="list-all"><label class="list-label">新增</label>新增PWA应用，请使用主流浏览器(Chrome,Edge,Safari)等以体验此功能，<span
 				style="color: red">地址栏右侧可见安装按钮，安装后可离线使用，但更新速度较慢。</span></div>
-		<br>
-		<br>
-		<h3>v0.4</h3>
+		<hr><h3>v0.4</h3>
 		<h4>v0.4.3</h4>
-		<div class="py-2"><label class="list-label">修复</label>修复主题配图显示错误的问题</div>
-		<div class="py-2"><label class="list-label">优化</label>修复室内操声音过小的问题</div>
-		<div class="py-2"><label class="list-label">新增</label>新增过热/过冷/大雾/下雨等气象状况下广播操转为室内操</div>
-		<div class="py-2"><label class="list-label">新增</label>新增全周课表显示</div>
-		<br>
+		<div class="list-all"><label class="list-label">修复</label>修复主题配图显示错误的问题</div>
+		<div class="list-all"><label class="list-label">优化</label>修复室内操声音过小的问题</div>
+		<div class="list-all"><label class="list-label">新增</label>新增过热/过冷/大雾/下雨等气象状况下广播操转为室内操</div>
+		<div class="list-all"><label class="list-label">新增</label>新增全周课表显示</div>
 		<h4>v0.4.2</h4>
-		<div class="py-2"><label class="list-label">修复</label>修复节假日错误问题</div>
-		<div class="py-2"><label class="list-label">优化</label>修复室内操声音过小的问题</div>
-		<div class="py-2"><label class="list-label">优化</label>调整反馈入口为Tape提问箱</div>
-		<div class="py-2"><label class="list-label">优化</label>优化缓存</div>
-		<div class="py-2"><label class="list-label">新增</label>新增本地主题</div>
-		<br>
+		<div class="list-all"><label class="list-label">修复</label>修复节假日错误问题</div>
+		<div class="list-all"><label class="list-label">优化</label>修复室内操声音过小的问题</div>
+		<div class="list-all"><label class="list-label">优化</label>调整反馈入口为Tape提问箱</div>
+		<div class="list-all"><label class="list-label">优化</label>优化缓存</div>
+		<div class="list-all"><label class="list-label">新增</label>新增本地主题</div>
 		<h4>v0.4.1</h4>
-		<div class="py-2"><label class="list-label">修复</label>修复音乐播放失败后与页面交互导致的播放问题</div>
-		<div class="py-2"><label class="list-label">修复</label>修复了上课铃声音过小的问题（反馈#W11）</div>
-		<div class="py-2"><label class="list-label">新增</label>新增主题功能</div>
-		<div class="py-2"><label class="list-label">新增</label>新增可选播放音乐</div>
-		<br>
+		<div class="list-all"><label class="list-label">修复</label>修复音乐播放失败后与页面交互导致的播放问题</div>
+		<div class="list-all"><label class="list-label">修复</label>修复了上课铃声音过小的问题（反馈#W11）</div>
+		<div class="list-all"><label class="list-label">新增</label>新增主题功能</div>
+		<div class="list-all"><label class="list-label">新增</label>新增可选播放音乐</div>
 		<h4>v0.4.0</h4>
-		<div class="py-2"><label class="list-label">修复</label>修复托管缓存导致的音乐播放问题</div>
-		<div class="py-2"><label class="list-label">新增</label>新增回声洞功能</div>
-		<div class="py-2"><label class="list-label">新增</label>新增暂时关闭音乐按钮</div>
-		<div class="py-2"><label class="list-label">新增</label>新增单双周自动判断</div>
-		<div class="py-2"><label class="list-label">新增</label>新增适配全校班级</div>
-		<div class="py-2"><label class="list-label">新增</label>新增单次活动</div>
-		<div class="py-2"><label class="list-label">新增</label>新增调色板页面，添加调色功能</div>
-		<div class="py-2"><label class="list-label">新增</label>新增建议反馈入口</div>
-		<div class="py-2"><label class="list-label">新增</label>新增引导按钮，提升使用体验</div>
-		<div class="py-2"><label class="list-label">新增</label>新增右上角显示当前周</div>
-		<div class="py-2"><label class="list-label">优化</label>优化初次加载时间至原20%左右，提升体验</div>
-		<div class="py-2"><label class="list-label">优化</label>微调页面，降低交互性</div>
-		<br><br>
-		<h3>v0.3</h3>
-		<h4>v0.3.4</h4>
-		<div class="py-2"><label class="list-label">修复</label>修复音乐播放问题</div>
-		<div class="py-2"><label class="list-label">新增</label>新增活动列表及更新日志</div>
-		<div class="py-2"><label class="list-label">优化</label>布局调整，更简约美观</div>
-		<div class="py-2"><label class="list-label">优化</label>解决浏览器自动播放问题</div>
-		<br>
-		<h4>v0.3.3~v0.3.0</h4>
-		<div class="py-2"><label class="list-label">优化</label>我说优化就是优化</div>
-		<br><br>
-		<h3>v0.2</h3>
-		<div class="py-2"><label class="list-label">修复</label>修复周期性问题</div>
-		<div class="py-2"><label class="list-label">新增</label>添加全部音乐</div>
-		<br><br>
-		<h3>v0.1</h3>
-		<div class="py-2"><label class="list-label">新增</label>基本框架</div> -->
+		<div class="list-all"><label class="list-label">修复</label>修复托管缓存导致的音乐播放问题</div>
+		<div class="list-all"><label class="list-label">新增</label>新增回声洞功能</div>
+		<div class="list-all"><label class="list-label">新增</label>新增暂时关闭音乐按钮</div>
+		<div class="list-all"><label class="list-label">新增</label>新增单双周自动判断</div>
+		<div class="list-all"><label class="list-label">新增</label>新增适配全校班级</div>
+		<div class="list-all"><label class="list-label">新增</label>新增单次活动</div>
+		<div class="list-all"><label class="list-label">新增</label>新增调色板页面，添加调色功能</div>
+		<div class="list-all"><label class="list-label">新增</label>新增建议反馈入口</div>
+		<div class="list-all"><label class="list-label">新增</label>新增引导按钮，提升使用体验</div>
+		<div class="list-all"><label class="list-label">新增</label>新增右上角显示当前周</div>
+		<div class="list-all"><label class="list-label">优化</label>优化初次加载时间至原20%左右，提升体验</div>
+		<div class="list-all"><label class="list-label">优化</label>微调页面，降低交互性</div>
+		<hr><h3>v0.3</h3>
+		<div class="list-all"><label class="list-label">修复</label>修复音乐播放问题</div>
+		<div class="list-all"><label class="list-label">新增</label>新增活动列表及更新日志</div>
+		<div class="list-all"><label class="list-label">优化</label>布局调整，更简约美观</div>
+		<div class="list-all"><label class="list-label">优化</label>解决浏览器自动播放问题</div>
+		<hr><h3>v0.2</h3>
+		<div class="list-all"><label class="list-label">修复</label>修复周期性问题</div>
+		<div class="list-all"><label class="list-label">新增</label>添加全部音乐</div>
+		<hr><h3>v0.1</h3>
+		<div class="list-all"><label class="list-label">新增</label>基本框架</div>
 	</div>
 	<div id="cd-tab2" class="modal-side wide fade" style="display: none">
 		<label>第1步. 调色界面，请忽略顶部导航并进行调色。</label>
@@ -578,26 +567,6 @@
 		<span>Made By JasonYing. Timetables from EasonShao.</span><br>
 		<span id="quote"></span>
 	</div>
-	<div id="float-box" style="position: absolute; z-index: 1000; font-size: 5rem" class="float-box">
-		<!-- 祝可可豆生日快乐！ -->
-	</div>
-	<script>
-		let img = document.querySelector('#float-box');
-		let x = 0, y = 0;
-		let xflag = true, yflag = true;
-		setInterval(() => {
-			let W = document.body.offsetWidth;
-			let h = document.body.offsetHeight;
-			if (x == 0) xflag = true;
-			if (y == 0) yflag = true;
-			if (x == W - img.offsetWidth) xflag = false;
-			if (y == h - img.offsetHeight) yflag = false;
-			xflag ? x++ : x--;
-			yflag ? y++ : y--;
-			img.style.left = x + 'px';
-			img.style.top = y + 'px';
-		}, 10)
-	</script>
 	<script>
 		$.getJSON("https://api.ipify.org/?format=jsonp&callback=?&_=" + Math.random(), function (result) {
 			let bannedIp = ["256.256.256.256"];
@@ -610,50 +579,12 @@
 	</script>
 	<script type="text/javascript" src="./assets/script/store.js?v=220411"></script>
 	<script type="text/javascript" src="./assets/script/global.js?v=220411"></script>
-	<script type="text/javascript" src="./assets/script/quote.js?v=220401"></script>
+	<script type="text/javascript" src="./assets/script/event.js?v=220412"></script>
 	<script type="text/javascript" src="./assets/script/init.js?v=220411"></script>
+	<script type="text/javascript" src="./assets/script/quote.js?v=220401"></script>
 	<script type="text/javascript" src="./assets/script/theme.js?v=220412"></script>
 	<script type="text/javascript" src="./assets/script/music.js?v=220409"></script>
 	<script>
-		function eventPrompt(s, t) {
-			$("#prompt-cont").text(s);
-			$("#cd-prompt").show();
-			setTimeout(function () { $("#cd-prompt").hide(); }, t);
-		}
-		function specialEvent(n) {
-			switch (n) {
-				case 0:
-					$.get("https://api.help.bj.cn/apis/weather/?id=101020600", function (data) {
-						let doIn = false;
-						if (parseInt(data.temp) > 32) {
-							eventPrompt("今天气温" + data.temp + "摄氏度，太热了，良心学校决定进行室内操！", 300000);
-							doIn = true;
-						} else if (parseInt(data.temp) < 10) {
-							eventPrompt("今天气温" + data.temp + "摄氏度，太冷了，良心学校决定进行室内操！", 300000);
-							doIn = true;
-						} else if (parseInt(data.wdforce) >= 6) {
-							eventPrompt("今天风力" + data.wdforce + "，学生要被吹跑了，良心学校决定进行室内操！", 300000);
-							doIn = true;
-						} else if (parseInt(data.humidity) >= 80) {
-							eventPrompt("今天湿度" + data.humidity + "，学生要被水淹死了，良心学校决定进行室内操！", 300000);
-							doIn = true;
-						} else if (parseInt(data.wisib) <= 1) {
-							eventPrompt("今天能见度" + data.wisib + "，学生要撞墙上了，良心学校决定进行室内操！", 300000);
-							doIn = true;
-						} else if (parseInt(data.weathercode.substring(1)) >= 3) {
-							eventPrompt("今天" + data.weather + "良心学校决定进行室内操！", 300000);
-							doIn = true;
-						} else {
-							doIn = false;
-						}
-						if (doIn) playMusic(4);
-						else playMusic(5);
-					})
-					break;
-				default:
-					return;
-			}
-		}
 		function str2time(n) {
 			let todayStart = new Date().getTime() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000 - new Date().getSeconds() * 1000 - new Date().getMilliseconds();
 			let thisHour = parseInt(timeStampList[getClass().depart][n].substring(0, 2));
@@ -707,7 +638,6 @@
 					if (weeklyEventList[i] == preWkStr) {
 						playMusic(weeklyEventMusic[i]);
 						specialEvent(weeklyEventSpecial[getClass().depart][i]);
-						// $("#prompt-cont").html(weeklyEventPrompt[i]);
 						break;
 					}
 				}
