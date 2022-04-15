@@ -216,11 +216,11 @@
 			cursor: pointer;
 		}
 	</style>
-	
+
 	<style>
 		.theme-tab {
 			float: left;
-			width: calc(50% - 3.5px - 0.4rem); 
+			width: calc(50% - 3.5px - 0.4rem);
 			border-width: thin;
 			border-color: gray;
 			border-style: solid;
@@ -313,7 +313,8 @@
 		<h4>v0.5.0</h4>
 		<div class="list-all"><label class="list-label">新增</label>新增PWA应用，请使用主流浏览器(Chrome,Edge,Safari)等以体验此功能，<span
 				style="color: red">地址栏右侧可见安装按钮，安装后可离线使用，但更新速度较慢。</span></div>
-		<hr><h3>v0.4</h3>
+		<hr>
+		<h3>v0.4</h3>
 		<h4>v0.4.3</h4>
 		<div class="list-all"><label class="list-label">修复</label>修复主题配图显示错误的问题</div>
 		<div class="list-all"><label class="list-label">优化</label>修复室内操声音过小的问题</div>
@@ -343,15 +344,18 @@
 		<div class="list-all"><label class="list-label">新增</label>新增右上角显示当前周</div>
 		<div class="list-all"><label class="list-label">优化</label>优化初次加载时间至原20%左右，提升体验</div>
 		<div class="list-all"><label class="list-label">优化</label>微调页面，降低交互性</div>
-		<hr><h3>v0.3</h3>
+		<hr>
+		<h3>v0.3</h3>
 		<div class="list-all"><label class="list-label">修复</label>修复音乐播放问题</div>
 		<div class="list-all"><label class="list-label">新增</label>新增活动列表及更新日志</div>
 		<div class="list-all"><label class="list-label">优化</label>布局调整，更简约美观</div>
 		<div class="list-all"><label class="list-label">优化</label>解决浏览器自动播放问题</div>
-		<hr><h3>v0.2</h3>
+		<hr>
+		<h3>v0.2</h3>
 		<div class="list-all"><label class="list-label">修复</label>修复周期性问题</div>
 		<div class="list-all"><label class="list-label">新增</label>添加全部音乐</div>
-		<hr><h3>v0.1</h3>
+		<hr>
+		<h3>v0.1</h3>
 		<div class="list-all"><label class="list-label">新增</label>基本框架</div>
 	</div>
 	<div id="cd-tab2" class="modal-side wide fade" style="display: none">
@@ -617,7 +621,7 @@
 				return toNxtWorkDay(new Date(Math.floor((n.getTime() + 86400000 + 8 * 60 * 60 * 1000) / 86400000) * 86400000)) + 1;
 			}
 		}
-		if(toNxtWorkDay(new Date()) < toNxtDescr.length) $("#title-to").text(toNxtDescr[toNxtWorkDay(new Date())]);
+		if (toNxtWorkDay(new Date()) < toNxtDescr.length) $("#title-to").text(toNxtDescr[toNxtWorkDay(new Date())]);
 		else $("#title-to").text(toNxtWorkDay(new Date()).toString() + "天后");
 	</script>
 	<script>
@@ -669,6 +673,13 @@
 		}
 		refr();
 		setInterval(function () { refr() }, 1000);
+	</script>
+	<script>
+		if (getClass().depart == 1 && new Date().getTime() >= new Date("2022/4/20 18:00:00").getTime() && new Date().getTime() <= new Date("2022/4/22 18:00:00").getTime()){
+			if (confirm("当前正在进行考试，点击确认以跳转到考试模式！")) window.location.href = "./exam.html";
+		} else if (getClass().depart == 1) {
+			if (confirm("已推出考试模式，无任何音乐等，点击确认以跳转！")) window.location.href = "./exam.html";
+		}
 	</script>
 </body>
 

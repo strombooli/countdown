@@ -1,0 +1,163 @@
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="icon" href="./assets/image/icons/favicon.svg" type="image/x-icon">
+	<link rel="manifest" href="manifest.json">
+	<!-- <link rel="apple-touch-icon" href="/assets/image/icons/apple-touch.png"> -->
+	<script type="text/javascript" src="./assets/jquery.min.js"></script>
+	<title>沉浸式网课 | SESCountdown</title>
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1" name="viewport">
+	<meta content="" name="keywords">
+	<meta content="" name="description">
+	<link href="./assets/layout/common.min.css" rel="stylesheet">
+	<link href="./assets/layout/all.min.css" rel="stylesheet">
+	<style>
+		.cd-title {
+			font-size: 5.5rem;
+			color: red;
+			white-space: pre;
+		}
+
+		.cd-descr {
+			font-size: 2rem;
+		}
+
+		.cd-header {
+			font-weight: 2;
+		}
+
+		.cd-time {
+			font-size: 6.5rem;
+			color: red;
+			white-space: pre;
+		}
+
+		.cd-footer {
+			position: absolute;
+			margin: auto;
+			left: 0;
+			right: 0;
+			bottom: 1rem;
+		}
+
+		.cd-tabs-right {
+			z-index: 950;
+			position: absolute;
+			right: 0;
+			margin-top: 1rem;
+			margin-right: 1rem;
+		}
+
+		.cd-tab-right {
+			z-index: 950;
+			padding: 0.5rem;
+			margin: 0.05rem;
+			float: right;
+		}
+	</style>
+	<script>
+		var _hmt = _hmt || [];
+		(function () {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?dfc6d5d7efbfc2739c796040d80c5899";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	<script>
+		if ('serviceWorker' in window.navigator) {
+			navigator.serviceWorker.register('sw.js', { scope: './' })
+				.then(function (reg) {
+					console.log('success', reg);
+				})
+				.catch(function (err) {
+					console.log('fail', err);
+				});
+		}
+	</script>
+</head>
+
+<body style="overflow: none">
+	<div class="cd-tabs-right text-center">
+		<span id="class-name" class="cd-tab-right">高一年级（仅提供高一年级）</span>
+		<span id="week" class="cd-tab-right">第10周 线上教学阶段性检测</span>
+	</div>
+	<div class="text-center py-5 cd-header">
+		<b class="cd-descr">距离</b>
+		<label class="cd-title" id="title"> 某节课 </label>
+		<b class="cd-descr" id="descr">还有</b>
+	</div>
+	<div class="text-center" id="cd-time">
+		<label class="cd-time" id="hor"> 00 </label> <b class="cd-descr">小时</b>
+		<label class="cd-time" id="min"> 00 </label> <b class="cd-descr">分钟</b>
+		<label class="cd-time" id="sec"> 00 </label> <b class="cd-descr">秒</b>
+	</div>
+	<div class="text-center cd-footer text-muted">
+		<span>SESCountdown v0.5.1 EXAM MODE</span><br>
+		<span>Made By JasonYing.</span>
+	</div>
+	<script type="text/javascript">
+		let timeStampList = ["202204210745", "202204210800", "202204211000", "202204211010", "202204211245", "202204211300", "202204211430", "202204211440", "202204211455", "202204211510", "202204211640", "202204211650", "202204220745", "202204220800", "202204220930", "202204220940", "202204221215", "202204221230", "202204221400", "202204221410"];
+		let schedList = ["语文入场", "语文开始", "语文结束", "语文交卷截止", "数学入场", "数学开始", "数学结束", "数学交卷截止", "物理入场", "物理开始", "物理结束", "物理交卷截止", "英语入场", "英语开始", "英语结束", "英语交卷截止", "化学入场", "化学开始", "化学结束", "化学交卷截止"];
+	</script>
+	<script type="text/javascript">
+		function add0(s, n) {
+			return ("00000" + s).substr(-n);
+		}
+		function getNowStr(n) {
+			return add0(n.getHours().toString(), 2) + add0(n.getMinutes().toString(), 2);
+		}
+		function getNowOnceStr(n) {
+			return n.getFullYear().toString() + add0((n.getMonth() + 1).toString(), 2) + add0(n.getDate().toString(), 2) + getNowStr(n);
+		}
+	</script>
+	<script>
+		function str2time(n) {
+			let thisYr = parseInt(timeStampList[n].substring(0, 4));
+			let thisMon = parseInt(timeStampList[n].substring(4, 6));
+			let thisDay = parseInt(timeStampList[n].substring(6, 8));
+			let thisHor = parseInt(timeStampList[n].substring(8, 10));
+			let thisMin = parseInt(timeStampList[n].substring(10, 12));
+			return new Date(thisYr + "/" + thisMon + "/" + thisDay + " " + thisHor + ":" + thisMin).getTime();
+		}
+		function nxtSchedId() {
+			let nowStr = getNowOnceStr(new Date());
+			let i;
+			for (i = 0; i < timeStampList.length; i++) {
+				if (nowStr < timeStampList[i]) return i;
+			}
+			return -1;
+		}
+	</script>
+	<script>
+		let delta, nxtId, preId;
+		function refr() {
+			if (nxtSchedId() == -1) return;
+			nxtId = nxtSchedId();
+			delta = str2time(nxtId) - new Date().getTime();
+			delta = delta / 1000;
+			updTime();
+			if (nxtId != preId) updSched();
+		}
+		function updTime() {
+			let hor = Math.floor(delta / 3600);
+			let min = Math.floor(delta / 60 - hor * 60);
+			let sec = Math.floor(delta - hor * 3600 - min * 60);
+			$("#hor").html(" " + add0(hor, 3) + " ");
+			$("#min").html(" " + add0(min, 2) + " ");
+			$("#sec").html(" " + add0(sec, 2) + " ");
+		}
+		function updSched() {
+			preId = nxtId;
+			let schedNow = schedList[nxtId];
+			$("#title").text(" " + schedNow + " ");
+		}
+		refr();
+		if (nxtSchedId() == -1) alert("本次考试已全部结束，祝你取得好成绩！");
+		setInterval(function () { refr() }, 1000);
+	</script>
+</body>
+
+</html>
