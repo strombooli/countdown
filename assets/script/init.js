@@ -35,7 +35,7 @@ function updClass() {
 }
 function getClass() {
 	if (localStorage.getItem("classNo") === null) {
-		alert("右上角可选择班级，欢迎使用");
+		alert("右上角可选择班级，建议使用Pad或电脑访问，欢迎使用");
 		localStorage.setItem("classNo", "116");
 	}
 	let myClass = localStorage.getItem("classNo");
