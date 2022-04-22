@@ -10,8 +10,8 @@ function getAdjDate(n) {
 			adjDate = new Date(daySwapFrom[i]);
 			break;
 		}
-		return adjDate;
 	}
+	return adjDate;
 }
 function isOff(n) {
 	// if(n >= new Date("2022/7/1") && n < new Date("2022/9/1")) return true;
@@ -19,6 +19,7 @@ function isOff(n) {
 		if (dayOff[i] == n.toLocaleDateString()) return true;
 	}
 	if (getAdjDay(getAdjDate(n)) >= 6 && getAdjDay(getAdjDate(n)) <= 7) return true;
+	if (getNowStr(n) < timeStampList[getClass().depart][0] || getNowStr(n) > timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return true;
 	return false;
 }
 function add0(s) {

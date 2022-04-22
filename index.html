@@ -300,6 +300,8 @@
 	</div>
 	<div id="cd-tab1" class="modal-side fade widee" style="display: none">
 		<h3>v0.5</h3>
+		<h4>v0.5.2</h4>
+		<div class="list-all"><label class="list-label">修复</label>修复节假日错误问题</div>
 		<h4>v0.5.1</h4>
 		<div class="list-all"><label class="list-label">修复</label>修复室内操播放条件判断错误问题</div>
 		<div class="list-all"><label class="list-label">修复</label>修复主题错乱问题，重写逻辑</div>
@@ -567,7 +569,7 @@
 		</div>
 	</div>
 	<div class="text-center cd-footer text-muted">
-		<span>SESCountdown v0.5.1</span><br>
+		<span>SESCountdown v0.5.2</span><br>
 		<span>Made By JasonYing. Timetables from EasonShao.</span><br>
 		<span id="quote"></span>
 	</div>
@@ -581,8 +583,8 @@
 			}
 		});
 	</script>
-	<script type="text/javascript" src="./assets/script/store.js?v=220411"></script>
-	<script type="text/javascript" src="./assets/script/global.js?v=220411"></script>
+	<script type="text/javascript" src="./assets/script/store.js?v=220422"></script>
+	<script type="text/javascript" src="./assets/script/global.js?v=220422"></script>
 	<script type="text/javascript" src="./assets/script/event.js?v=220412"></script>
 	<script type="text/javascript" src="./assets/script/init.js?v=220411"></script>
 	<script type="text/javascript" src="./assets/script/quote.js?v=220401"></script>
@@ -606,18 +608,10 @@
 		}
 		let toNxtDescr = ["", "明天", "后天", "周一"];
 		function toNxtWorkDay(n) {
-			let nowDay = getAdjDay(n);
+			let nowDay = getAdjDay(getAdjDate(n));
 			if (!isOff(n)) {
-				if (nowDay >= 1 && nowDay <= 4) {
-					if (getNowStr(n) < timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return 0;
-					return 1;
-				}
-				if (nowDay == 5) {
-					if (getNowStr(n) < timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return 0;
-				}
-				return 8 - nowDay;
-			}
-			else {
+				return 0;
+			} else {
 				return toNxtWorkDay(new Date(Math.floor((n.getTime() + 86400000 + 8 * 60 * 60 * 1000) / 86400000) * 86400000)) + 1;
 			}
 		}
@@ -666,7 +660,7 @@
 			if (nxtId % 2 == 0) $("#nxt").text("当前：" + spanList[Math.floor(nxtId / 2)]);
 			else $("#nxt").text("下节：" + spanList[Math.floor(nxtId / 2) + 1]);
 			$("#title-pre").text(timeStampDescrPre[getClass().depart][nxtId]);
-			let schedNow = schedList[getClass().depart][getClass().grade][getClass().classs][(getAdjDay(getAdjDate(new Date())) + toNxtWorkDay(new Date())) % 7 - 1][Math.floor(nxtId / 2)];
+			let schedNow = schedList[getClass().depart][getClass().grade][getClass().classs][getAdjDay(getAdjDate(new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * toNxtWorkDay(new Date())))) - 1][Math.floor(nxtId / 2)];
 			if (schedNow.indexOf("/") != -1 && schedNow.indexOf("H") == -1 && schedNow.indexOf("D") == -1) schedNow = schedNow.split("/")[1 - getWk() % 2];
 			$("#title").text(" " + schedNow + " ");
 			$("#title-sub").text(timeStampDescrSub[getClass().depart][nxtId]);
@@ -675,7 +669,7 @@
 		setInterval(function () { refr() }, 1000);
 	</script>
 	<script>
-		if (getClass().depart == 1 && new Date().getTime() >= new Date("2022/4/20 18:00:00").getTime() && new Date().getTime() <= new Date("2022/4/22 18:00:00").getTime()){
+		if (getClass().depart == 1 && new Date().getTime() >= new Date("2022/4/20 18:00:00").getTime() && new Date().getTime() <= new Date("2022/4/22 18:00:00").getTime()) {
 			if (confirm("当前正在进行考试，点击确认以跳转到考试模式！")) window.location.href = "./exam.html";
 		} else if (getClass().depart == 1) {
 			if (confirm("已推出考试模式，无任何音乐等，点击确认以跳转！")) window.location.href = "./exam.html";
