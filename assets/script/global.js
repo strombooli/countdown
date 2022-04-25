@@ -71,3 +71,27 @@ function getCookie(cname) {
 	}
 	return "";
 }
+
+function getClass() {
+	if (localStorage.getItem("classNo") === null) {
+		alert("右上角可选择班级，建议使用Pad或电脑访问，欢迎使用");
+		localStorage.setItem("classNo", "116");
+	}
+	let myClass = localStorage.getItem("classNo");
+	let depart = parseInt(myClass[0]);
+	let grade = parseInt(myClass[1]);
+	let classs = parseInt(myClass[2]);
+	return { depart: depart, grade: grade - 1, classs: classs - 1 };
+}
+function genClassName() {
+	let departList = ["中", "高", "国际部"];
+	let gradeList = ["一", "二", "三"];
+	let classList = ["(1)班", "(2)班", "(3)班", "(4)班", "(5)班", "(6)班"];
+	let interList = ["6A", "6B", "7A", "7B", "8A", "8B", "9A", "10A"];
+	let classString = "";
+	if (getClass().depart <= 1) classString = departList[getClass().depart] + gradeList[getClass().grade] + classList[getClass().classs];
+	else {
+		classString = departList[2] + interList[(getClass().grade) * 2 + getClass().classs];
+	}
+	return classString;
+}

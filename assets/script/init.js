@@ -33,28 +33,8 @@ function updClass() {
 	localStorage.setItem("classNo", $("#class").val());
 	window.location.reload();
 }
-function getClass() {
-	if (localStorage.getItem("classNo") === null) {
-		alert("右上角可选择班级，建议使用Pad或电脑访问，欢迎使用");
-		localStorage.setItem("classNo", "116");
-	}
-	let myClass = localStorage.getItem("classNo");
-	let depart = parseInt(myClass[0]);
-	let grade = parseInt(myClass[1]);
-	let classs = parseInt(myClass[2]);
-	return { depart: depart, grade: grade - 1, classs: classs - 1 };
-}
 function setClassDisplay() {
-	let departList = ["中", "高", "国际部"];
-	let gradeList = ["一", "二", "三"];
-	let classList = ["(1)班", "(2)班", "(3)班", "(4)班", "(5)班", "(6)班"];
-	let interList = ["6A", "6B", "7A", "7B", "8A", "8B", "9A", "10A"];
-	let classString = "";
-	if (getClass().depart <= 1) classString = departList[getClass().depart] + gradeList[getClass().grade] + classList[getClass().classs];
-	else {
-		classString = departList[2] + interList[(getClass().grade) * 2 + getClass().classs];
-	}
-	$("#class-name").text(classString);
+	$("#class-name").text(genClassName());
 	for (let i = 0; i < document.getElementById("class").children.length; i++) {
 		for (let j = 0; j < document.getElementById("class").children[i].children.length; j++) {
 			if (document.getElementById("class").children[i].children[j].value == localStorage.getItem("classNo")) {
@@ -188,6 +168,31 @@ function showEvent() {
 
 		$("#event-addon").append(evm);
 		$("#event-addon .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.open(weeklyEventLink[i]); });
+		eventCnt++;
+	}
+	for (let i = 0; i < meetEventClass.length; i++) {
+		hasEvent = true;
+
+		if (localStorage.getItem("classNo") != meetEventClass[i] || (getAdjDay(new Date()) != meetEventDay[i] && meetEventDay[i] != -1)) continue;
+		let evm = eventModal;
+		if ($("#title").text() == " " + meetEventSched[i] + " ") {
+			if ($("#title-sub").text() == "上课") {
+				evm = evm.replace(/EVENTSTAT/g, "将开始");
+				evm = evm.replace(/EVENTCLR/g, "notin");
+			} else {
+				evm = evm.replace(/EVENTSTAT/g, "进行中");
+				evm = evm.replace(/EVENTCLR/g, "in");
+			}
+		} else {
+			evm = evm.replace(/EVENTSTAT/g, "未开始");
+			evm = evm.replace(/EVENTCLR/g, "notin");
+		}
+		evm = evm.replace(/EVENTNAME/g, "腾讯会议-" + genClassName() + meetEventSched[i]);
+		if (meetEventPwd[i] == "") evm = evm.replace(/EVENTTIME/g, "每周");
+		else evm = evm.replace(/EVENTTIME/g, "密码" + meetEventPwd[i] + "，每周");
+
+		$("#event-addon").append(evm);
+		$("#event-addon .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.location.href = "wemeet://page/inmeeting?meeting_code=" + meetEventNo[i]; });
 		eventCnt++;
 	}
 	for (let i = 0; i < onceEventList.length; i++) {
