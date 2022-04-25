@@ -173,7 +173,17 @@ function showEvent() {
 	for (let i = 0; i < meetEventClass.length; i++) {
 		hasEvent = true;
 
-		if (localStorage.getItem("classNo") != meetEventClass[i] || (getAdjDay(new Date()) != meetEventDay[i] && meetEventDay[i] != -1)) continue;
+		let inClassRng = true;
+		if (localStorage.getItem("classNo").length != meetEventClass[i].length) inClassRng = false;
+		else {
+			for (let j = 0; j < meetEventClass[i].length; j++) {
+				if (localStorage.getItem("classNo")[j] != meetEventClass[i][j] && meetEventClass[i][j] != "*"){
+					inClassRng = false;
+					break;
+				}
+			}
+		}
+		if (!inClassRng || (getAdjDay(new Date()) != meetEventDay[i] && meetEventDay[i] != -1)) continue;
 		let evm = eventModal;
 		if ($("#title").text() == " " + meetEventSched[i] + " ") {
 			if ($("#title-sub").text() == "上课") {
