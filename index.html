@@ -63,15 +63,19 @@
 		.vert-box.wid2 {
 			width: calc(20% - 3/4*(2rem+2px));
 		}
+
 		.vert-box.wid25 {
 			width: calc(25% - 3/4*(2rem+2px));
 		}
+
 		.vert-box.wid3 {
 			width: calc(30% - 3/4*(2rem+2px));
 		}
+
 		.vert-box.wid35 {
 			width: calc(35% - 3/4*(2rem+2px));
 		}
+
 		.vert-box.wid4 {
 			width: calc(40% - 3/4*(2rem+2px));
 		}
@@ -315,42 +319,37 @@
 
 <body style="overflow: none; background-repeat: no-repeat; background-size: cover">
 	<div id="cd-tab0" class="modal-side fade widen" style="display: none">
-		<div id="event-no" class="text-center text-muted" style="display: none">暂无活动</div>
-		<div class="tab-list" style="display: none">
-			<!--example start-->
-			<label class="list-label notin">未开始</label>
-			<div class="list-cont">
-				<b class="list-name">升旗仪式</b><br>
-				<span class="list-time">每周一 08:51至09:30</span>
+		<div id="event-def">
+			<div id="event-no" class="text-center text-muted" style="display: none">暂无活动</div>
+			<div class="tab-listex">
+				<label class="list-label notin">置顶</label>
+				<div class="list-cont">
+					<b class="list-name">高一(6)班语文</b><br>
+					<span class="list-time">988-2484-3300 300300</span>
+				</div>
+			</div>
+			<div class="tab-listex">
+				<label class="list-label notin">置顶</label>
+				<div class="list-cont">
+					<b class="list-name">高一(6)班政治</b><br>
+					<span class="list-time">599-650-5652</span>
+				</div>
+			</div>
+			<div class="tab-listex">
+				<label class="list-label notin">置顶</label>
+				<div class="list-cont">
+					<b class="list-name">高一(6)班劳动技术</b><br>
+					<span class="list-time">558-7185-9390</span>
+				</div>
 			</div>
 		</div>
-		<!--example end-->
-		<div class="tab-listex">
-			<label class="list-label notin">置顶</label>
-			<div class="list-cont">
-				<b class="list-name">高一(6)班语文</b><br>
-				<span class="list-time">988-2484-3300 300300</span>
-			</div>
-		</div>
-		<div class="tab-listex">
-			<label class="list-label notin">置顶</label>
-			<div class="list-cont">
-				<b class="list-name">高一(6)班政治</b><br>
-				<span class="list-time">599-650-5652</span>
-			</div>
-		</div>
-		<div class="tab-listex">
-			<label class="list-label notin">置顶</label>
-			<div class="list-cont">
-				<b class="list-name">高一(6)班劳动技术</b><br>
-				<span class="list-time">558-7185-9390</span>
-			</div>
-		</div>
+		<div id="event-addon"></div>
 	</div>
 	<div id="cd-tab1" class="modal-side fade widee" style="display: none">
 		<h3>v0.5</h3>
 		<h4>v0.5.2</h4>
 		<div class="list-all"><label class="list-label">修复</label>修复节假日错误问题</div>
+		<div class="list-all"><label class="list-label">修复</label>修复活动状态更新不及时的问题</div>
 		<div class="list-all"><label class="list-label">优化</label>调整配色界面布局</div>
 		<h4>v0.5.1</h4>
 		<div class="list-all"><label class="list-label">修复</label>修复室内操播放条件判断错误问题</div>
@@ -442,8 +441,8 @@
 	<div id="cd-tab3" class="modal-side wide fade" style="display: none">
 		<!-- <iframe src='https://www.tapechat.net/uu/U6UFNO/0YF30FPM' width='100%' height='100%' frameborder='0'
 			style='overflow:auto'></iframe> -->
-		由于调试失误，此前测试的Tape反馈入口未能正常运行，向各位用户致以诚挚歉意。已对该问题进行修复，可点击以下链接进入<a target="_blank"
-			href="https://www.tapechat.net/uu/U6UFNO/0YF30FPM">Tape提问箱</a>进行反馈（推荐，可直接接收到反馈），或也可通过问卷方式反馈。非常感谢持续进行反馈与提出的建议的用户，本网页的发展离不开你们的贡献，感谢！
+		①推荐进入<a target="_blank" href="https://www.tapechat.net/uu/U6UFNO/0YF30FPM">Tape提问箱</a>进行反馈，可直接收到回复。
+		<hr>②填写问卷进行反馈，无法即时接收到回复。
 		<iframe src='https://www.wjx.cn/vj/hII0nTS.aspx?width=350&source=iframe&s=t' width='100%' height='110%'
 			frameborder='0' style='overflow:auto'></iframe>
 	</div>
@@ -451,39 +450,25 @@
 		<div class="form-group">
 			<div class="row">
 				<div id="tog-0" class="col-4 text-center tgl" onclick="toggle(0)">
-					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-					<br>
-					<i>预备铃</i>
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>预备铃</i>
 				</div>
 				<div id="tog-1" class="col-4 text-center tgl" onclick="toggle(1)">
-					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-					<br>
-					<i>上课铃</i>
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>上课铃</i>
 				</div>
 				<div id="tog-2" class="col-4 text-center tgl" onclick="toggle(2)">
-					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-					<br>
-					<i>下课铃</i>
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>下课铃</i>
 				</div>
 				<div id="tog-3" class="col-4 text-center tgl" onclick="toggle(3)">
-					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-					<br>
-					<i>眼保健操</i>
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>眼保健操</i>
 				</div>
 				<div id="tog-4" class="col-4 text-center tgl" onclick="toggle(4)">
-					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-					<br>
-					<i>室内操</i>
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>室内操</i>
 				</div>
 				<div id="tog-5" class="col-4 text-center tgl" onclick="toggle(5)">
-					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-					<br>
-					<i>广播体操</i>
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>广播体操</i>
 				</div>
 				<div id="tog-6" class="col-4 text-center tgl" onclick="toggle(6)">
-					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i>
-					<br>
-					<i>Never Say Goodbye</i>
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>Never Say Goodbye</i>
 				</div>
 			</div>
 		</div>
@@ -642,7 +627,7 @@
 	<script type="text/javascript" src="./assets/script/store.js?v=220422"></script>
 	<script type="text/javascript" src="./assets/script/global.js?v=220422"></script>
 	<script type="text/javascript" src="./assets/script/event.js?v=220412"></script>
-	<script type="text/javascript" src="./assets/script/init.js?v=220411"></script>
+	<script type="text/javascript" src="./assets/script/init.js?v=220425"></script>
 	<script type="text/javascript" src="./assets/script/quote.js?v=220401"></script>
 	<script type="text/javascript" src="./assets/script/theme.js?v=220412"></script>
 	<script type="text/javascript" src="./assets/script/music.js?v=220409"></script>

@@ -111,7 +111,7 @@ function initColor() {
 	if (getCookie("cbg").indexOf("/") != -1) {
 		$("body").css("background-image", "url(" + getCookie("cbg") + ")");
 		$("body").css("background-color", "white");
-	} else { 
+	} else {
 		$("body").css("background-color", getCookie("cbg"));
 		$("body").css("background-image", "none");
 	}
@@ -165,8 +165,9 @@ let eventModal =
 	"</div>" +
 	"</div>";
 function showEvent() {
+	$("#event-addon").html("");
 	let hasEvent = false;
-	let eventCnt = 1;
+	let eventCnt = 0;
 	for (let i = 0; i < weeklyEventList.length; i++) {
 		if (weeklyEventDescr[i] == "-1" || weeklyEventEnd[i] == "-1") continue;
 		hasEvent = true;
@@ -185,8 +186,8 @@ function showEvent() {
 			weeklyName[weeklyEventList[i][0]] + " " + weeklyEventList[i].substring(1, 3) + ":" + weeklyEventList[i].substring(3, 5)
 			+ "至" + weeklyEventEnd[i].substring(1, 3) + ":" + weeklyEventEnd[i].substring(3, 5));
 
-		$("#cd-tab0").append(evm);
-		$("#cd-tab0 .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.open(weeklyEventLink[i]); });
+		$("#event-addon").append(evm);
+		$("#event-addon .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.open(weeklyEventLink[i]); });
 		eventCnt++;
 	}
 	for (let i = 0; i < onceEventList.length; i++) {
@@ -211,14 +212,14 @@ function showEvent() {
 			onceEventList[i].substring(0, 4) + "/" + onceEventList[i].substring(4, 6) + "/" + onceEventList[i].substring(6, 8) + " " +
 			onceEventList[i].substring(8, 10) + ":" + onceEventList[i].substring(10, 12));
 
-		$("#cd-tab0").append(evm);
-		$("#cd-tab0 .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.open(onceEventLink[i]); });
+		$("#event-addon").append(evm);
+		$("#event-addon .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.open(onceEventLink[i]); });
 		eventCnt++;
 	}
 	if (!hasEvent) $("#event-no").show();
 	else $("#event-no").hide();
 }
-showEvent();
+$("#tab0a").on("click", function () { showEvent(); });
 
 let schedModal = "<tr><td>ID</td><td>MON</td><td>TUES</td><td>WED</td><td>THUR</td><td>FRI</td></tr>";
 function showAllSched() {
