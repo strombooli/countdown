@@ -170,22 +170,22 @@ function showEvent() {
 		$("#event-addon .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.open(weeklyEventLink[i]); });
 		eventCnt++;
 	}
-	for (let i = 0; i < meetEventClass.length; i++) {
+	for (let i = 0; i < meetEvent.length; i++) {
 		hasEvent = true;
 
 		let inClassRng = true;
-		if (localStorage.getItem("classNo").length != meetEventClass[i].length) inClassRng = false;
+		if (localStorage.getItem("classNo").length != meetEvent[i].class.length) inClassRng = false;
 		else {
-			for (let j = 0; j < meetEventClass[i].length; j++) {
-				if (localStorage.getItem("classNo")[j] != meetEventClass[i][j] && meetEventClass[i][j] != "*"){
+			for (let j = 0; j < meetEvent[i].class.length; j++) {
+				if (localStorage.getItem("classNo")[j] != meetEvent[i].class[j] && meetEvent[i].class[j] != "*"){
 					inClassRng = false;
 					break;
 				}
 			}
 		}
-		if (!inClassRng || (getAdjDay(new Date()) != meetEventDay[i] && meetEventDay[i] != -1)) continue;
+		if (!inClassRng || (getAdjDay(new Date()) != meetEvent[i].day && meetEvent[i].day != -1)) continue;
 		let evm = eventModal;
-		if ($("#title").text() == " " + meetEventSched[i] + " ") {
+		if ($("#title").text() == " " + meetEvent[i].sched + " ") {
 			if ($("#title-sub").text() == "上课") {
 				evm = evm.replace(/EVENTSTAT/g, "将开始");
 				evm = evm.replace(/EVENTCLR/g, "notin");
@@ -197,9 +197,9 @@ function showEvent() {
 			evm = evm.replace(/EVENTSTAT/g, "未开始");
 			evm = evm.replace(/EVENTCLR/g, "notin");
 		}
-		evm = evm.replace(/EVENTNAME/g, "腾讯会议-" + genClassName() + meetEventSched[i]);
-		if (meetEventPwd[i] == "") evm = evm.replace(/EVENTTIME/g, "每周");
-		else evm = evm.replace(/EVENTTIME/g, "密码" + meetEventPwd[i] + "，每周");
+		evm = evm.replace(/EVENTNAME/g, "腾讯会议-" + genClassName() + meetEvent[i].descr);
+		if (meetEvent[i].pwd == "") evm = evm.replace(/EVENTTIME/g, "每周");
+		else evm = evm.replace(/EVENTTIME/g, "密码" + meetEvent[i].pwd.replace(/YY/g, "22").replace(/MM/g, "04").replace(/DD/g, "25") + "，每周");
 
 		$("#event-addon").append(evm);
 		$("#event-addon .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.location.href = "wemeet://page/inmeeting?meeting_code=" + meetEventNo[i]; });

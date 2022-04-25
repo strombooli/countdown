@@ -6,11 +6,67 @@ let weeklyEventDescr = ["升旗仪式", "-1", "-1", "-1", "-1"];
 let weeklyEventLink = ["https:\/\/ke.qq.com\/webcourse\/2537352\/102642177#taid=9050075915794312&lite=1"];
 let weeklyEventSpecial = [-1, 0, 0, 0, 0];
 
-let meetEventDay = [-1, -1, -1, -1, -1, -1, 1, 2, 4, 5];
-let meetEventClass = ["116", "116", "116", "116", "116", "11*", "116", "116", "116", "116"];
-let meetEventSched = ["TI", "语文", "思想政治", "劳技", "地理", "生物", "化学", "化学", "化学", "化学"];
-let meetEventNo = ["72484975415", "98824843300", "5996505652", "55871859390", "4242607523", "99892596354", "36979006822", "49481381540", "76629784909"];
-let meetEventPwd = ["", "300300", "", "", "", "", "", "", "", ""]
+let meetEvent =
+	[
+		{ day: 1, class: "11*", sched: "TI", no: "72484975415", pwd: "", descr: "TI" },
+		{ day: -1, class: "11*", sched: "生物", no: "7132964981", pwd: "YYMMDD", descr: "生物" },
+		{ day: -1, class: "011", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: -1, class: "012", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: -1, class: "013", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: -1, class: "014", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: -1, class: "015", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: -1, class: "112", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: -1, class: "114", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: -1, class: "116", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: -1, class: "116", sched: "语文", no: "98824843300", pwd: "300300", descr: "语文" },
+		{ day: -1, class: "114", sched: "劳技", no: "43929025051", pwd: "1111", descr: "劳技" },
+		{ day: -1, class: "116", sched: "劳技", no: "55871859390", pwd: "", descr: "劳技" },
+		{ day: -1, class: "114", sched: "地理", no: "4242607523", pwd: "", descr: "地理" },
+		{ day: -1, class: "116", sched: "地理", no: "4242607523", pwd: "", descr: "地理" },
+		{ day: -1, class: "125", sched: "地理D", no: "4242607523", pwd: "", descr: "地理D" },
+		{ day: -1, class: "126", sched: "地理D", no: "4242607523", pwd: "", descr: "地理D" },
+		{ day: 1, class: "112", sched: "化学", no: "99892596354", pwd: "", descr: "化学" },
+		{ day: 1, class: "116", sched: "化学", no: "99892596354", pwd: "", descr: "化学" },
+		{ day: 1, class: "123", sched: "化学H5/化学H6/化学D3", no: "99892596354", pwd: "", descr: "化学H5" },
+		{ day: 1, class: "124", sched: "化学H5/化学H6/化学D3", no: "99892596354", pwd: "", descr: "化学H5" },
+		{ day: 1, class: "125", sched: "化学H5/化学H6/化学D3", no: "99892596354", pwd: "", descr: "化学H5" },
+		{ day: 1, class: "126", sched: "化学H5/化学H6/化学D3", no: "99892596354", pwd: "", descr: "化学H5" },
+		{ day: 1, class: "134", sched: "化学D2/历史D1/政治D1", no: "99892596354", pwd: "", descr: "化学D2" },
+		{ day: 1, class: "136", sched: "化学D2/历史D1/政治D1", no: "99892596354", pwd: "", descr: "化学D2" },
+		{ day: 2, class: "112", sched: "化学", no: "36979006822", pwd: "", descr: "化学" },
+		{ day: 2, class: "116", sched: "化学", no: "36979006822", pwd: "", descr: "化学" },
+		{ day: 2, class: "134", sched: "化学D2/历史D1/政治D1", no: "36979006822", pwd: "", descr: "化学D2" },
+		{ day: 2, class: "136", sched: "化学D2/历史D1/政治D1", no: "36979006822", pwd: "", descr: "化学D2" },
+		{ day: 4, class: "112", sched: "化学", no: "49481381540", pwd: "", descr: "化学" },
+		{ day: 4, class: "116", sched: "化学", no: "49481381540", pwd: "", descr: "化学" },
+		{ day: 4, class: "123", sched: "化学H5/化学H6/化学D3", no: "49481381540", pwd: "", descr: "化学H5" },
+		{ day: 4, class: "124", sched: "化学H5/化学H6/化学D3", no: "49481381540", pwd: "", descr: "化学H5" },
+		{ day: 4, class: "125", sched: "化学H5/化学H6/化学D3", no: "49481381540", pwd: "", descr: "化学H5" },
+		{ day: 4, class: "126", sched: "化学H5/化学H6/化学D3", no: "49481381540", pwd: "", descr: "化学H5" },
+		{ day: 4, class: "134", sched: "化学D2/历史D1/政治D1", no: "49481381540", pwd: "", descr: "化学D2" },
+		{ day: 4, class: "136", sched: "化学D2/历史D1/政治D1", no: "49481381540", pwd: "", descr: "化学D2" },
+		{ day: 5, class: "112", sched: "化学", no: "76629784909", pwd: "", descr: "化学" },
+		{ day: 5, class: "116", sched: "化学", no: "76629784909", pwd: "", descr: "化学" },
+		{ day: 1, class: "114", sched: "英语", no: "312402352", pwd: "1111", descr: "英语" },
+		{ day: 2, class: "114", sched: "英语", no: "73023208601", pwd: "1111", descr: "英语" },
+		{ day: 3, class: "114", sched: "英语", no: "58735737500", pwd: "1111", descr: "英语" },
+		{ day: 4, class: "114", sched: "英语", no: "33821319790", pwd: "1111", descr: "英语" },
+		{ day: 5, class: "114", sched: "英语", no: "68829043719", pwd: "1111", descr: "英语" },
+		{ day: 1, class: "114", sched: "语文", no: "80957374900", pwd: "", descr: "语文" },
+		{ day: 2, class: "114", sched: "语文", no: "39971451285", pwd: "", descr: "语文" },
+		{ day: 3, class: "114", sched: "语文", no: "83164758551", pwd: "", descr: "语文" },
+		{ day: 4, class: "114", sched: "语文", no: "32959617844", pwd: "", descr: "语文" },
+		{ day: 5, class: "114", sched: "班会", no: "61256181546", pwd: "", descr: "班会" },
+		{ day: 2, class: "114", sched: "化学", no: "73346851681", pwd: "", descr: "化学" },
+		{ day: 3, class: "114", sched: "化学", no: "62379764140", pwd: "", descr: "化学" },
+		{ day: 4, class: "114", sched: "化学", no: "91595157939", pwd: "", descr: "化学" },
+		{ day: 5, class: "114", sched: "化学", no: "45733448707", pwd: "", descr: "化学" },
+	];
+let meetEventDay = [-1, -1, 1, 2, 4, 5, 1, 2, 3, 4, 5];
+let meetEventClass = ["116", "11*", "116", "116", "116", "116", "114", "114", "114", "114", "114", "114"];
+let meetEventSched = ["英语", "英语", "英语", "英语"];
+let meetEventNo = ["", "", "", "", ""];
+let meetEventPwd = ["1111", "1111", "1111", "1111", "1111"];
 
 let onceEventList = ["202203231540"];
 let onceEventEnd = ["202203231640"];

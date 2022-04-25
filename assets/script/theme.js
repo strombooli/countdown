@@ -97,7 +97,7 @@ document.getElementById("cd-tab5").innerHTML += "<input style=\"width: 100%; bor
 for (let i = 0; i < themeGlb.length; i++) {
 	let thmg = themeModelGlb;
 	thmg = thmg.replace(/ID/g, i.toString());
-	thmg = thmg.replace(/PICSRC/g, "./assets/image/theme/" + themeGlb[i].id + ".png?v=220408");
+	thmg = thmg.replace(/PICSRC/g, "./assets/image/theme/" + themeGlb[i].id + ".png?v=220425");
 	thmg = thmg.replace(/THEMENAME/g, themeGlb[i].descr);
 	document.getElementById("cd-tab5").innerHTML += thmg;
 }
