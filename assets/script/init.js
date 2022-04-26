@@ -202,7 +202,7 @@ function showEvent() {
 		else evm = evm.replace(/EVENTTIME/g, "密码" + meetEvent[i].pwd.replace(/YY/g, "22").replace(/MM/g, "04").replace(/DD/g, "25") + "，每周");
 
 		$("#event-addon").append(evm);
-		$("#event-addon .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.location.href = "wemeet://page/inmeeting?meeting_code=" + meetEventNo[i]; });
+		$("#event-addon .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.location.href = "wemeet://page/inmeeting?meeting_code=" + meetEvent[i].no; });
 		eventCnt++;
 	}
 	for (let i = 0; i < onceEventList.length; i++) {
