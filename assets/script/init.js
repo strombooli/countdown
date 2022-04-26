@@ -177,13 +177,13 @@ function showEvent() {
 		if (localStorage.getItem("classNo").length != meetEvent[i].class.length) inClassRng = false;
 		else {
 			for (let j = 0; j < meetEvent[i].class.length; j++) {
-				if (localStorage.getItem("classNo")[j] != meetEvent[i].class[j] && meetEvent[i].class[j] != "*"){
+				if (localStorage.getItem("classNo")[j] != meetEvent[i].class[j] && meetEvent[i].class[j] != "*") {
 					inClassRng = false;
 					break;
 				}
 			}
 		}
-		if (!inClassRng || (getAdjDay(new Date()) != meetEvent[i].day && meetEvent[i].day != -1)) continue;
+		if (!inClassRng || (getAdjDay(new Date()) != meetEvent[i].day && meetEvent[i].day != 0)) continue;
 		let evm = eventModal;
 		if ($("#title").text() == " " + meetEvent[i].sched + " ") {
 			if ($("#title-sub").text() == "上课") {
@@ -198,8 +198,8 @@ function showEvent() {
 			evm = evm.replace(/EVENTCLR/g, "notin");
 		}
 		evm = evm.replace(/EVENTNAME/g, "腾讯会议-" + genClassName() + meetEvent[i].descr);
-		if (meetEvent[i].pwd == "") evm = evm.replace(/EVENTTIME/g, "每周");
-		else evm = evm.replace(/EVENTTIME/g, "密码" + meetEvent[i].pwd.replace(/YY/g, "22").replace(/MM/g, "04").replace(/DD/g, "25") + "，每周");
+		if (meetEvent[i].pwd == "") evm = evm.replace(/EVENTTIME/g, weeklyName[meetEvent[i].day]);
+		else evm = evm.replace(/EVENTTIME/g, "密码" + meetEvent[i].pwd.replace(/YY/g, "22").replace(/MM/g, add0((new Date().getMonth() + 1).toString())).replace(/DD/g, new Date().getDate()) + "，" + weeklyName[meetEvent[i].day]);
 
 		$("#event-addon").append(evm);
 		$("#event-addon .tab-list:eq(" + eventCnt.toString() + ")").on("click", function () { window.location.href = "wemeet://page/inmeeting?meeting_code=" + meetEvent[i].no; });

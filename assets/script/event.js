@@ -1,6 +1,6 @@
 let weeklyEventList = ["10851", "20931", "30931", "40931", "50931"];
 let weeklyEventEnd = ["10930", "-1", "-1", "-1", "-1"];
-let weeklyName = ["-1", "每周一", "每周二", "每周三", "每周四", "每周五"];
+let weeklyName = ["每周", "每周一", "每周二", "每周三", "每周四", "每周五"];
 let weeklyEventMusic = [-1, -2, -2, -2, -2];
 let weeklyEventDescr = ["升旗仪式", "-1", "-1", "-1", "-1"];
 let weeklyEventLink = ["https:\/\/ke.qq.com\/webcourse\/2537352\/102642177#taid=9050075915794312&lite=1"];
@@ -9,18 +9,18 @@ let weeklyEventSpecial = [-1, 0, 0, 0, 0];
 let meetEvent =
 	[
 		{ day: 1, class: "11*", sched: "TI", no: "72484975415", pwd: "", descr: "TI" },
-		{ day: -1, class: "11*", sched: "生物", no: "7132964981", pwd: "YYMMDD", descr: "生物" },
-		{ day: -1, class: "01*", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
-		{ day: -1, class: "112", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
-		{ day: -1, class: "114", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
-		{ day: -1, class: "116", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
-		{ day: -1, class: "116", sched: "语文", no: "98824843300", pwd: "300300", descr: "语文" },
-		{ day: -1, class: "114", sched: "劳技", no: "43929025051", pwd: "", descr: "劳技" },
-		{ day: -1, class: "116", sched: "劳技", no: "55871859390", pwd: "", descr: "劳技" },
-		{ day: -1, class: "114", sched: "地理", no: "4242607523", pwd: "", descr: "地理" },
-		{ day: -1, class: "116", sched: "地理", no: "4242607523", pwd: "", descr: "地理" },
-		{ day: -1, class: "125", sched: "地理D", no: "4242607523", pwd: "", descr: "地理D" },
-		{ day: -1, class: "126", sched: "地理D", no: "4242607523", pwd: "", descr: "地理D" },
+		{ day: 0, class: "11*", sched: "生物", no: "7132964981", pwd: "YYMMDD", descr: "生物" },
+		{ day: 0, class: "01*", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: 0, class: "112", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: 0, class: "114", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: 0, class: "116", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
+		{ day: 0, class: "116", sched: "语文", no: "98824843300", pwd: "300300", descr: "语文" },
+		{ day: 0, class: "114", sched: "劳技", no: "43929025051", pwd: "", descr: "劳技" },
+		{ day: 0, class: "116", sched: "劳技", no: "55871859390", pwd: "", descr: "劳技" },
+		{ day: 0, class: "114", sched: "地理", no: "4242607523", pwd: "", descr: "地理" },
+		{ day: 0, class: "116", sched: "地理", no: "4242607523", pwd: "", descr: "地理" },
+		{ day: 0, class: "125", sched: "地理D", no: "4242607523", pwd: "", descr: "地理D" },
+		{ day: 0, class: "126", sched: "地理D", no: "4242607523", pwd: "", descr: "地理D" },
 		{ day: 1, class: "112", sched: "化学", no: "99892596354", pwd: "", descr: "化学" },
 		{ day: 1, class: "116", sched: "化学", no: "99892596354", pwd: "", descr: "化学" },
 		{ day: 1, class: "123", sched: "化学H5/化学H6/化学D3", no: "99892596354", pwd: "", descr: "化学H5" },
