@@ -627,6 +627,7 @@
 		}
 		let toNxtDescr = ["", "明天", "后天", "周一"];
 		function toNxtWorkDay(n) {
+			if (n.getHours() < 8) return toNxtWorkDay(new Date(Math.floor((n.getTime() + 8 * 60 * 60 * 1000) / 86400000) * 86400000));
 			let nowDay = getAdjDay(getAdjDate(n));
 			if (!isOff(n)) {
 				return 0;
