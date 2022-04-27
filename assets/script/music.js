@@ -1,3 +1,5 @@
+const MUSIC_VERSION = "0409";
+
 let musicList = ["pre.mp3", "on.mp3", "off.mp3", "eye.mp3", "inbody.mp3", "body.mp3", "neversaygoodbye.aac"];
 let musicDescr = ["预备铃", "上课铃", "下课铃", "眼保健操", "室内操", "广播体操", "Never Say Goodbye"];
 
@@ -5,7 +7,7 @@ let player;
 function playMusic(n) {
 	if (n < 0 || !toggled[n]) return;
 	let s = musicList[n];
-	let mp3 = "./assets/music/" + s + "?20220409";
+	let mp3 = "./assets/music/" + s + "?v=" + MUSIC_VERSION;
 	player = new Audio(mp3);
 	document.getElementById("cd-music").appendChild(player);
 	let playerer = player.play();

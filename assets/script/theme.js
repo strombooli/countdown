@@ -1,3 +1,5 @@
+const THEME_IMG_VERSION = "0425";
+
 let themeModelGlb = "<div id=\"theme-ID\" class=\"theme-tab text-center\">" +
 	"<img style=\"width: 100%\" src=\"PICSRC\">" +
 	"<label class=\"theme-name\">THEMENAME</label>" +
@@ -97,7 +99,7 @@ document.getElementById("cd-tab5").innerHTML += "<input style=\"width: 100%; bor
 for (let i = 0; i < themeGlb.length; i++) {
 	let thmg = themeModelGlb;
 	thmg = thmg.replace(/ID/g, i.toString());
-	thmg = thmg.replace(/PICSRC/g, "./assets/image/theme/" + themeGlb[i].id + ".png?v=220425");
+	thmg = thmg.replace(/PICSRC/g, "./assets/image/theme/" + themeGlb[i].id + ".png?v=" + THEME_IMG_VERSION);
 	thmg = thmg.replace(/THEMENAME/g, themeGlb[i].descr);
 	document.getElementById("cd-tab5").innerHTML += thmg;
 }
