@@ -19,7 +19,7 @@ function isOff(n) {
 		if (dayOff[i] == n.toLocaleDateString()) return true;
 	}
 	if (getAdjDay(getAdjDate(n)) >= 6 && getAdjDay(getAdjDate(n)) <= 7) return true;
-	if (getNowStr(n) < timeStampList[getClass().depart][0] || getNowStr(n) > timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return true;
+	if (getNowStr(n) < timeStampList[getClass().depart][0] || getNowStr(n) >= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return true;
 	return false;
 }
 function add0(s) {

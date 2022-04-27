@@ -1,8 +1,15 @@
 let toggled = new Array();
+let TOGGLE_CNT = 8;
 function initTog() {
 	let togStr = getCookie("tog");
-	if (togStr.length != 7) {
+	if (togStr.length > TOGGLE_CNT || togStr.length == 0) {
 		togStr = "1111111";
+		setCookie("tog", togStr, 365);
+	} else if (togStr.length < TOGGLE_CNT) {
+		let oldLen = togStr.length;
+		for (let i = oldLen; i < TOGGLE_CNT; i++) {
+			togStr = togStr + "1";
+		}
 		setCookie("tog", togStr, 365);
 	}
 	for (let i = 0; i < togStr.length; i++) {
@@ -71,6 +78,37 @@ function initColorInput() {
 }
 initColorInput();
 
+function initColorDev() {
+	let devModel =
+		"<div class=\"dev-bg\" style=\"width: WIDTH; height: HEIGHT; background-color: #F5F1DA\">" +
+		"<div style = \"background-color: black; position: relative; left: 3%; top: 5%; width: 10%; height: 1%\" ></div>" +
+		"<div style=\"background-color: #6c757d; position: relative; left: 40%; top: 93%; width: 20%; height: 1%\"></div>" +
+		"<div style=\"background-color: #6c757d; position: relative; left: 42.5%; top: 94%; width: 15%; height: 1%\"></div>" +
+		"<div style=\"position: relative; left: 35%; top: 10%; width: 30%; height: 3%\">" +
+		"<div class=\"dev-txt\" style=\"background-color: #9A9C94; position: relative; width: 30%; top: 40%; height: 60%; float: left\"></div>" +
+		"<div class=\"dev-sub\" style=\"background-color: #808C6C; position: relative; width: 20%; height: 100%; float: left; left: 10%\"></div>" +
+		"<div class=\"dev-txt\" style=\"background-color: #9A9C94; position: relative; width: 30%; top: 40%; height: 60%; float: left; left: 20%;\"></div></div>" +
+		"<div style=\"position: relative; left: 27.5%; top: 30%; width: 45%; height: 3%\">" +
+		"<div class=\"dev-cd\" style=\"background-color: #F4B46A; position: relative; width: 16%; height: 100%; float: left\"></div>" +
+		"<div class=\"dev-txt\" style=\"background-color: #9A9C94; position: relative; width: 11%; top: 40%; height: 60%; float: left; left: 5%\"></div>" +
+		"<div class=\"dev-cd\" style=\"background-color: #F4B46A; position: relative; width: 16%; height: 100%; float: left; left: 10%\"></div>" +
+		"<div class=\"dev-txt\" style=\"background-color: #9A9C94; position: relative; width: 11%; top: 40%; height: 60%; float: left; left: 15%\"></div>" +
+		"<div class=\"dev-cd\" style=\"background-color: #F4B46A; position: relative; width: 16%; height: 100%; float: left; left: 20%\"></div>" +
+		"<div class=\"dev-txt\" style=\"background-color: #9A9C94; position: relative; width: 5%; top: 40%; height: 60%; float: left; left: 25%\"></div></div></div>";
+	$("#color-dev-box").html(devModel.replace(/WIDTH/g, "100%").replace(/HEIGHT/g, (document.getElementById("color-dev").clientWidth / window.innerWidth * window.innerHeight).toString() + "px"));
+}
+$("#tab2a").on("click", function () { initColorDev();setDevColorFromInput(); });
+
+function setDevColor(bg, sub, cd, txt) {
+	$(".dev-bg").css("background-color", bg);
+	$(".dev-sub").css("background-color", sub);
+	$(".dev-cd").css("background-color", cd);
+	$(".dev-txt").css("background-color", txt);
+}
+function setDevColorFromInput() {
+	setDevColor($("#cbg").val(), $("#csub").val(), $("#ccd").val(), $("#ctxt").val());
+}
+
 function setColor(bg, sub, cd, txt) {
 	setCookie("cbg", bg, 365);
 	setCookie("csub", sub, 365);
@@ -78,9 +116,10 @@ function setColor(bg, sub, cd, txt) {
 	setCookie("ctxt", txt, 365);
 	initColor();
 }
-function setColorFromInput() {
-	setColor($("#cbg").val(), $("#csub").val(), $("#ccd").val(), $("#ctxt").val());
-}
+// function setColorFromInput() {
+// 	setColor($("#cbg").val(), $("#csub").val(), $("#ccd").val(), $("#ctxt").val());
+// 	setDevColorFromInput();
+// }
 function setColorFromThemeLoc(i) {
 	setColor(themeLoc[i].bg, themeLoc[i].sub, themeLoc[i].cd, themeLoc[i].txt);
 }
@@ -120,18 +159,30 @@ function initTabs() {
 }
 initTabs();
 function showTab(n) {
-	$("#cd-tabback").addClass("show");
+	if (!toggled[7]) {
+		$("#cd-tabback").addClass("show");
+		$("#cd-tab" + n.toString()).addClass("show");
+	}
 	$("#cd-tabback").show();
-	$("#cd-tab" + n.toString()).addClass("show");
-	$("#cd-tab" + n.toString()).show();
+	if (n == 2) $("#cd-tab" + n.toString()).css("visibility", "visible");
+	else $("#cd-tab" + n.toString()).show();
+	if (toggled[7]) {
+		setTimeout(function () {
+			$("#cd-tabback").addClass("show");
+			$("#cd-tab" + n.toString()).addClass("show");
+		}, 20);
+	}
 }
 function hideTab() {
 	for (let i = 0; i < 10; i++) {
 		if (document.getElementById("cd-tab" + i.toString()) === null) return;
-		$("#cd-tabback").removeClass("show");
 		$("#cd-tabback").hide();
-		$("#cd-tab" + i.toString()).removeClass("show");
-		$("#cd-tab" + i.toString()).hide();
+		if (i == 2) $("#cd-tab" + i.toString()).css("visibility", "hidden");
+		else $("#cd-tab" + i.toString()).hide();
+		setTimeout(function () {
+			$("#cd-tabback").removeClass("show");
+			$("#cd-tab" + i.toString()).removeClass("show");
+		}, toggled[7] ? 10 : 0);
 	}
 }
 

@@ -17,8 +17,13 @@
 		#cd-tab2>div::-webkit-scrollbar {
 			display: none;
 		}
+
 		#cd-tab7::-webkit-scrollbar {
 			display: none;
+		}
+
+		#cd-tab7 {
+			box-shadow: 0px 1px 20px 0px rgb(0 0 0 / 10%), inset 0px -1px 0px 0px rgb(0 0 0 / 10%);
 		}
 	</style>
 	<style>
@@ -340,9 +345,12 @@
 		<h4>v0.5.2</h4>
 		<div class="list-all"><label class="list-label">修复</label>修复节假日错误问题</div>
 		<div class="list-all"><label class="list-label">修复</label>修复活动状态更新不及时的问题</div>
+		<div class="list-all"><label class="list-label">修复</label>修复边界条件判断错误的问题</div>
 		<div class="list-all"><label class="list-label">优化</label>调整配色界面布局</div>
 		<div class="list-all"><label class="list-label">新增</label>点击活动即可加入会议（仅支持腾讯会议）</div>
 		<div class="list-all"><label class="list-label">新增</label>新增更新提示</div>
+		<div class="list-all"><label class="list-label">新增</label>新增配色预览</div>
+		<div class="list-all"><label class="list-label">新增</label>新增平滑效果设置</div>
 		<h4>v0.5.1</h4>
 		<div class="list-all"><label class="list-label">修复</label>修复室内操播放条件判断错误问题</div>
 		<div class="list-all"><label class="list-label">修复</label>修复主题错乱问题，重写逻辑</div>
@@ -401,7 +409,7 @@
 		<h3>v0.1</h3>
 		<div class="list-all"><label class="list-label">新增</label>基本框架</div>
 	</div>
-	<div id="cd-tab2" class="modal-mid wide fade" style="display: none">
+	<div id="cd-tab2" class="modal-mid wide fade" style="visibility: hidden">
 		<div class="vert-box wid35">
 			<label>第1步. 调色界面，请忽略顶部导航并进行调色。</label>
 			<iframe frameborder="0" src="https://www.shouce.ren/api/html/html4/tools-color_selector.html" height="100%"
@@ -411,7 +419,7 @@
 			HTML颜色代码 <input id="chtml" style="float: right">
 		</div>
 		<div class="vert-divi"></div>
-		<div class="vert-box wid3">
+		<div id="color-dev" class="vert-box wid3">
 			<label>第2步. 调色结束后，请复制“HTML颜色代码”输入框中全部内容，并根据需要输入下列输入框中；<br>
 				<i class="fa fa-exclamation-triangle"></i>也可直接输入颜色，如red。<br>
 				<i class="fa fa-exclamation-triangle"></i>支持使用图片作为背景，推荐使用<a
@@ -420,8 +428,9 @@
 			<label>科目 Subject </label><input id="csub" type="text" style="float: right"><br>
 			<label>时间 Countdown </label><input id="ccd" type="text" style="float: right"><br>
 			<label>文字 Text </label><input id="ctxt" type="text" style="float: right"><br>
-			<input type="button" class="mt-1" style="width: 100%" value="预览" onclick=setColorFromInput()>
+			<input type="button" class="mt-1" style="width: 100%" value="预览" onclick=setDevColorFromInput()>
 			<input type="button" class="mt-1" style="width: 100%" value="添加到主题" onclick=addThemeFromColor()>
+			<div id="color-dev-box" style="margin-top: 2%"></div>
 		</div>
 		<div class="vert-divi"></div>
 		<div class="vert-box wid35">
@@ -462,12 +471,21 @@
 				<div id="tog-6" class="col-4 text-center tgl" onclick="toggle(6)">
 					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>Never Say Goodbye</i>
 				</div>
+				<hr>
 			</div>
 		</div>
 		<hr>
+		<div class="form-group">
+			<div class="row">
+				<div id="tog-7" class="col-5 text-center tgl" onclick="toggle(7)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>平滑显示效果</i>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div id="cd-tab5" class="modal-side wide fade" style="display: none">
-		<input role="button" type="button" value="创建主题" style="width: 100%;" onclick=hideTab(),showTab(2)>
+		<input role="button" type="button" value="创建主题" style="width: 100%;"
+			onclick=hideTab(),setTimeout(function(){showTab(2)},10)>
 		<!-- example start -->
 		<div class="theme-tab text-center" style="display: none">
 			<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
@@ -619,9 +637,9 @@
 		});
 	</script>
 	<script type="text/javascript" src="./assets/script/store.js?v=0422"></script>
-	<script type="text/javascript" src="./assets/script/global.js?v=0425"></script>
+	<script type="text/javascript" src="./assets/script/global.js?v=0427"></script>
 	<script type="text/javascript" src="./assets/script/event.js?v=0430"></script>
-	<script type="text/javascript" src="./assets/script/init.js?v=0501"></script>
+	<script type="text/javascript" src="./assets/script/init.js?v=0502"></script>
 	<script type="text/javascript" src="./assets/script/quote.js?v=0425"></script>
 	<script type="text/javascript" src="./assets/script/theme.js?v=0427"></script>
 	<script type="text/javascript" src="./assets/script/music.js?v=0427"></script>
@@ -692,7 +710,7 @@
 			$("#sec").html(" " + add0(sec) + " ");
 		}
 		function updSched() {
-			if (timeStampList[getClass().depart][nxtId - 1] == getNowStr(new Date())) playMusic(timeStampMusic[getClass().depart][nxtId - 1]);
+			if (timeStampList[getClass().depart][(nxtId - 1 + timeStampList[getClass().depart].length) % timeStampList[getClass().depart].length] == getNowStr(new Date())) playMusic(timeStampMusic[getClass().depart][(nxtId - 1 + timeStampList[getClass().depart].length) % timeStampList[getClass().depart].length]);
 			preId = nxtId;
 			if (nxtId % 2 == 0) $("#nxt").text("当前：" + spanList[Math.floor(nxtId / 2)]);
 			else $("#nxt").text("下节：" + spanList[Math.floor(nxtId / 2) + 1]);
