@@ -676,7 +676,7 @@
 	<script>
 		let delta, nxtId, preId, preStr, preWkStr;
 		function refr() {
-			if (preStr != getNowStr(new Date()) && !toNxtWorkDay(new Date())) {
+			if (preStr != getNowStr(new Date()) && !isOff(new Date(Math.floor((new Date().getTime() + 8 * 60 * 60 * 1000) / 86400000) * 86400000))) {
 				preStr = getNowStr(new Date());
 				for (let i = 0; i < dailyEventList[getClass().depart].length; i++) {
 					if (dailyEventList[getClass().depart][i] == preStr) {
