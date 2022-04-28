@@ -1,22 +1,28 @@
+// Toggles Init
+
 let toggled = new Array();
-let TOGGLE_CNT = 8;
+let TOGGLE_CNT = 0;
 function initTog() {
+	for (let i = 0; i < 1000; i++) {
+		if (document.getElementById("tog-" + i.toString()) === null) {
+			TOGGLE_CNT = i;
+			break;
+		}
+	}
 	let togStr = getCookie("tog");
 	if (togStr.length > TOGGLE_CNT || togStr.length == 0) {
-		togStr = "1111111";
+		togStr = "";
+		for (let i = 0; i < TOGGLE_CNT; i++) togStr += "1";
 		setCookie("tog", togStr, 365);
 	} else if (togStr.length < TOGGLE_CNT) {
 		let oldLen = togStr.length;
-		for (let i = oldLen; i < TOGGLE_CNT; i++) {
-			togStr = togStr + "1";
-		}
+		for (let i = oldLen; i < TOGGLE_CNT; i++) togStr += "1";
 		setCookie("tog", togStr, 365);
 	}
 	for (let i = 0; i < togStr.length; i++) {
 		toggled[i] = parseInt(togStr[i]);
 	}
-	for (let i = 0; i < 1000; i++) {
-		if (document.getElementById("tog-" + i.toString()) === null) break;
+	for (let i = 0; i < TOGGLE_CNT; i++) {
 		if (toggled[i]) {
 			$("#tog-" + i.toString() + " i:first").toggleClass("fa-toggle-on", true);
 			$("#tog-" + i.toString() + " i:first").toggleClass("fa-toggle-off", false);
@@ -25,6 +31,8 @@ function initTog() {
 			$("#tog-" + i.toString() + " i:first").toggleClass("fa-toggle-off", true);
 		}
 	}
+	if(!toggled[8]) $("#quote").hide();
+	else $("#quote").show();
 }
 initTog();
 function toggle(n) {
@@ -34,6 +42,7 @@ function toggle(n) {
 	initTog();
 }
 
+// Week & Class Init
 
 $("#week").text("第" + getWk().toString() + "周");
 function updClass() {
@@ -54,11 +63,13 @@ function setClassDisplay() {
 setClassDisplay();
 $("#class").on("change", function () { updClass(); });
 
+// Music & Prompt Init
 
 $("#cd-hint-close").on("click", function () { $("#cd-hint").hide() });
 $("#music-stop").on("click", function () { stopMusic() });
 $("#prompt-close").on("click", function () { $("#cd-prompt").hide() });
 
+// Colors & Themes Init
 
 function calcHtml() {
 	let r = parseInt($("#cr").val());
@@ -80,25 +91,24 @@ initColorInput();
 
 function initColorDev() {
 	let devModel =
-		"<div class=\"dev-bg\" style=\"width: WIDTH; height: HEIGHT; background-color: #F5F1DA\">" +
-		"<div style = \"background-color: black; position: relative; left: 3%; top: 5%; width: 10%; height: 1%\" ></div>" +
+		"<div class=\"dev-bg\" style=\"width: WIDTH; height: HEIGHT;\">" +
+		"<div style=\"background-color: black; position: relative; left: 3%; top: 5%; width: 10%; height: 1%\" ></div>" +
 		"<div style=\"background-color: #6c757d; position: relative; left: 40%; top: 93%; width: 20%; height: 1%\"></div>" +
 		"<div style=\"background-color: #6c757d; position: relative; left: 42.5%; top: 94%; width: 15%; height: 1%\"></div>" +
 		"<div style=\"position: relative; left: 35%; top: 10%; width: 30%; height: 3%\">" +
-		"<div class=\"dev-txt\" style=\"background-color: #9A9C94; position: relative; width: 30%; top: 40%; height: 60%; float: left\"></div>" +
-		"<div class=\"dev-sub\" style=\"background-color: #808C6C; position: relative; width: 20%; height: 100%; float: left; left: 10%\"></div>" +
-		"<div class=\"dev-txt\" style=\"background-color: #9A9C94; position: relative; width: 30%; top: 40%; height: 60%; float: left; left: 20%;\"></div></div>" +
+		"<div class=\"dev-txt\" style=\"position: relative; width: 30%; top: 40%; height: 60%; float: left\"></div>" +
+		"<div class=\"dev-sub\" style=\"position: relative; width: 20%; height: 100%; float: left; left: 10%\"></div>" +
+		"<div class=\"dev-txt\" style=\"position: relative; width: 30%; top: 40%; height: 60%; float: left; left: 20%;\"></div></div>" +
 		"<div style=\"position: relative; left: 27.5%; top: 30%; width: 45%; height: 3%\">" +
-		"<div class=\"dev-cd\" style=\"background-color: #F4B46A; position: relative; width: 16%; height: 100%; float: left\"></div>" +
-		"<div class=\"dev-txt\" style=\"background-color: #9A9C94; position: relative; width: 11%; top: 40%; height: 60%; float: left; left: 5%\"></div>" +
-		"<div class=\"dev-cd\" style=\"background-color: #F4B46A; position: relative; width: 16%; height: 100%; float: left; left: 10%\"></div>" +
-		"<div class=\"dev-txt\" style=\"background-color: #9A9C94; position: relative; width: 11%; top: 40%; height: 60%; float: left; left: 15%\"></div>" +
-		"<div class=\"dev-cd\" style=\"background-color: #F4B46A; position: relative; width: 16%; height: 100%; float: left; left: 20%\"></div>" +
-		"<div class=\"dev-txt\" style=\"background-color: #9A9C94; position: relative; width: 5%; top: 40%; height: 60%; float: left; left: 25%\"></div></div></div>";
+		"<div class=\"dev-cd\" style=\"position: relative; width: 16%; height: 100%; float: left\"></div>" +
+		"<div class=\"dev-txt\" style=\"position: relative; width: 11%; top: 40%; height: 60%; float: left; left: 5%\"></div>" +
+		"<div class=\"dev-cd\" style=\"position: relative; width: 16%; height: 100%; float: left; left: 10%\"></div>" +
+		"<div class=\"dev-txt\" style=\"position: relative; width: 11%; top: 40%; height: 60%; float: left; left: 15%\"></div>" +
+		"<div class=\"dev-cd\" style=\"position: relative; width: 16%; height: 100%; float: left; left: 20%\"></div>" +
+		"<div class=\"dev-txt\" style=\"position: relative; width: 5%; top: 40%; height: 60%; float: left; left: 25%\"></div></div></div>";
 	$("#color-dev-box").html(devModel.replace(/WIDTH/g, "100%").replace(/HEIGHT/g, (document.getElementById("color-dev").clientWidth / window.innerWidth * window.innerHeight).toString() + "px"));
 }
-$("#tab2a").on("click", function () { initColorDev();setDevColorFromInput(); });
-
+$("#tab2a").on("click", function () { initColorDev(); setDevColorFromInput(); });
 function setDevColor(bg, sub, cd, txt) {
 	$(".dev-bg").css("background-color", bg);
 	$(".dev-sub").css("background-color", sub);
@@ -140,6 +150,7 @@ function initColor() {
 }
 initColor();
 
+// Tabs Init
 
 function initTabs() {
 	let tabOpen = ["-1", "-1", "-1", "-1"];
@@ -186,6 +197,7 @@ function hideTab() {
 	}
 }
 
+// Events Init
 
 let eventModal =
 	"<div class=\"tab-list\">" +
@@ -286,6 +298,8 @@ function showEvent() {
 	else $("#event-no").hide();
 }
 $("#tab0a").on("click", function () { showEvent(); });
+
+// Sched Table Init
 
 let schedModal = "<tr><td>ID</td><td>MON</td><td>TUES</td><td>WED</td><td>THUR</td><td>FRI</td></tr>";
 function showAllSched() {

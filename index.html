@@ -351,6 +351,8 @@
 		<div class="list-all"><label class="list-label">新增</label>新增更新提示</div>
 		<div class="list-all"><label class="list-label">新增</label>新增配色预览</div>
 		<div class="list-all"><label class="list-label">新增</label>新增平滑效果设置</div>
+		<div class="list-all"><label class="list-label">新增</label>可隐藏「回声洞」</div>
+		<div class="list-all"><label class="list-label">新增</label>新增本地主题编辑</div>
 		<h4>v0.5.1</h4>
 		<div class="list-all"><label class="list-label">修复</label>修复室内操播放条件判断错误问题</div>
 		<div class="list-all"><label class="list-label">修复</label>修复主题错乱问题，重写逻辑</div>
@@ -429,7 +431,8 @@
 			<label>时间 Countdown </label><input id="ccd" type="text" style="float: right"><br>
 			<label>文字 Text </label><input id="ctxt" type="text" style="float: right"><br>
 			<input type="button" class="mt-1" style="width: 100%" value="预览" onclick=setDevColorFromInput()>
-			<input type="button" class="mt-1" style="width: 100%" value="添加到主题" onclick=addThemeFromColor()>
+			<input type="button" class="mt-1" style="width: 100%" value="保存为主题" onclick=addThemeFromInput()>
+			<input id="save-change" type="button" class="mt-1" style="width: 100%; display: none" value="保存更改到主题“”" onclick=editThemeFromInput()>
 			<div id="color-dev-box" style="margin-top: 2%"></div>
 		</div>
 		<div class="vert-divi"></div>
@@ -482,10 +485,18 @@
 				</div>
 			</div>
 		</div>
+		<hr>
+		<div class="form-group">
+			<div class="row">
+				<div id="tog-8" class="col-5 text-center tgl" onclick="toggle(8)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>「回声洞」</i>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div id="cd-tab5" class="modal-side wide fade" style="display: none">
 		<input role="button" type="button" value="创建主题" style="width: 100%;"
-			onclick=hideTab(),setTimeout(function(){showTab(2)},10)>
+			onclick=hideTab(),setTimeout(function(){showTab(2)},10),initColorInputButton(),initColorDev(),setDevColorFromInput()>
 		<!-- example start -->
 		<div class="theme-tab text-center" style="display: none">
 			<img style="width: 100%" src="https://cdn.luogu.com.cn/upload/image_hosting/4v66hyam.png">
@@ -638,12 +649,12 @@
 	</script>
 	<script type="text/javascript" src="./assets/script/store.js?v=0422"></script>
 	<script type="text/javascript" src="./assets/script/global.js?v=0427"></script>
-	<script type="text/javascript" src="./assets/script/event.js?v=0430"></script>
-	<script type="text/javascript" src="./assets/script/init.js?v=0502"></script>
+	<script type="text/javascript" src="./assets/script/event.js?v=0428a"></script>
+	<script type="text/javascript" src="./assets/script/init.js?v=0428a"></script>
 	<script type="text/javascript" src="./assets/script/quote.js?v=0425"></script>
-	<script type="text/javascript" src="./assets/script/theme.js?v=0427"></script>
+	<script type="text/javascript" src="./assets/script/theme.js?v=0428"></script>
 	<script type="text/javascript" src="./assets/script/music.js?v=0427"></script>
-	<script type="text/javascript" src="./assets/script/version.js?v=0427"></script>
+	<script type="text/javascript" src="./assets/script/version.js?v=0428"></script>
 	<script>
 		function str2time(n) {
 			let todayStart = new Date().getTime() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000 - new Date().getSeconds() * 1000 - new Date().getMilliseconds();
