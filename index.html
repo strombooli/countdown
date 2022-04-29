@@ -717,7 +717,7 @@
 			let hor = Math.floor(delta / 3600);
 			let min = Math.floor(delta / 60 - hor * 60);
 			let sec = Math.floor(delta - hor * 3600 - min * 60);
-			$("#hor").html(" " + add0(hor) + " ");
+			$("#hor").html(" " + hor.toString() + " ");
 			$("#min").html(" " + add0(min) + " ");
 			$("#sec").html(" " + add0(sec) + " ");
 		}
