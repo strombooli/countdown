@@ -432,7 +432,8 @@
 			<label>文字 Text </label><input id="ctxt" type="text" style="float: right"><br>
 			<input type="button" class="mt-1" style="width: 100%" value="预览" onclick=setDevColorFromInput()>
 			<input type="button" class="mt-1" style="width: 100%" value="保存为主题" onclick=addThemeFromInput()>
-			<input id="save-change" type="button" class="mt-1" style="width: 100%; display: none" value="保存更改到主题“”" onclick=editThemeFromInput()>
+			<input id="save-change" type="button" class="mt-1" style="width: 100%; display: none" value="保存更改到主题“”"
+				onclick=editThemeFromInput()>
 			<div id="color-dev-box" style="margin-top: 2%"></div>
 		</div>
 		<div class="vert-divi"></div>
@@ -681,8 +682,6 @@
 				return toNxtWorkDay(new Date(Math.floor((n.getTime() + 86400000 + 8 * 60 * 60 * 1000) / 86400000) * 86400000)) + 1;
 			}
 		}
-		if (toNxtWorkDay(new Date()) < toNxtDescr.length) $("#title-to").text(toNxtDescr[toNxtWorkDay(new Date())]);
-		else $("#title-to").text(toNxtWorkDay(new Date()).toString() + "天后");
 	</script>
 	<script>
 		let delta, nxtId, preId, preStr, preWkStr;
@@ -706,6 +705,8 @@
 					}
 				}
 			}
+			if (toNxtWorkDay(new Date()) < toNxtDescr.length) $("#title-to").text(toNxtDescr[toNxtWorkDay(new Date())]);
+			else $("#title-to").text(toNxtWorkDay(new Date()).toString() + "天后");
 			nxtId = nxtSchedId();
 			delta = str2time(nxtId) - new Date().getTime();
 			delta = delta / 1000 + (toNxtWorkDay(new Date()) * 24 * 60 * 60);
