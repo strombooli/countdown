@@ -14,7 +14,7 @@ let meetEvent =
 		{ day: 0, class: "112", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
 		{ day: 0, class: "114", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
 		{ day: 0, class: "116", sched: "思想政治", no: "5996505652", pwd: "", descr: "思想政治" },
-		{ day: 0, class: "116", sched: "语文", no: "98824843300", pwd: "300300", descr: "语文" },
+		{ day: 0, class: "116", sched: "语文", no: "87356650478", pwd: "", descr: "语文" },
 		{ day: 0, class: "114", sched: "劳技", no: "43929025051", pwd: "", descr: "劳技" },
 		{ day: 0, class: "116", sched: "劳技", no: "55871859390", pwd: "", descr: "劳技" },
 		{ day: 0, class: "114", sched: "地理", no: "4242607523", pwd: "", descr: "地理" },
