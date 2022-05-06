@@ -1,6 +1,6 @@
 function getAdjDate(n) {
 	let adjDate = n;
-	let trueNowDateStr = n.toLocaleDateString();
+	let trueNowDateStr = getLocaleDateStr(n);
 	for (let i = 0; i < daySwapFrom.length; i++) {
 		if (trueNowDateStr == daySwapFrom[i]) {
 			adjDate = new Date(daySwapTo[i]);
@@ -16,7 +16,7 @@ function getAdjDate(n) {
 function isOff(n) {
 	// if(n >= new Date("2022/7/1") && n < new Date("2022/9/1")) return true;
 	for (let i = 0; i < dayOff.length; i++) {
-		if (dayOff[i] == n.toLocaleDateString()) return true;
+		if (dayOff[i] == getLocaleDateStr(n)) return true;
 	}
 	if (getAdjDay(getAdjDate(n)) >= 6 && getAdjDay(getAdjDate(n)) <= 7) return true;
 	if (getNowStr(n) < timeStampList[getClass().depart][0] || getNowStr(n) >= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return true;
@@ -36,6 +36,9 @@ function getNowWkStr(n) {
 }
 function getNowOnceStr(n) {
 	return n.getFullYear().toString() + add0((n.getMonth() + 1).toString()) + add0(n.getDate().toString()) + getNowStr(n);
+}
+function getLocaleDateStr(n){
+	return n.getFullYear().toString() + "/" + (n.getMonth()+1).toString() + "/" + n.getDate().toString();
 }
 function getWk() {
 	return 6 + Math.floor((new Date().getTime() - 1647792000000) / 604800000);
