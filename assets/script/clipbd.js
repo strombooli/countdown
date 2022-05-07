@@ -10,7 +10,7 @@ function detectMeet() {
 			const text = await navigator.clipboard.readText();
 			console.log("Read Clipboard Success.");
 			try {
-				let meetingNo = text.match(/\d\d\d-\d\d\d(\d)?-\d\d\d(\d)?/)[0];
+				let meetingNo = text.match(/\d\d\d-\d\d\d(\d)?-\d\d\d(\d)?/)[0].split("-").join("");
 				window.location.href = "wemeet://page/inmeeting?meeting_code=" + meetingNo;
 				navigator.clipboard.writeText(" ");
 				console.log("Search Clipboard Success.");
