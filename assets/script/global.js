@@ -22,27 +22,13 @@ function isOff(n) {
 	if (getNowStr(n) < timeStampList[getClass().depart][0] || getNowStr(n) >= timeStampList[getClass().depart][timeStampList[getClass().depart].length - 1]) return true;
 	return false;
 }
-function add0(s) {
-	return ("00" + s).substr(-2);
-}
-function getAdjDay(n) {
-	return (n.getDay() - 1 + 7) % 7 + 1;
-}
-function getNowStr(n) {
-	return add0(n.getHours().toString()) + add0(n.getMinutes().toString());
-}
-function getNowWkStr(n) {
-	return getAdjDay(getAdjDate(n)).toString() + getNowStr(n);
-}
-function getNowOnceStr(n) {
-	return n.getFullYear().toString() + add0((n.getMonth() + 1).toString()) + add0(n.getDate().toString()) + getNowStr(n);
-}
-function getLocaleDateStr(n){
-	return n.getFullYear().toString() + "/" + (n.getMonth()+1).toString() + "/" + n.getDate().toString();
-}
-function getWk() {
-	return 6 + Math.floor((new Date().getTime() - 1647792000000) / 604800000);
-}
+function add0(s) { return ("00" + s).substr(-2); }
+function getWk() { return 6 + Math.floor((new Date().getTime() - 1647792000000) / 604800000); }
+function getAdjDay(n) { return (n.getDay() - 1 + 7) % 7 + 1; }
+function getNowStr(n) { return add0(n.getHours().toString()) + add0(n.getMinutes().toString()); } // HHMM
+function getNowWkStr(n) { return getAdjDay(getAdjDate(n)).toString() + getNowStr(n); } // WHHMM
+function getNowOnceStr(n) { return n.getFullYear().toString() + add0((n.getMonth() + 1).toString()) + add0(n.getDate().toString()) + getNowStr(n); } // YYYYMMDDHHMM
+function getLocaleDateStr(n) { return n.getFullYear().toString() + "/" + (n.getMonth() + 1).toString() + "/" + n.getDate().toString(); } // YYYY/MM/DD
 
 function rand(x, y) {
 	return Math.round(Math.random() * (y - x) + x);

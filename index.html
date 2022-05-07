@@ -346,6 +346,7 @@
 		<div class="list-all"><label class="list-label">修复</label>修复节假日错误问题</div>
 		<div class="list-all"><label class="list-label">修复</label>修复活动状态更新不及时的问题</div>
 		<div class="list-all"><label class="list-label">修复</label>修复边界条件判断错误的问题</div>
+		<div class="list-all"><label class="list-label">修复</label>修复广播操和室内操无法播放的问题</div>
 		<div class="list-all"><label class="list-label">优化</label>调整配色界面布局</div>
 		<div class="list-all"><label class="list-label">新增</label>点击活动即可加入会议（仅支持腾讯会议）</div>
 		<div class="list-all"><label class="list-label">新增</label>新增更新提示</div>
@@ -415,7 +416,7 @@
 	<div id="cd-tab2" class="modal-mid wide fade" style="visibility: hidden">
 		<div class="vert-box wid35">
 			<label>第1步. 调色界面，请忽略顶部导航并进行调色。</label>
-			<iframe frameborder="0" src="https://www.shouce.ren/api/html/html4/tools-color_selector.html" height="100%"
+			<iframe importance="low" frameborder="0" src="https://www.shouce.ren/api/html/html4/tools-color_selector.html" height="100%"
 				width="100%"></iframe>
 			R <input id="cr" style="width: 28%" onchange=calcHtml()> G <input id="cg" style="width: 28%"
 				onchange=calcHtml()> B <input id="cb" style="width: 30%" onchange=calcHtml()><br>
@@ -440,7 +441,7 @@
 		<div class="vert-divi"></div>
 		<div class="vert-box wid35">
 			<label>第3步. 如果您调出了满意的颜色并愿意分享，请填写以下匿名征集问卷。您的配色方案有较大几率被设为备选方案展示在网页上。</label>
-			<iframe src='https://www.wjx.cn/vj/QEMEoS9.aspx?width=350&source=iframe&s=t' width='100%' height='160%'
+			<iframe importance="low" src='https://www.wjx.cn/vj/QEMEoS9.aspx?width=350&source=iframe&s=t' width='100%' height='160%'
 				frameborder='0' style='overflow:none'></iframe>
 		</div>
 	</div>
@@ -449,7 +450,7 @@
 			style='overflow:auto'></iframe> -->
 		①推荐进入<a target="_blank" href="https://www.tapechat.net/uu/U6UFNO/0YF30FPM">Tape提问箱</a>进行反馈，可直接收到回复。
 		<hr>②填写问卷进行反馈，无法即时接收到回复。
-		<iframe src='https://www.wjx.cn/vj/hII0nTS.aspx?width=350&source=iframe&s=t' width='100%' height='110%'
+		<iframe importance="low" src='https://www.wjx.cn/vj/hII0nTS.aspx?width=350&source=iframe&s=t' width='100%' height='110%'
 			frameborder='0' style='overflow:auto'></iframe>
 	</div>
 	<div id="cd-tab4" class="modal-side widee fade" style="display: none">
@@ -482,16 +483,19 @@
 		<hr>
 		<div class="form-group">
 			<div class="row">
-				<div id="tog-7" class="col-5 text-center tgl" onclick="toggle(7)">
+				<div id="tog-7" class="col-6 text-center tgl" onclick="toggle(7)">
 					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>平滑显示效果</i>
+				</div>
+				<div id="tog-8" class="col-6 text-center tgl" onclick="toggle(8)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>「回声洞」</i>
 				</div>
 			</div>
 		</div>
 		<hr>
 		<div class="form-group">
 			<div class="row">
-				<div id="tog-8" class="col-5 text-center tgl" onclick="toggle(8)">
-					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>「回声洞」</i>
+				<div id="tog-9" class="col-12 text-center tgl" onclick="toggle(9)">
+					<i role="button" class="fa-2x fa fa-toggle-on text-muted"></i><br><i>读取剪贴板并快速加入腾讯会议</i>
 				</div>
 			</div>
 		</div>
@@ -517,7 +521,7 @@
 				<th>周五</th>
 			</tr>
 		</table>
-		<iframe src='https://www.wjx.cn/vj/Ys16iGt.aspx?width=350&source=iframe&s=t' width='100%' height='80%'
+		<iframe importance="low" src='https://www.wjx.cn/vj/Ys16iGt.aspx?width=350&source=iframe&s=t' width='100%' height='80%'
 			frameborder='0' style='overflow:auto'></iframe>
 	</div>
 	<div id="cd-tab7" class="modal-mid narrow fade scroll" style="display: none"></div>
@@ -650,14 +654,14 @@
 		});
 	</script>
 	<script type="text/javascript" src="./assets/script/store.js?v=0422"></script>
-	<script type="text/javascript" src="./assets/script/global.js?v=0427"></script>
-	<script type="text/javascript" src="./assets/script/event.js?v=0505"></script>
+	<script type="text/javascript" src="./assets/script/global.js?v=0507"></script>
+	<script type="text/javascript" src="./assets/script/event.js?v=0507"></script>
 	<script type="text/javascript" src="./assets/script/init.js?v=0428a"></script>
 	<script type="text/javascript" src="./assets/script/quote.js?v=0425"></script>
 	<script type="text/javascript" src="./assets/script/theme.js?v=0428"></script>
 	<script type="text/javascript" src="./assets/script/music.js?v=0427"></script>
 	<script type="text/javascript" src="./assets/script/version.js?v=0506"></script>
-	<script type="text/javascript" src="./assets/script/clipbd.js?v=0506"></script>
+	<script type="text/javascript" src="./assets/script/clipbd.js?v=0507"></script>
 	<script>
 		function str2time(n) {
 			let todayStart = new Date().getTime() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000 - new Date().getSeconds() * 1000 - new Date().getMilliseconds();
