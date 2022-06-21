@@ -163,7 +163,7 @@
 			let hor = Math.floor(delta / 3600);
 			let min = Math.floor(delta / 60 - hor * 60);
 			let sec = Math.floor(delta - hor * 3600 - min * 60);
-			$("#hor").html(" " + add0(hor, 3) + " ");
+			$("#hor").html(" " + add0(hor, 2) + " ");
 			$("#min").html(" " + add0(min, 2) + " ");
 			$("#sec").html(" " + add0(sec, 2) + " ");
 		}
